@@ -1,6 +1,6 @@
 ﻿body {
     height: 100vh;
-    background-image: linear-gradient(rgb(244, 213, 141, 0.4), rgb(244, 213, 141)), url("../images/popcorn.png"); 
+    background-image: linear-gradient(rgb(244, 213, 141, 0.4), rgb(244, 213, 141)), url(../images/popcorn.png);
     background-position: center;
     overflow-x: hidden;
     position: relative;
@@ -32,3 +32,23 @@ header {
                 text-decoration: none;
                 font-size: 200%;
             }
+
+.container {
+    display: flex;
+}
+
+.start-search {
+    margin: auto;
+    text-align: center;
+}
+
+    .start-search h2 {
+        color: #8D0801;
+        font-family: 'Anton', sans-serif;
+    }
+
+    .start-search input {
+        padding: 7%;
+        border: 0px;
+        border-radius: 5px;
+    }
