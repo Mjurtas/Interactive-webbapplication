@@ -20,10 +20,11 @@ namespace Bjornroth.Controllers
             this.cmdbRepository = cmdbRepository;
             _logger = logger;
         }
-
-        public async Task <IActionResult> Index()
+        
+        public async Task <IActionResult> Index(string searchInput)
         {
-            var model = await cmdbRepository.GetSearchResult();
+            
+            var model = await cmdbRepository.GetSearchResult(searchInput);
             return View(model);
         }
 

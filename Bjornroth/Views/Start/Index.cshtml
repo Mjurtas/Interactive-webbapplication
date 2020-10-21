@@ -3,18 +3,23 @@
 }
 @model Bjornroth.Models.DTO.MovieDTO
 
+
+
 <div class="start-search">
     <h2>SEARCH MOVIE</h2>
     <form>
-        <input type="text" id="fname" name="fname" placeholder="Search movie title...." />
+        <input type="text" id="searchInput" name="searchInput" value="" placeholder="Search movie title...." />
+        <input type="submit" value="Search" />
     </form>
 
     @*@foreach(var search in Model)
     {
         <p>@Html.DisplayFor(item => search.Title)</p>
     }*@
-
-    <p>@Html.ViewData.Model.ToString()</p>
+<div class="search-result">
+    <img src="@Html.ViewData.Model.Poster" />
+    <h2>@Html.ViewData.Model.Title</h2>
+</div>
 
 </div>
 
