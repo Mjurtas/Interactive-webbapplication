@@ -1,12 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model IEnumerable<Bjornroth.Models.DTO.MovieDTO>
 
 <div class="start-search">
     <h2>SEARCH MOVIE</h2>
     <form>
         <input type="text" id="fname" name="fname" placeholder="Search movie title...." />
     </form>
+
+    @foreach(var search in Model)
+    {
+        <p>@Html.DisplayFor(item => search.Title)</p>
+    }
 
 </div>
 

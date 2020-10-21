@@ -1,0 +1,12 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Bjornroth.Models.ViewModels
+{
+    public class SearchViewModels
+    {
+        public string Search { get; set; }
+    }
+}

@@ -7,20 +7,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Bjornroth.Models;
 
+using Bjornroth.Interfaces;
+
 namespace Bjornroth.Controllers
 {
     public class StartController : Controller
     {
         private readonly ILogger<StartController> _logger;
-
-        public StartController(ILogger<StartController> logger)
+        private ICmdbRepository cmdbRepository;
+        public StartController(ILogger<StartController> logger, ICmdbRepository cmdbRepository)
         {
+            this.cmdbRepository = cmdbRepository;
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task <IActionResult> Index()
         {
-            return View();
+            var model = await cmdbRepository.GetSearchResult();
+            return View(model);
         }
 
         public IActionResult Privacy()
