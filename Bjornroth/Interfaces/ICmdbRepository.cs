@@ -9,7 +9,7 @@ namespace Bjornroth.Interfaces
     public interface ICmdbRepository
     {
 
-        public Task<IEnumerable<MovieDTO>> GetSearchResult();
+        public Task<MovieDTO> GetSearchResult();
        
 
 

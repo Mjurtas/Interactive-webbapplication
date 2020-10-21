@@ -18,7 +18,7 @@ namespace Bjornroth.Repositories
             baseUrl = config.GetValue<string>("CMDBApi:BaseUrl");
         }
 
-        public async Task<IEnumerable<MovieDTO>> GetSearchResult()
+        public async Task<MovieDTO> GetSearchResult()
         {
             //TODO: Fixa så att koden inte upprepas
             using (HttpClient client = new HttpClient())
@@ -27,7 +27,7 @@ namespace Bjornroth.Repositories
                 var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
                 response.EnsureSuccessStatusCode();
                 var data = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<IEnumerable<MovieDTO>>(data);
+                var result = JsonConvert.DeserializeObject<MovieDTO>(data);
                 return result;
             }
         }

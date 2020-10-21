@@ -20,5 +20,12 @@ namespace Bjornroth.Models.DTO
         public string imdbRating { get; set; }
         //public string cmdbRating { get; set; } = "0";
         public string ImdbId { get; set; }
+
+
+        public override string ToString()
+        {
+            string movieInformation = $"Title: {Title} was released {Released}. Plot: {Plot}";
+            return movieInformation;
+        }
     }
 }
