@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Bjornroth.Models;
 
 using Bjornroth.Interfaces;
+using Bjornroth.Models.ViewModels;
 
 namespace Bjornroth.Controllers
 {
@@ -23,10 +24,34 @@ namespace Bjornroth.Controllers
         
         public async Task <IActionResult> Index(string searchInput)
         {
-            
-            var model = await cmdbRepository.GetSearchResult(searchInput);
-            return View(model);
+            if (searchInput != null)
+            {
+                var model = await cmdbRepository.GetSearchResult(searchInput);
+
+                string imdbId = model.ImdbId;
+
+                var model2 = await cmdbRepository.GetCmdbRating(imdbId);
+
+                MovieViewModel viewModel = new MovieViewModel(model, model2);
+                return View(viewModel);
+            }
+            else
+            {
+
+                var model = await cmdbRepository.GetSearchResult("Jedi");
+
+                string imdbId = model.ImdbId;
+
+                var model2 = await cmdbRepository.GetCmdbRating(imdbId);
+
+                MovieViewModel viewModel = new MovieViewModel(model, model2);
+                return View(viewModel);
+            }
+
+
         }
+
+      
 
         public IActionResult Privacy()
         {

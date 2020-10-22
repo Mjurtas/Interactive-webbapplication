@@ -1,13 +1,18 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Top List";
 }
-<html>
+@model Bjornroth.Models.ViewModels.SearchViewModel
 <head>
 </head>
 
 <body>
     <h1>Top List</h1>
+
+   
+    @foreach(var search in Model.Movies)
+        {
+            <p>@Html.DisplayFor(item => search.Title)</p>
+        }
+    
 </body>
 </html>

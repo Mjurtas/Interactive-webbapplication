@@ -1,4 +1,5 @@
 ﻿using Bjornroth.Models.DTO;
+using Bjornroth.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace Bjornroth.Interfaces
 
         Task<MovieDTO> GetSearchResult(string searchInput);
 
+        Task<MovieDTO> GetCmdbRating(string imdb);
 
+        Task<SearchDTO> GetSearchResults(string searchInput);
     }
 }
