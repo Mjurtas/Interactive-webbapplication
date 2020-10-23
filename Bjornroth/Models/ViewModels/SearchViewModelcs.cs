@@ -16,7 +16,7 @@ namespace Bjornroth.Models.ViewModels
         public SearchViewModel(SearchDTO search)
         {
             //Movies = search.Search;
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Movies.Add(search.Search[i]);
                 //this.Title = search.Search[i].Title;

@@ -1,6 +1,6 @@
 ﻿body {
     height: 100vh;
-    background-image: linear-gradient(rgb(244, 213, 141, 0.4), rgb(244, 213, 141)), url(../images/popcorn.png);
+    background-image: linear-gradient(rgb(244, 213, 141, 0.4), rgb(244, 213, 141)), url(popcorn.png);
     background-position: center;
     overflow-x: hidden;
     position: relative;
@@ -9,6 +9,9 @@
 header {
     display: flex;
     padding: 2%;
+}
+.container {
+    display: flex;
 }
 
 .links {
@@ -25,6 +28,7 @@ header {
             list-style: none;
             margin: 20%
         }
+
             .links ul li a {
                 color: #8D0801;
                 font-family: 'Anton', sans-serif;
@@ -32,18 +36,16 @@ header {
                 font-size: 200%;
             }
 
-.container {
-    display: flex;
-}
+
 
 .start-search {
     margin: auto;
-    text-align: center;
 }
 
     .start-search h2 {
         color: #8D0801;
         font-family: 'Anton', sans-serif;
+        text-align: center;
     }
 
     .start-search input {
@@ -52,8 +54,51 @@ header {
         border-radius: 5px;
     }
 
-    .search-result {
-        display: flex;
-        margin-top: 100px;
+.search-result-index-0 {
+    justify-content: center;
+    display: flex;
+}
 
+    .search-result-index-0 img {
+        max-width: 15%;
+    }
+
+.seach-result-index-0-info {
+    padding: 5%;
+}
+
+.search-result-index-1-3 {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    background: pink;
+}
+
+    .search-result-index-1-3 img {
+        width: 50px;
+        height: 80px;
+    }
+
+.search-result-index-1 {
+    display: flex;
+    padding: 4%;
+}
+
+.search-result-index-2 {
+    display: flex;
+    padding: 4%;
+}
+
+.search-result-index-3 {
+    display: flex;
+    padding: 4%;
+}
+
+.seach-result-index-1-3-info {
+    text-align: center;
+}
+
+    .seach-result-index-1-3-info ul li {
+        list-style: none;
+        padding: 10px;
     }
