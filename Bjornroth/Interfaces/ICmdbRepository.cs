@@ -15,5 +15,13 @@ namespace Bjornroth.Interfaces
         Task<MovieDTO> GetCmdbRating(string imdb);
 
         Task<SearchDTO> GetSearchResults(string searchInput);
+
+        Task<MovieDTO> GetSearchResultById(string imdbId);
+
+        Task<List<MovieDTO>> GetCurrentTopList();
+
+        Task<MovieDTO> GetSearchResultByIdFullPlot(string imdbId);
+
+        Task<MovieDTO> UpdateRating(string imdbId, string newRating);
     }
 }

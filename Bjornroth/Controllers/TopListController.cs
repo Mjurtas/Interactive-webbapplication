@@ -18,10 +18,26 @@ namespace Bjornroth.Controllers
 
         }
 
+        //public async Task<IActionResult> Index()
+        //{
+        //    var model = await cmdbRepository.GetSearchResults("star+wars");
+        //    SearchViewModel viewModel = new SearchViewModel(model);
+        //    return View(viewModel);
+        //}
+
         public async Task<IActionResult> Index()
         {
-            var model = await cmdbRepository.GetSearchResults("star+wars");
-            SearchViewModel viewModel = new SearchViewModel(model);
+            var model = await cmdbRepository.GetCurrentTopList();
+            for (var i = 0; i < model.Count; i++) 
+            {
+                var movie = await cmdbRepository.GetSearchResultById(model[i].ImdbId);
+                movie.NumberOfLikes = model[i].NumberOfLikes;
+                movie.NumberOfLikes = model[i].NumberOfDislikes;
+                model.RemoveAt(i);
+                model.Insert(i, movie);
+            }
+            //var model2 = await cmdbRepository.GetCmdbRating(model[i].ImdbId);
+            TopListViewModel viewModel = new TopListViewModel(model);
             return View(viewModel);
         }
     }

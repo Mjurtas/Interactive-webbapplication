@@ -16,6 +16,7 @@ namespace Bjornroth.Models.DTO
         public string Actors { get; set; }
         public string Plot { get; set; }
         public string Poster { get; set; }
+        public string Runtime { get; set; }
         //public List<RatingDTO> Ratings { get; set;}
         public string imdbRating { get; set; }
         public int NumberOfLikes { get; set; }

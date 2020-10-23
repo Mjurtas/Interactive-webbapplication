@@ -12,6 +12,13 @@ namespace Bjornroth.Models.ViewModels
         public string Title { get; set; }
 
         public string Poster { get; set; }
+        public string Plot { get; set; }
+        public string Director { get; set; }
+        public string Actors { get; set; }
+        public string Released { get; set; }
+        public string ImdbRating { get; set; }
+        public string Runtime { get; set; }
+
         [Display(Name = "Number Of Likes")]
         public int NumberOfLikes { get; set; } = 0;
 
@@ -22,6 +29,13 @@ namespace Bjornroth.Models.ViewModels
         {
             Title = movie.Title;
             Poster = movie.Poster;
+            Plot = movie.Plot;
+            Director = movie.Director;
+            Actors = movie.Actors;
+            Released = movie.Released;
+            ImdbRating = movie.imdbRating;
+            Runtime = movie.Runtime;
+
             if (movie2 != null)
             {
                 NumberOfLikes = movie2.NumberOfLikes;

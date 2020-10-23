@@ -14,9 +14,18 @@
 
 <body>
     <header>
-        <a href="/Start"><div class="logo">
-            <img src="../images/logo.png">
-        </div></a>
+        <div class="logo">
+            <img src="~/images/logo.png">
+        </div>
+        <div class="search-field-and-btn">
+            @using (@Html.BeginForm("Index", "SearchResults")) {
+            <input type="text" id="searchInput" name="searchInput" placeholder="Search movie title...." />
+
+            <input type="submit" value="Search" />
+            }
+        </div>
+
+
         <div class="links">
             <ul>
                 <li>@Html.ActionLink("HOME", "Index", "Start")</li>
@@ -33,7 +42,7 @@
 
     <footer>
     </footer>
-    
+
 
 
 </body>

@@ -68,5 +68,61 @@ namespace Bjornroth.Repositories
                 return result;
             }
         }
+
+        public async Task<MovieDTO> GetSearchResultById(string imdbId)
+        {
+            //TODO: Fixa så att koden inte upprepas
+            using (HttpClient client = new HttpClient())
+            {
+                string endpoint = $"{baseUrl1}i={imdbId}";
+                var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
+                response.EnsureSuccessStatusCode();
+                var data = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<MovieDTO>(data);
+                return result;
+            }
+        }
+
+        public async Task<MovieDTO> GetSearchResultByIdFullPlot(string imdbId)
+        {
+            //TODO: Fixa så att koden inte upprepas
+            using (HttpClient client = new HttpClient())
+            {
+                string endpoint = $"{baseUrl1}i={imdbId}&plot=full";
+                var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
+                response.EnsureSuccessStatusCode();
+                var data = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<MovieDTO>(data);
+                return result;
+            }
+        }
+
+        public async Task<List<MovieDTO>> GetCurrentTopList()
+        {
+            //TODO: Fixa så att koden inte upprepas
+            using (HttpClient client = new HttpClient())
+            {
+                string endpoint = $"{baseUrl2}toplist?type=popularity&sort=desc&count=4";
+                var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
+                response.EnsureSuccessStatusCode();
+                var data = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<List<MovieDTO>>(data);
+                return result;
+            }
+        }
+
+        public async Task<MovieDTO> UpdateRating(string imdbId, string newRating)
+        {
+            //TODO: Fixa så att koden inte upprepas
+            using (HttpClient client = new HttpClient())
+            {
+                string endpoint = $"{baseUrl2}movie/{imdbId}/{newRating}";
+                var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
+                response.EnsureSuccessStatusCode();
+                var data = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<MovieDTO>(data);
+                return result;
+            }
+        }
     }
 }
