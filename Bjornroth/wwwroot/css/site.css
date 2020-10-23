@@ -1,9 +1,15 @@
-﻿body {
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
     height: 100vh;
-    background-image: linear-gradient(rgb(244, 213, 141, 0.4), rgb(244, 213, 141)), url(popcorn.png);
+    background-image: linear-gradient(rgb(244, 213, 141, 0.4), rgb(244, 213, 141)), url(../images/popcorn.png);
     background-position: center;
     overflow-x: hidden;
     position: relative;
+
 }
 
 header {
@@ -11,7 +17,7 @@ header {
     padding: 2%;
 }
 .container {
-    display: flex;
+    
 }
 
 .links {
