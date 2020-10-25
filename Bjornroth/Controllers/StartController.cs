@@ -9,6 +9,8 @@ using Bjornroth.Models;
 
 using Bjornroth.Interfaces;
 using Bjornroth.Models.ViewModels;
+using Bjornroth.Models.DTO;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace Bjornroth.Controllers
 {
@@ -16,42 +18,58 @@ namespace Bjornroth.Controllers
     {
         private readonly ILogger<StartController> _logger;
         private ICmdbRepository cmdbRepository;
+        Random random = new Random();
+        List<MovieViewModel> generatedMovies = new List<MovieViewModel>();
         public StartController(ILogger<StartController> logger, ICmdbRepository cmdbRepository)
         {
             this.cmdbRepository = cmdbRepository;
             _logger = logger;
         }
         
-        public async Task <IActionResult> Index(string searchInput)
+        //public async Task <IActionResult> Index()
+        //{
+        //    for (var i = 0; i < 3; i++) {
+        //        int number = random.Next(1, 1000000);
+        //        string digits = number.ToString("0000000");
+        //        string imdbId = "tt" + digits;
+        //        var model = await cmdbRepository.GetSearchResultById(imdbId);
+        //        var fullModel = await cmdbRepository.GetCmdbRating(imdbId);
+        //        MovieViewModel completeMovie = new MovieViewModel(model, fullModel);
+        //        generatedMovies.Add(completeMovie);
+        //    }
+        //    StartViewModel viewModel = new StartViewModel(generatedMovies);
+        //    return View(viewModel);
+
+        //}
+
+        public async Task<IActionResult> Index(string imdbId, string newRating)
         {
-            if (searchInput != null)
+            if (imdbId != null && newRating != null)
             {
-                var model = await cmdbRepository.GetSearchResult(searchInput);
-
-                string imdbId = model.ImdbId;
-
-                var model2 = await cmdbRepository.GetCmdbRating(imdbId);
-
-                MovieViewModel viewModel = new MovieViewModel(model, model2);
+                //TODO: Move this to Javascript so the page doesn't have to load when the user updates a movie's rating
+                await cmdbRepository.UpdateRating(imdbId, newRating);
+                StartViewModel viewModel = new StartViewModel();
                 return View(viewModel);
             }
             else
             {
-
-                var model = await cmdbRepository.GetSearchResult("Jedi");
-
-                string imdbId = model.ImdbId;
-
-                var model2 = await cmdbRepository.GetCmdbRating(imdbId);
-
-                MovieViewModel viewModel = new MovieViewModel(model, model2);
+                //TODO: Filter to only show movies and filter away movies that doesn't have posters
+                for (var i = 0; i < 3; i++)
+                {
+                    int number = random.Next(1, 1000000);
+                    string digits = number.ToString("0000000");
+                    string id = "tt" + digits;
+                    var model = await cmdbRepository.GetSearchResultById(id);
+                    var fullModel = await cmdbRepository.GetCmdbRating(id);
+                    MovieViewModel completeMovie = new MovieViewModel(model, fullModel);
+                    generatedMovies.Add(completeMovie);
+                }
+                StartViewModel viewModel = new StartViewModel(generatedMovies);
                 return View(viewModel);
             }
-
-
         }
 
-      
+
 
         public IActionResult Privacy()
         {

@@ -19,6 +19,8 @@ namespace Bjornroth.Models.ViewModels
         public string ImdbRating { get; set; }
         public string Runtime { get; set; }
 
+        public string ImdbId { get; set; }
+
         [Display(Name = "Number Of Likes")]
         public int NumberOfLikes { get; set; } = 0;
 
@@ -35,6 +37,7 @@ namespace Bjornroth.Models.ViewModels
             Released = movie.Released;
             ImdbRating = movie.imdbRating;
             Runtime = movie.Runtime;
+            ImdbId = movie.ImdbId;
 
             if (movie2 != null)
             {

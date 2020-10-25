@@ -114,6 +114,7 @@ namespace Bjornroth.Repositories
         public async Task<MovieDTO> UpdateRating(string imdbId, string newRating)
         {
             //TODO: Fixa så att koden inte upprepas
+            //TODO: Eventuellt ändra var response till PostAsync
             using (HttpClient client = new HttpClient())
             {
                 string endpoint = $"{baseUrl2}movie/{imdbId}/{newRating}";

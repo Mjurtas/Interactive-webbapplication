@@ -1,27 +1,42 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@model Bjornroth.Models.ViewModels.MovieViewModel
+@model Bjornroth.Models.ViewModels.StartViewModel
 
 
 
 <div class="start-search">
 
-
-    
-
-    @*@foreach(var search in Model)
-        {
-            <p>@Html.DisplayFor(item => search.Title)</p>
-        }*@
+    @for (int i = 0; i < Model.GeneratedMovies.Count; i++)
+    {
     <div class="search-result">
-        @*Html.ViewData.Model.Poster*@
-        <h2>@Html.ViewData.Model.Title</h2>
-        <h2>@Html.DisplayNameFor(model => Model.NumberOfLikes);</h2>
-        <h2>@Html.ViewData.Model.NumberOfLikes</h2>
-        <h2>@Html.DisplayNameFor(model => Model.NumberOfDislikes);</h2>
-        <h2>@Html.ViewData.Model.NumberOfDislikes</h2>
+        <img src=@Html.ViewData.Model.GeneratedMovies[i].Poster />
+        <h2>@Html.ViewData.Model.GeneratedMovies[i].Title</h2>
+        <h2>@Html.DisplayNameFor(model => Model.GeneratedMovies[i].NumberOfLikes);</h2>
+        @using (@Html.BeginForm("Index", "Start"))
+        {
+            <input type="text" id="imdbId" name="imdbId" value=@Html.ViewData.Model.GeneratedMovies[i].ImdbId placeholder="Search movie title...." />
+            <input type="text" id="newRating" name="newRating" value="like" placeholder="Search movie title...." />
+            <input type="submit" value="Add like" />
+        }
+        <h2>@Html.ViewData.Model.GeneratedMovies[i].NumberOfLikes</h2>
+        <h2>@Html.DisplayNameFor(model => Model.GeneratedMovies[i].NumberOfDislikes);</h2>
+
+        @*TODO: Make sure Erik updates his API so that the dislike functionality is available through a "GET" OR rethink this functionality so that it can use a "POST"*@
+
+        @*@using (@Html.BeginForm("Index", "Start"))
+        {
+            <input type="text" id="imdbId" name="imdbId" value=@Html.ViewData.Model.GeneratedMovies[i].ImdbId placeholder="Search movie title...." />
+            <input type="text" id="newRating" name="newRating" value="dislike" placeholder="Search movie title...." />
+            <input type="submit" value="Add dislike" />
+        }*@
+        <h2>@Html.ViewData.Model.GeneratedMovies[i].NumberOfDislikes</h2>
+        <h2>Plot</h2>
+        <p>@Html.ViewData.Model.GeneratedMovies[i].Plot</p>
+        <h2>Imdb Rating:</h2>
+        <p>@Html.ViewData.Model.GeneratedMovies[i].ImdbRating</p>
     </div>
+    }
 
 </div>
 
