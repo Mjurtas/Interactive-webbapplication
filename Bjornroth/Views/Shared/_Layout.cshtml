@@ -1,48 +1,48 @@
 ﻿<!DOCTYPE html>
-<html>
 <head>
     <meta charset="utf-8">
 
     <title></title>
     <meta name="description" content="">
-    <meta name=”viewport” content="" width=device-width, initial-scale=”1.0”>
-    <link rel="stylesheet" href="css/site.css">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <!-- <meta name=”viewport” content=”width=device-width, initial-scale=”1.0”>-->
 
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 </head>
 
 
 <body>
     <header>
         <div class="logo">
-            <img src="~/images/logo.png">
+            <img src="logo.png">
         </div>
         <div class="search-field-and-btn">
-            @using (@Html.BeginForm("Index", "SearchResults")) {
             <input type="text" id="searchInput" name="searchInput" placeholder="Search movie title...." />
-
             <input type="submit" value="Search" />
-            }
         </div>
 
 
         <div class="links">
             <ul>
-                <li>@Html.ActionLink("HOME", "Index", "Start")</li>
-                <li>@Html.ActionLink("TOPLIST", "Index", "TopList")</li>
+                <li>@Html.ActionLink("Index", "Start")</li>
+                <li>@Html.ActionLink("Index", "TopList")</li>
             </ul>
         </div>
     </header>
     <div class="container">
-
-        @RenderBody()
-
-
+@RenderBody()
     </div>
+
+
+
+
+
 
     <footer>
     </footer>
-
+    
 
 
 </body>

@@ -1,32 +1,33 @@
 ﻿body {
     height: 100vh;
-    background-image: linear-gradient(rgb(244, 213, 141, 0.4), rgb(244, 213, 141)), url(../images/popcorn.png);
+    background-image: url(../images/cinema.jpg);
     background-position: center;
     overflow-x: hidden;
     position: relative;
+    margin: 0;
+    padding: 0;
 }
 
 header {
     display: flex;
-    padding: 2%;
-    flex-direction: row;
-   
-    justify-items: flex-start
+    padding: 1%;
+    justify-items: flex-start;
 }
 
 .search-field-and-btn {
     justify-content: center;
-    
+    outline: 1px solid black;
     margin: auto;
     display: flex;
     flex: 1;
 }
 
     .search-field-and-btn input[type=text] {
-        padding: 4%;
+        padding: 5%;
         border-radius: 20px;
         border: 0px;
         box-shadow: 4px;
+        display: block;
     }
 
     .search-field-and-btn input[type=submit] {
@@ -42,14 +43,12 @@ header {
     margin-left: 70%;
     justify-content: right;
     margin: auto;
- 
     flex: 1;
     display: flex;
 }
 
 .logo {
     justify-content: left;
-   
     display: flex;
     flex: 1;
 }
@@ -72,21 +71,6 @@ header {
         }
 
 
-
-.start-search {
-    margin: auto;
-}
-
-    .start-search h2 {
-        color: #8D0801;
-        font-family: 'Anton', sans-serif;
-        text-align: center;
-    }
-
-    .start-search input {
-        border: 0px;
-        border-radius: 5px;
-    }
 
 .search-result-index-0 {
     justify-content: center;
@@ -143,13 +127,13 @@ header {
 }
 
 .single-movie-detail-text {
-    margin-left: 10%;
-    background-color: rgb(207, 207, 207, 0.4);
+    
     border-radius: 10px;
 }
 
     .single-movie-detail-text h1 {
         font-family: "Anton", sans-serif;
+        outline: 1px solid black;
     }
 
     .single-movie-detail-text ul {
@@ -161,9 +145,6 @@ header {
         font-family: 'Arial';
     }
 
-    .single-movie-detail-text li {
-        padding: 3%;
-    }
 
 .single-movie-detail-img {
     outline: 2px solid black;
@@ -173,3 +154,63 @@ header {
     .single-movie-detail-img img {
         object-fit: fill;
     }
+
+.randomized-movies-container {
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    background: #000000;
+    margin-top: 20px;
+    opacity: 0.8;
+    margin: 10% 20% 0 20%
+}
+
+.randomized-movie-header {
+    font-size: 4rem;
+}
+
+.randomized-movie h3, h1 {
+    color: white;
+    font-family: "Staatliches";
+    letter-spacing: 2px;
+    margin-top: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+.randomized-movie p {
+    color: white;
+    font-family: "Ubuntu";
+    letter-spacing: 2px;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+.randomized-movie {
+    display: flex;
+}
+
+.read-more {
+    border: 1px solid #8D0801;
+    padding: 10px;
+    font-family: 'Anton';
+    border-radius: 10px;
+    color: #8D0801;
+    text-decoration: none;
+}
+
+    .read-more:hover {
+        background: #8D0801;
+        color: black;
+    }
+
+
+.randomized-movie-info {
+    padding: 10%;
+    text-align: center;
+    margin: auto;
+}
+
+.p-text {
+    color: white
+}
