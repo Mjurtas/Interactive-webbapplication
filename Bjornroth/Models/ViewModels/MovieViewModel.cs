@@ -10,7 +10,6 @@ namespace Bjornroth.Models.ViewModels
     public class MovieViewModel
     {
         public string Title { get; set; }
-
         public string Poster { get; set; }
         public string Plot { get; set; }
         public string Director { get; set; }
@@ -18,8 +17,8 @@ namespace Bjornroth.Models.ViewModels
         public string Released { get; set; }
         public string ImdbRating { get; set; }
         public string Runtime { get; set; }
-
         public string ImdbId { get; set; }
+        public string Type { get; set; }
 
         [Display(Name = "Number Of Likes")]
         public int NumberOfLikes { get; set; } = 0;
@@ -38,6 +37,7 @@ namespace Bjornroth.Models.ViewModels
             ImdbRating = movie.imdbRating;
             Runtime = movie.Runtime;
             ImdbId = movie.ImdbId;
+            Type = movie.Type;
 
             if (movie2 != null)
             {

@@ -16,9 +16,20 @@ namespace Bjornroth.Models.ViewModels
 
         public StartViewModel(List <MovieViewModel> generatedMovies)
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < generatedMovies.Count; i++)
             {
-                GeneratedMovies.Add(generatedMovies[i]);
+                if (generatedMovies[i].Type == "movie")
+                {
+                    if (generatedMovies[i].Poster == "N/A")
+                    {
+                        generatedMovies[i].Poster = "../images/posterlessPoster.png";
+                    }
+                    if (generatedMovies[i].Plot == "N/A")
+                    {
+                        generatedMovies[i].Plot = "This movie doesn't have a plot";
+                    }
+                    GeneratedMovies.Add(generatedMovies[i]);
+                }
             }
         }
     }

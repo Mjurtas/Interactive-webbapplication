@@ -22,14 +22,12 @@
         <h2>@Html.ViewData.Model.GeneratedMovies[i].NumberOfLikes</h2>
         <h2>@Html.DisplayNameFor(model => Model.GeneratedMovies[i].NumberOfDislikes);</h2>
 
-        @*TODO: Make sure Erik updates his API so that the dislike functionality is available through a "GET" OR rethink this functionality so that it can use a "POST"*@
-
-        @*@using (@Html.BeginForm("Index", "Start"))
+        @using (@Html.BeginForm("Index", "Start"))
         {
             <input type="text" id="imdbId" name="imdbId" value=@Html.ViewData.Model.GeneratedMovies[i].ImdbId placeholder="Search movie title...." />
             <input type="text" id="newRating" name="newRating" value="dislike" placeholder="Search movie title...." />
             <input type="submit" value="Add dislike" />
-        }*@
+        }
         <h2>@Html.ViewData.Model.GeneratedMovies[i].NumberOfDislikes</h2>
         <h2>Plot</h2>
         <p>@Html.ViewData.Model.GeneratedMovies[i].Plot</p>
