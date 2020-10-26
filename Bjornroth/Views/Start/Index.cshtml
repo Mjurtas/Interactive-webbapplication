@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "Home Page";
 }
 @model Bjornroth.Models.ViewModels.StartViewModel
@@ -21,8 +21,23 @@
                 <p class="randomized-movie-p">@Model.GeneratedMovies[i].ImdbRating | @Model.GeneratedMovies[i].Runtime | <i>4 Awards</i></p>
                 <a href="#" class="read-more">READ MORE</a>
             </div>
+            @*@using (@Html.BeginForm("Index", "Start"))
+            {
+                <input type="text" id="imdbId" name="imdbId" value=@Html.ViewData.Model.GeneratedMovies[i].ImdbId placeholder="Search movie title...." />
+                <input type="text" id="newRating" name="newRating" value="like" placeholder="Search movie title...." />
+                <input type="submit" value="Add like" />
+            }
+            <h2>@Html.ViewData.Model.GeneratedMovies[i].NumberOfLikes</h2>
+            <h2>@Html.DisplayNameFor(model => Model.GeneratedMovies[i].NumberOfDislikes);</h2>
+
+            @using (@Html.BeginForm("Index", "Start"))
+            {
+                <input type="text" id="imdbId" name="imdbId" value=@Html.ViewData.Model.GeneratedMovies[i].ImdbId placeholder="Search movie title...." />
+                <input type="text" id="newRating" name="newRating" value="dislike" placeholder="Search movie title...." />
+                <input type="submit" value="Add dislike" />
+            }*@
         </div>
-     }
- 
-    </div>
+    }
+
+</div>
 

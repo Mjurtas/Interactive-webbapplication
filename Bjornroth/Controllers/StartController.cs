@@ -60,9 +60,16 @@ namespace Bjornroth.Controllers
                     string digits = number.ToString("0000000");
                     string id = "tt" + digits;
                     var model = await cmdbRepository.GetSearchResultById(id);
-                    var fullModel = await cmdbRepository.GetCmdbRating(id);
-                    MovieViewModel completeMovie = new MovieViewModel(model, fullModel);
-                    generatedMovies.Add(completeMovie);
+                    if (model.Type == "movie") 
+                    {
+                        var fullModel = await cmdbRepository.GetCmdbRating(id);
+                        MovieViewModel completeMovie = new MovieViewModel(model, fullModel);
+                        generatedMovies.Add(completeMovie);
+                    }
+                    else
+                    {
+                        i--;
+                    }
                 }
                 StartViewModel viewModel = new StartViewModel(generatedMovies);
                 return View(viewModel);

@@ -22,5 +22,6 @@ namespace Bjornroth.Models.DTO
         public int NumberOfLikes { get; set; }
         public int NumberOfDislikes { get; set; }
         public string ImdbId { get; set; }
+        public string Type { get; set; }
     }
 }
