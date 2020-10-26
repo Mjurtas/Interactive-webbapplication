@@ -11,14 +11,14 @@
     {
         <div class="randomized-movies-container">
 
-            <div>
+            <div class="randomized-movie-image">
                 <img src=@Model.GeneratedMovies[i].Poster />
 
             </div>
 
             <div class="randomized-movie-info">
                 <h1>@Model.GeneratedMovies[i].Title, @Model.GeneratedMovies[i].Released</h1>
-                <p class="p-text">@Model.GeneratedMovies[i].ImdbRating | @Model.GeneratedMovies[i].Runtime | <i>4 Awards</i></p>
+                <p class="randomized-movie-p">@Model.GeneratedMovies[i].ImdbRating | @Model.GeneratedMovies[i].Runtime | <i>4 Awards</i></p>
                 <a href="#" class="read-more">READ MORE</a>
             </div>
         </div>

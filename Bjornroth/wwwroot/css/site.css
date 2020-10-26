@@ -160,29 +160,45 @@ header {
     text-align: center;
     display: flex;
     background: #000000;
-    margin-top: 20px;
+    
     opacity: 0.8;
-    margin: 10% 20% 0 20%
+    margin: 2% 20% 0 20%
+   
+
 }
 
-.randomized-movie-header {
-    font-size: 4rem;
+.randomized-movie-image {
+    width: 20vh;
+    align-items: center;
+    display: flex;
+
 }
+
+    .randomized-movie-image img {
+        object-fit: fill;
+    }
+
+
+    .randomized-movie-header {
+        font-size: 4rem;
+    }
 
 .randomized-movie h3, h1 {
     color: white;
     font-family: "Staatliches";
     letter-spacing: 2px;
     margin-top: 5px;
-    padding: 10px;
+    
     text-align: center;
 }
 
-.randomized-movie p {
+.randomized-movie-p {
     color: white;
     font-family: "Ubuntu";
     letter-spacing: 2px;
     margin-top: 5px;
+    margin-bottom: 10%;
+  
     text-transform: uppercase;
 }
 
@@ -192,7 +208,7 @@ header {
 
 .read-more {
     border: 1px solid #8D0801;
-    padding: 10px;
+    padding: 2%;    
     font-family: 'Anton';
     border-radius: 10px;
     color: #8D0801;
@@ -206,11 +222,9 @@ header {
 
 
 .randomized-movie-info {
-    padding: 10%;
+    padding: 5%;
     text-align: center;
     margin: auto;
 }
 
-.p-text {
-    color: white
-}
+
