@@ -1,4 +1,11 @@
-﻿<div class="start-random-page">
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model Bjornroth.Models.ViewModels.StartViewModel
+
+
+
+<div class="start-random-page">
     <h1 class="randomized-movie-header"> Randomized Movie Of The Day</h1>
     @for (var i = 0; i < Model.GeneratedMovies.Count; i++)
     {
@@ -33,3 +40,4 @@
     }
 
 </div>
+
