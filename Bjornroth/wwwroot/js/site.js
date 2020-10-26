@@ -1,4 +1,31 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function ActivateEventListeners() {
+    for (let i = 0; i < 3; i++) {
+        document.getElementById(`like-btn${i}`).addEventListener("click", function (event) {
+            event.preventDefault()
+            UpdateRating(i, "like")
+        })
+    }
 
-// Write your JavaScript code.
+    for (let i = 0; i < 3; i++) {
+        document.getElementById(`dislike-btn${i}`).addEventListener("click", function (event) {
+            event.preventDefault()
+            UpdateRating(i, "dislike")
+        })
+    }
+}
+
+
+function UpdateRating(index, typeOfRating) {
+    if (typeOfRating === "dislike") {
+        let rating = parseNumber(document.getElementById(`dislike-number${index}`).innerHTML)
+        let newRating = rating + 1
+        document.getElementById(`dislike-number${index}`).innerHTML = newRating
+    }
+    else {
+        let rating = parseNumber(document.getElementById(`like-number${index}`).innerHTML)
+        let newRating = rating + 1
+        document.getElementById(`like-number${index}`).innerHTML = newRating
+    }
+}
+
+ActivateEventListeners()
