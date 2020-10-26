@@ -2,20 +2,22 @@
     for (let i = 0; i < 3; i++) {
         document.getElementById(`like-btn${i}`).addEventListener("click", function (event) {
             event.preventDefault()
-            UpdateRating(i, "like")
+                <%#Bjornroth.CmdbRepository.UpdateRating(document.getElementById(`imdbId${i}`).ToString(), document.getElementById(`newRating${i}`).ToString) %>
+                UpdateRatingInView(i, "like")
         })
     }
 
     for (let i = 0; i < 3; i++) {
         document.getElementById(`dislike-btn${i}`).addEventListener("click", function (event) {
             event.preventDefault()
-            UpdateRating(i, "dislike")
+                <%#Bjornroth.CmdbRepository.UpdateRating(document.getElementById(`imdbId${i}`).ToString(), document.getElementById(`rating${i}`).ToString) %>
+                UpdateRatingInView(i, "dislike")
         })
     }
 }
 
 
-function UpdateRating(index, typeOfRating) {
+function UpdateRatingInView(index, typeOfRating) {
     if (typeOfRating === "dislike") {
         let rating = parseNumber(document.getElementById(`dislike-number${index}`).innerHTML)
         let newRating = rating + 1
@@ -28,4 +30,6 @@ function UpdateRating(index, typeOfRating) {
     }
 }
 
-ActivateEventListeners()
+window.onload = ActivateEventListeners();
+
+alert(window.onload)

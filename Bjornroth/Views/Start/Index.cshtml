@@ -9,36 +9,47 @@
     <h1 class="randomized-movie-header"> Randomized Movie Of The Day</h1>
     @for (var i = 0; i < Model.GeneratedMovies.Count; i++)
     {
-<div class="randomized-movies-container">
+        <div class="randomized-movies-container">
 
-    <div class="randomized-movie-image">
-        <img src=@Model.GeneratedMovies[i].Poster />
+            <div class="randomized-movie-image">
+                <img src=@Model.GeneratedMovies[i].Poster />
 
-    </div>
+            </div>
 
-    <div class="randomized-movie-info">
-        <h1>@Model.GeneratedMovies[i].Title, @Model.GeneratedMovies[i].Released</h1>
-        <p class="randomized-movie-p">@Model.GeneratedMovies[i].ImdbRating | @Model.GeneratedMovies[i].Runtime | <i>4 Awards</i></p>
-        <a href="#" class="read-more">READ MORE</a>
-    </div>
-    @using (@Html.BeginForm("Index", "Start"))
-    {
-    <input type="text" id="imdbId" name="imdbId" value=@Html.ViewData.Model.GeneratedMovies[i].ImdbId placeholder="Search movie title...." />
-    <input type="text" id="newRating" name="newRating" value="like" placeholder="Search movie title...." />
-    <input type="submit" value="Add like" id="like-btn@(i)"/>
-    }
-    <h2 id="like-number@(i)">@Html.ViewData.Model.GeneratedMovies[i].NumberOfLikes</h2>
-    @*<h2>@Html.DisplayNameFor(model => Model.GeneratedMovies[i].NumberOfDislikes);</h2>*@
-    <h2 id="dislike-number@(i)">@Html.ViewData.Model.GeneratedMovies[i].NumberOfDislikes</h2>
+            <div class="randomized-movie-info">
+                <h1>@Model.GeneratedMovies[i].Title, @Model.GeneratedMovies[i].Released</h1>
+                <p class="randomized-movie-p">@Model.GeneratedMovies[i].ImdbRating | @Model.GeneratedMovies[i].Runtime | <i>4 Awards</i></p>
+                <a href="#" class="read-more">READ MORE</a>
+            </div>
 
-    @using (@Html.BeginForm("Index", "Start"))
-    {
-    <input type="text" id="imdbId" name="imdbId" value=@Html.ViewData.Model.GeneratedMovies[i].ImdbId placeholder="Search movie title...." />
-    <input type="text" id="newRating" name="newRating" value="dislike" placeholder="Search movie title...." />
-    <input type="submit" value="Add dislike" id="dislike-btn@(i)"/>
-    }
-</div>
-    }
+            @using (@Html.BeginForm("Index", "Start"))
+            {
 
+                <input type="text" id="imdbId@(i)" name="imdbId" value=@Html.ViewData.Model.GeneratedMovies[i].ImdbId placeholder="Search movie title...." />
+                <input type="text" id="newRating@(i)" name="newRating" value="like" placeholder="Search movie title...." />
+                <input type="submit" value="Add like" id="like-btn@(i)" />
+
+
+            }
+
+            <h2>@Html.DisplayNameFor(model => Model.GeneratedMovies[i].NumberOfLikes);</h2>
+            <h2 id="like-number@(i)">@Html.ViewData.Model.GeneratedMovies[i].NumberOfLikes</h2>
+            <h2>@Html.DisplayNameFor(model => Model.GeneratedMovies[i].NumberOfDislikes);</h2>
+            <h2 id="dislike-number@(i)">@Html.ViewData.Model.GeneratedMovies[i].NumberOfDislikes</h2>
+
+            @using (@Html.BeginForm("Index", "Start"))
+            {
+
+                <input type="text" id="imdbId@(i)" name="imdbId" value=@Html.ViewData.Model.GeneratedMovies[i].ImdbId placeholder="Search movie title...." />
+                <input type="text" id="newRating@(i)" name="newRating" value="dislike" placeholder="Search movie title...." />
+                <input type="submit" value="Add dislike" id="dislike-btn@(i)" />
+            }
+           
+
+
+
+        </div>
+     }
+    
 </div>
 
