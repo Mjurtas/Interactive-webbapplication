@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Bjornroth.Interfaces;
+using Bjornroth.Models.DTO;
 using Bjornroth.Models.ViewModels;
 using Bjornroth.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -23,25 +24,41 @@ namespace Bjornroth.Controllers
         {
             if (searchInput != null)
             {
-                var model = await cmdbRepository.GetSearchResult(searchInput);
+                var model = await cmdbRepository.GetSearchResults(searchInput);
 
-                string imdbId = model.ImdbId;
+                foreach (MovieDTO movie in model.Search)
+                {
+                    string imdbId = movie.ImdbId;
+                    var model2 = await cmdbRepository.GetCmdbRating(imdbId);
+                    if (model2 != null) {
+                        movie.NumberOfLikes = model2.NumberOfLikes;
+                        movie.NumberOfDislikes = model2.NumberOfDislikes;
+                    }
+                }
 
-                var model2 = await cmdbRepository.GetCmdbRating(imdbId);
+                //string imdbId = movie.ImdbId;
 
-                MovieViewModel viewModel = new MovieViewModel(model, model2);
+                //var model2 = await cmdbRepository.GetCmdbRating(imdbId);
+
+                //MovieViewModel viewModel = new MovieViewModel(model, model2);
+                SearchViewModel viewModel = new SearchViewModel(model);
                 return View(viewModel);
             }
             else
             {
 
-                var model = await cmdbRepository.GetSearchResult("Jedi");
-
-                string imdbId = model.ImdbId;
-
-                var model2 = await cmdbRepository.GetCmdbRating(imdbId);
-
-                MovieViewModel viewModel = new MovieViewModel(model, model2);
+                var model = await cmdbRepository.GetSearchResults("Jedi");
+                foreach (MovieDTO movie in model.Search)
+                {
+                    string imdbId = movie.ImdbId;
+                    var model2 = await cmdbRepository.GetCmdbRating(imdbId);
+                    if (model2 != null)
+                    {
+                        movie.NumberOfLikes = model2.NumberOfLikes;
+                        movie.NumberOfDislikes = model2.NumberOfDislikes;
+                    }
+                }
+                SearchViewModel viewModel = new SearchViewModel(model);
                 return View(viewModel);
             }
 

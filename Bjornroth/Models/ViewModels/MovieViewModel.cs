@@ -44,6 +44,14 @@ namespace Bjornroth.Models.ViewModels
                 NumberOfLikes = movie2.NumberOfLikes;
                 NumberOfDislikes = movie2.NumberOfDislikes;
             }
+            if (Poster == "N/A") 
+            {
+                Poster = "../images/posterlessPoster.png";
+            }
+            if (Plot == "N/A")
+            {
+                Plot = "This movie doesn't have a plot.";
+            }
         }
     }
 }

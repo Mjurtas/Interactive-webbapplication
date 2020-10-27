@@ -32,7 +32,7 @@ namespace Bjornroth.Controllers
             {
                 var movie = await cmdbRepository.GetSearchResultById(model[i].ImdbId);
                 movie.NumberOfLikes = model[i].NumberOfLikes;
-                movie.NumberOfLikes = model[i].NumberOfDislikes;
+                movie.NumberOfDislikes = model[i].NumberOfDislikes;
                 model.RemoveAt(i);
                 model.Insert(i, movie);
             }

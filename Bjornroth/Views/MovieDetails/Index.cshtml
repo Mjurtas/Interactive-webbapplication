@@ -17,9 +17,24 @@
             <li><b>Director:</b> @Model.Director</li>
             <li><b>Runtime:</b> @Model.Runtime</li>
             <li><b>Actors:</b> @Model.Actors.</li>
-
-            <li><b>ImdbRating:</b> 7.2</li>
+            <li><b>ImdbRating:</b> @Model.ImdbRating</li>
+            <li><b>Number of Likes</b></li>
+            <li id="like-number0">@Model.NumberOfLikes</li>
+            <li><b>Number of Dislikes</b></li>
+            <li id="dislike-number0">@Model.NumberOfDislikes</li>
         </ul>
+        @using (Html.BeginForm("Index", "MovieDetails"))
+        {
+            <input type="hidden" id="imdbId0" name="imdbId" value="@Model.ImdbId" />
+            <input type="hidden" name="newRating" value="like" />
+            <input type="submit" value="Add like" id="like-btn0" class="submitBtn" />
+        }
+        @using (Html.BeginForm("Index", "MovieDetails"))
+        {
+            <input type="hidden" id="imdbId0" name="imdbId" value="@Model.ImdbId" />
+            <input type="hidden" name="newRating" value="dislike" />
+            <input type="submit" value="Add dislike" id="dislike-btn0" class="submitBtn" />
+        }
         <h3>Plot</h3>
         <p> @Model.Plot </p>
 

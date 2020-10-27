@@ -19,17 +19,18 @@
             <div class="randomized-movie-info">
                 <h1>@Model.GeneratedMovies[i].Title, @Model.GeneratedMovies[i].Released</h1>
                 <p class="randomized-movie-p">@Model.GeneratedMovies[i].ImdbRating | @Model.GeneratedMovies[i].Runtime | <i>4 Awards</i></p>
-                <a href="#" class="read-more">READ MORE</a>
+                @using (Html.BeginForm("Index", "MovieDetails"))
+                {
+                    <input type="hidden" name="imdbId" value="@Model.GeneratedMovies[i].ImdbId" />
+                    <input type="submit" class="read-more" value="Read More" />
+                }
             </div>
 
             @using (@Html.BeginForm("Index", "Start"))
             {
-
-                <input type="text" id="imdbId@(i)" name="imdbId" value=@Html.ViewData.Model.GeneratedMovies[i].ImdbId placeholder="Search movie title...." />
-                <input type="text" id="newRating@(i)" name="newRating" value="like" placeholder="Search movie title...." />
-                <input type="submit" value="Add like" id="like-btn@(i)" />
-
-
+                <input type="hidden" id="imdbId@(i)" name="imdbId" value=@Html.ViewData.Model.GeneratedMovies[i].ImdbId placeholder="Search movie title...." />
+                <input type="hidden" id="newRating@(i)" name="newRating" value="like" placeholder="Search movie title...." />
+                <input type="submit" value="Add like" id="like-btn@(i)" class="submitBtn"/>
             }
 
             <h2>@Html.DisplayNameFor(model => Model.GeneratedMovies[i].NumberOfLikes);</h2>
@@ -39,10 +40,9 @@
 
             @using (@Html.BeginForm("Index", "Start"))
             {
-
-                <input type="text" id="imdbId@(i)" name="imdbId" value=@Html.ViewData.Model.GeneratedMovies[i].ImdbId placeholder="Search movie title...." />
-                <input type="text" id="newRating@(i)" name="newRating" value="dislike" placeholder="Search movie title...." />
-                <input type="submit" value="Add dislike" id="dislike-btn@(i)" />
+                <input type="hidden" id="imdbId@(i)" name="imdbId" value=@Html.ViewData.Model.GeneratedMovies[i].ImdbId placeholder="Search movie title...." />
+                <input type="hidden" id="newRating@(i)" name="newRating" value="dislike" placeholder="Search movie title...." />
+                <input type="submit" value="Add dislike" id="dislike-btn@(i)" class="submitBtn" />
             }
 
 
