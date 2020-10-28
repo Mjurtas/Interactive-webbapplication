@@ -3,42 +3,44 @@
 }
 @model Bjornroth.Models.ViewModels.SearchViewModel
 
+<div class="search-random-page">
+    <h1 class="search-movie-header"> Search "Jedi"...</h1>
+    <div class="search-movies-container">
+        <div class="search-index-0">
+            <div class="search-index-0-img">
+                <img src="@Model.Movies[0].Poster">
+            </div>
+            <div class="search-index-0-info">
+                <h1>@Model.Movies[0].Title, @Model.Movies[0].Released</h1>
+                <p class="genre-runtime-header"> @Model.Movies[0].Genre | @Model.Movies[0].Runtime | <i>4 Awards</i></p>
+                <p class="short-plot"><i>@Model.Movies[0].Plot</i></p>
+                @using (Html.BeginForm("Index", "MovieDetails"))
+                {
+                <input type="hidden" name="imdbId" value="@Model.Movies[0].ImdbId" />
+                <input type="submit" class="read-more" value="READ MORE" />
+                }
+            </div>
+        </div>
+        <h2 class="or-did-you-mean-header">...or did you mean?</h2>
+        <div class="search-or-did-you-mean">
+            @for (var i = 1; i < Model.Movies.Count; i++) {
+            <div class="search-or-did-you-mean-result">
 
-<html>
-<head>
-</head>
+                <img src="@Model.Movies[i].Poster">
+                <div class="search-or-did-you-mean-result-info">
+                    <h2>@Model.Movies[i].Title, @Model.Movies[i].Released</h2>
+                    @using (Html.BeginForm("Index", "MovieDetails"))
+                    {
+                        <input type="hidden" name="imdbId" value="@Model.Movies[i].ImdbId" />
+                        <input type="submit" class="read-more" value="READ MORE" />
+                    }
+                </div>
+            </div>
+            }
+           
 
-<body>
-    <h1>Search Results</h1>
+        </div>
 
-    @for (int i = 0; i < Model.Movies.Count; i++) {
-<div class="search-result">
-    <h2>@Html.ViewData.Model.Movies[i].Title</h2>
-    <h2>@Html.DisplayNameFor(model => Model.Movies[i].NumberOfLikes);</h2>
-    <h2 id="like-number@(i)">@Html.ViewData.Model.Movies[i].NumberOfLikes</h2>
-    <h2>@Html.DisplayNameFor(model => Model.Movies[i].NumberOfDislikes);</h2>
-    <h2 id="dislike-number@(i)">@Html.ViewData.Model.Movies[i].NumberOfDislikes</h2>
-    <img src="@Html.ViewData.Model.Movies[i].Poster" />
-    @using (@Html.BeginForm("Index", "SearchResults"))
-    {
-        <input type="hidden" id="imdbId@(i)" name="imdbId" value=@Html.ViewData.Model.Movies[i].ImdbId placeholder="Search movie title...." />
-        <input type="hidden" id="newRating@(i)" name="newRating" value="like" placeholder="Search movie title...." />
-        <input type="submit" value="Add like" id="like-btn@(i)" class="submitBtn" />
-    }
-    @using (@Html.BeginForm("Index", "SearchResults"))
-    {
-        <input type="hidden" id="imdbId@(i)" name="imdbId" value=@Html.ViewData.Model.Movies[i].ImdbId placeholder="Search movie title...." />
-        <input type="hidden" id="newRating@(i)" name="newRating" value="dislike" placeholder="Search movie title...." />
-        <input type="submit" value="Add dislike" id="dislike-btn@(i)" class="submitBtn" />
-    }
-    <h2>Plot</h2>
-    <p>@Html.ViewData.Model.Movies[i].Plot</p>
-    @using (Html.BeginForm("Index", "MovieDetails"))
-    {
-        <input type="hidden" name="imdbId" value="@Model.Movies[i].ImdbId" />
-        <input type="submit" class="read-more" value="Read More" />
-    }
+
+    </div>
 </div>
-    }
-</body>
-</html>

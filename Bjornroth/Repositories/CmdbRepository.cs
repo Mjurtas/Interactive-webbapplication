@@ -125,5 +125,18 @@ namespace Bjornroth.Repositories
                 return result;
             }
         }
+
+        public async Task<List<MovieDTO>> GetMovies()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string endpoint = $"{baseUrl2}movie";
+                var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
+                response.EnsureSuccessStatusCode();
+                var data = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<List<MovieDTO>>(data);
+                return result;
+            }
+        }
     }
 }

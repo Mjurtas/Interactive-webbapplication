@@ -19,13 +19,13 @@ namespace Bjornroth.Controllers
             this.cmdbRepository = cmdbRepository;
             
         }
-
+        [Route("/SearchResult")]
         public async Task<IActionResult> Index(string searchInput)
         {
             if (searchInput != null)
             {
                 var model = await cmdbRepository.GetSearchResults(searchInput);
-
+                
                 foreach (MovieDTO movie in model.Search)
                 {
                     string imdbId = movie.ImdbId;
@@ -36,11 +36,10 @@ namespace Bjornroth.Controllers
                     }
                 }
 
-                //string imdbId = movie.ImdbId;
+                var model3 = await cmdbRepository.GetSearchResultById(model.Search[0].ImdbId);
+                model.Search[0] = model3;
 
-                //var model2 = await cmdbRepository.GetCmdbRating(imdbId);
 
-                //MovieViewModel viewModel = new MovieViewModel(model, model2);
                 SearchViewModel viewModel = new SearchViewModel(model);
                 return View(viewModel);
             }
@@ -58,6 +57,9 @@ namespace Bjornroth.Controllers
                         movie.NumberOfDislikes = model2.NumberOfDislikes;
                     }
                 }
+                var model3 = await cmdbRepository.GetSearchResultById(model.Search[0].ImdbId);
+                model.Search[0] = model3;
+
                 SearchViewModel viewModel = new SearchViewModel(model);
                 return View(viewModel);
             }

@@ -62,5 +62,5 @@ function UpdateRatingInView(index, typeOfRating) {
     }
 }
 
-alert('hej')
+
 activateEventListeners()

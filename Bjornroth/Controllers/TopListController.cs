@@ -28,6 +28,7 @@ namespace Bjornroth.Controllers
         public async Task<IActionResult> Index()
         {
             var model = await cmdbRepository.GetCurrentTopList();
+
             for (var i = 0; i < model.Count; i++) 
             {
                 var movie = await cmdbRepository.GetSearchResultById(model[i].ImdbId);

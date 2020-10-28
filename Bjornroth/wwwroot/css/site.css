@@ -4,14 +4,12 @@
     background-position: center;
     overflow-x: hidden;
     position: relative;
-    margin: 0;
-    padding: 0;
 }
 
 header {
     display: flex;
     padding: 1%;
-    justify-items: flex-start;
+    justify-items: flex-start
 }
 
 .search-field-and-btn {
@@ -70,55 +68,7 @@ header {
             font-size: 200%;
         }
 
-
-
-.search-result-index-0 {
-    justify-content: center;
-    display: flex;
-}
-
-    .search-result-index-0 img {
-        max-width: 15%;
-    }
-
-.seach-result-index-0-info {
-    padding: 5%;
-}
-
-.search-result-index-1-3 {
-    display: flex;
-    justify-content: center;
-    margin-top: 10%;
-}
-
-    .search-result-index-1-3 img {
-        max-width: 70%;
-        margin: 20px;
-    }
-
-.search-result-index-1 {
-    display: flex;
-    padding: 4%;
-}
-
-.search-result-index-2 {
-    display: flex;
-    padding: 4%;
-}
-
-.search-result-index-3 {
-    display: flex;
-    padding: 4%;
-}
-
-.seach-result-index-1-3-info {
-    text-align: center;
-}
-
-    .seach-result-index-1-3-info ul li {
-        list-style: none;
-        padding: 10px;
-    }
+/*CSS FOR FULL MOVIE DETAIL*/
 
 .single-movie-detail {
     display: flex;
@@ -127,7 +77,7 @@ header {
 }
 
 .single-movie-detail-text {
-    
+    background-color: rgb(207, 207, 207, 0.4);
     border-radius: 10px;
 }
 
@@ -145,7 +95,6 @@ header {
         font-family: 'Arial';
     }
 
-
 .single-movie-detail-img {
     outline: 2px solid black;
     height: 30vh;
@@ -154,51 +103,39 @@ header {
     .single-movie-detail-img img {
         object-fit: fill;
     }
+/*-----------------------------------*/
+/*CSS FOR RANDOMIZED MOVIES */
 
 .randomized-movies-container {
     justify-content: center;
     text-align: center;
     display: flex;
     background: #000000;
-    
     opacity: 0.8;
-    margin: 2% 20% 0 20%
-   
-
+    margin: 10% 20% 0 20%
 }
 
-.randomized-movie-image {
-    width: 20vh;
-    align-items: center;
-    display: flex;
-
-}
-
-    .randomized-movie-image img {
-        object-fit: fill;
+    .randomized-movies-container img {
+        height: 100%;
     }
 
 
-    .randomized-movie-header {
-        font-size: 4rem;
-    }
+.randomized-movie-header {
+    font-size: 4rem;
+}
 
 .randomized-movie h3, h1 {
     color: white;
     font-family: "Staatliches";
     letter-spacing: 2px;
-    margin-top: 5px;
-    
     text-align: center;
 }
 
-.randomized-movie-p {
+.randomized-movie p {
     color: white;
     font-family: "Ubuntu";
     letter-spacing: 2px;
     margin-top: 5px;
-    margin-bottom: 10%;
-  
     text-transform: uppercase;
 }
 
@@ -208,7 +145,7 @@ header {
 
 .read-more {
     border: 1px solid #8D0801;
-    padding: 2%;    
+    padding: 10px;
     font-family: 'Anton';
     border-radius: 10px;
     color: #8D0801;
@@ -222,9 +159,64 @@ header {
 
 
 .randomized-movie-info {
-    padding: 5%;
+    padding: 10%;
     text-align: center;
     margin: auto;
 }
+/* -------------------------*/
 
+/* CSS FOR SEARCH INDEX 0 RESULT  */
+.search-movie-header {
+    font-size: 4rem;
+}
 
+.search-movies-container {
+    margin: 10% 20% 0 20%
+}
+
+.search-index-0 {
+    display: flex;
+    background: #000000;
+    opacity: 0.8;
+}
+
+.search-index-0-info {
+    margin: auto;
+    text-align: center;
+    color: white;
+    padding: 4%;
+}
+/*-----------------------------------*/
+/* CSS FOR "OR DID YOU MEAN" SECTION*/
+.search-or-did-you-mean {
+    width: 70%;
+    margin: auto;
+}
+
+.or-did-you-mean-header {
+    color: white;
+    font-family: "Staatliches";
+    font-size: 3rem;
+    text-align: center;
+}
+
+.search-or-did-you-mean-result {
+    background: #000000;
+    opacity: 0.8;
+    display: flex;
+    padding: 10px;
+    border-bottom: 3px solid #8D0801;
+}
+
+.search-or-did-you-mean-result-info {
+    text-align: center;
+    margin: auto;
+    color: white;
+    font-family: "Staatliches";
+    margin-bottom: 10px;
+    ;
+}
+
+.search-or-did-you-mean img {
+    width: 6vh;
+}
