@@ -19,10 +19,6 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\PageNotFound\" />
-  </ItemGroup>
-
  
 
 </Project>

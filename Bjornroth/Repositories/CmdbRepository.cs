@@ -135,20 +135,32 @@ namespace Bjornroth.Repositories
                 response.EnsureSuccessStatusCode();
                 var data = await response.Content.ReadAsStringAsync();
                 var result = JsonConvert.DeserializeObject<List<MovieDTO>>(data);
-                for (int i = 0; i < result.Count; i++)
+
+                var sortedIEnumerable = result.OrderByDescending(movies => movies.TotalRatings = movies.NumberOfLikes + movies.NumberOfDislikes);
+                List<MovieDTO> sortedList = new List<MovieDTO>();
+
+                foreach (var movie in sortedIEnumerable)
                 {
-                    string endpoint2 = $"{baseUrl1}i={result[i].ImdbId}";
+                    
+                    sortedList.Add(movie);
+                    
+                }
+              
+                for (int i = 0; i < sortedList.Count; i++)
+                {
+                    string endpoint2 = $"{baseUrl1}i={sortedList[i].ImdbId}";
                     var response2 = await client.GetAsync(endpoint2, HttpCompletionOption.ResponseHeadersRead);
                     response2.EnsureSuccessStatusCode();
                     var data2 = await response2.Content.ReadAsStringAsync();
                     var result2 = JsonConvert.DeserializeObject<MovieDTO>(data2);
-                    result2.NumberOfLikes = result[i].NumberOfLikes;
-                    result2.NumberOfDislikes = result[i].NumberOfDislikes;
-                    result.RemoveAt(i);
-                    result.Insert(i, result2);
+                    result2.NumberOfLikes = sortedList[i].NumberOfLikes;
+                    result2.NumberOfDislikes = sortedList[i].NumberOfDislikes;
+                    result2.TotalRatings = sortedList[i].TotalRatings;
+                    sortedList.RemoveAt(i);
+                    sortedList.Insert(i, result2);
                 }
                 //Convert the movie list to a string formatted as json
-                string jsonString = System.Text.Json.JsonSerializer.Serialize(result);
+                string jsonString = System.Text.Json.JsonSerializer.Serialize(sortedList);
                 //Creates a file with the json string
                 System.IO.File.WriteAllText("movies.json", jsonString);
                 //Sets  the json file to the movie list

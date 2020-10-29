@@ -23,5 +23,9 @@ namespace Bjornroth.Models.DTO
         public int NumberOfDislikes { get; set; }
         public string ImdbId { get; set; }
         public string Type { get; set; }
+        public int TotalRatings { get; set; }
+
+       
+        
     }
 }
