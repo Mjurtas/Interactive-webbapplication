@@ -1,4 +1,5 @@
 ﻿using Bjornroth.Models.DTO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,9 @@ namespace Bjornroth.Models.ViewModels
     public class StartViewModel
     {
         public List<MovieViewModel> GeneratedMovies { get; set; } = new List<MovieViewModel>();
+        //public List<MovieDTO> SearchSuggestions { get; set; } = new List<MovieDTO>();
+
+        public List<MovieDTO> SearchSuggestions = JsonConvert.DeserializeObject<List<MovieDTO>>(System.IO.File.ReadAllText("movies.json"));
 
         //TODO: Delete this empty constructor when StartController isn't handling the like function anymore
 

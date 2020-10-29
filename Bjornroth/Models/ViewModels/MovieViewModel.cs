@@ -1,4 +1,5 @@
 ﻿using Bjornroth.Models.DTO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -25,6 +26,8 @@ namespace Bjornroth.Models.ViewModels
 
         [Display(Name = "Number Of Dislikes")]
         public int NumberOfDislikes { get; set; } = 0;
+
+        public List<MovieDTO> SearchSuggestions = JsonConvert.DeserializeObject<List<MovieDTO>>(System.IO.File.ReadAllText("movies.json"));
 
         public MovieViewModel(MovieDTO movie, MovieDTO movie2)
         {
