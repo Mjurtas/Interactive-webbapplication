@@ -28,14 +28,14 @@ namespace Bjornroth.Controllers
         {
             this.cmdbRepository = cmdbRepository;
             _logger = logger;
-            //if (System.IO.File.Exists("../json/movies.json"))
-            //{
-
-            //    movies = JsonConvert.DeserializeObject<List<MovieDTO>>(System.IO.File.ReadAllText("../json/movie.json"));
-
-            //}
-
-
+            if (System.IO.File.Exists("movies.json"))
+            {               /* If file exists (i.e if the startup.cs has been run once) 
+                                 * - the list of movies is read from .json file and passed 
+                                 * into the partial view of the searchbar. 
+                                 * Prevents calling the api on every reload of StartController.*/
+                //System.IO.File.Delete("movies.json");
+            }
+                cmdbRepository.GetMovies();
         }
 
         //public async Task <IActionResult> Index()

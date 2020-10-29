@@ -1,4 +1,5 @@
 ﻿using Bjornroth.Models.DTO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Bjornroth.Models.ViewModels
     public class SearchViewModel
     {
         public List<MovieDTO> Movies { get; set; } = new List<MovieDTO>();
+        public List<MovieDTO> SearchSuggestions = JsonConvert.DeserializeObject<List<MovieDTO>>(System.IO.File.ReadAllText("movies.json"));
 
         public SearchViewModel(SearchDTO search)
         {

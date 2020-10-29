@@ -2,8 +2,29 @@
 
     @using (@Html.BeginForm("Index", "SearchResults"))
     {
-    <input type="text" id="searchInput" name="searchInput" placeholder="Search movie title...." />
+        <input type="text" id="searchInput" name="searchInput" placeholder="Search movie title...." />
 
-    <input type="submit" value="Search" />
+        <input type="submit" value="Search" />
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Actors</th>
+                    <th>Director</th>
+                </tr>
+            </thead>
+            <tbody id="searchBar">
+
+                @foreach (var movie in Model.SearchSuggestions)
+                {
+                    <tr>
+                        <td hidden="hidden">@movie.Title</td>
+                        <td hidden="hidden">@movie.Actors</td>
+                        <td hidden="hidden">@movie.Director</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
 </div>

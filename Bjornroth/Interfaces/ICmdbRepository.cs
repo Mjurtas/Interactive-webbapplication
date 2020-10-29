@@ -24,6 +24,6 @@ namespace Bjornroth.Interfaces
 
         Task<MovieDTO> UpdateRating(string imdbId, string newRating);
 
-        Task<List<MovieDTO>> GetMovies();
+        public void GetMovies();
     }
 }

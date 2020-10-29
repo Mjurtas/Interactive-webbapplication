@@ -17,10 +17,6 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\json\" />
-  </ItemGroup>
-
  
 
 </Project>
