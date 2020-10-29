@@ -115,10 +115,9 @@ header {
     margin: 10% 20% 0 20%
 }
 
-    .randomized-movies-container img {
+ .randomized-movies-container img {
         height: 100%;
     }
-
 
 .randomized-movie-header {
     font-size: 4rem;
@@ -225,4 +224,74 @@ header {
 
 .search-or-did-you-mean img {
     width: 6vh;
+}
+
+/* CSS FOR TOPLIST */
+
+.top-list-index0-container{
+    display: flex;
+    justify-content: space-around;
+    padding: 10%;
+    margin: 5%;
+    background-color: rgb(141, 8, 1, 0.2);
+    color: white;
+}
+
+.top-list-index0 {
+    display: inline-block;
+}
+
+.toplist-index0-info {
+    display: flex;
+    justify-content: space-around;
+}
+
+.top-list-index0 p {
+    padding-left: 10%;
+}
+
+
+.top-list-index0 ul {
+    display: inline-block;
+    padding-left: 10%;
+    margin-left: 10%;
+    list-style: none;
+}
+
+    .top-list-index0 ul h2 {
+        font-family: "Anton", sans-serif;
+    }
+.top-list-index0 .percentageBubble{
+    padding: -80px;
+}
+
+.percentageBubble {
+    width: 15vh;
+    height: 15vh;
+    line-height: 15vh;
+    border-radius: 50%;
+    text-align: center;
+    background: pink;
+}
+
+.percentageBubble h2{
+    color: black;
+    font-size: 6vh;
+}
+
+.top-list-index-1-3-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.top-list-index-1-3 {
+    color: white;
+}
+
+.top-list-index-1-3-info{
+
+}
+
+.top-list-index-1-3 ul {
+
 }
