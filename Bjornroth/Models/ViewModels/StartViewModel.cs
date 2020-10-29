@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace Bjornroth.Models.ViewModels
 {
-    public class StartViewModel
+    public class StartViewModel : BaseViewModel
     {
         public List<MovieViewModel> GeneratedMovies { get; set; } = new List<MovieViewModel>();
         //public List<MovieDTO> SearchSuggestions { get; set; } = new List<MovieDTO>();
 
-        public List<MovieDTO> SearchSuggestions = JsonConvert.DeserializeObject<List<MovieDTO>>(System.IO.File.ReadAllText("movies.json"));
+        
 
         //TODO: Delete this empty constructor when StartController isn't handling the like function anymore
 
         public StartViewModel() { }
 
-        public StartViewModel(List <MovieViewModel> generatedMovies)
+        public StartViewModel(List<MovieViewModel> generatedMovies)
         {
             for (int i = 0; i < generatedMovies.Count; i++)
             {

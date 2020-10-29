@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Bjornroth.Models.ViewModels
 {
-    public class SearchViewModel
+    public class SearchViewModel : BaseViewModel
     {
         public List<MovieDTO> Movies { get; set; } = new List<MovieDTO>();
-        public List<MovieDTO> SearchSuggestions = JsonConvert.DeserializeObject<List<MovieDTO>>(System.IO.File.ReadAllText("movies.json"));
 
         public SearchViewModel(SearchDTO search)
         {
