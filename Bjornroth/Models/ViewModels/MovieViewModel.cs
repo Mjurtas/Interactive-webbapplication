@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bjornroth.Models.ViewModels
 {
-    public class MovieViewModel
+    public class MovieViewModel : BaseViewModel
     {
         public string Title { get; set; }
         public string Poster { get; set; }
@@ -26,8 +26,6 @@ namespace Bjornroth.Models.ViewModels
 
         [Display(Name = "Number Of Dislikes")]
         public int NumberOfDislikes { get; set; } = 0;
-
-        public List<MovieDTO> SearchSuggestions = JsonConvert.DeserializeObject<List<MovieDTO>>(System.IO.File.ReadAllText("movies.json"));
 
         public MovieViewModel(MovieDTO movie, MovieDTO movie2)
         {

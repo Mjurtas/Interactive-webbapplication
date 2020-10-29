@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using Bjornroth.Interfaces;
 using Bjornroth.Models.DTO;
@@ -25,23 +26,27 @@ namespace Bjornroth.Controllers
             if (searchInput != null)
             {
                 var model = await cmdbRepository.GetSearchResults(searchInput);
-                
-                foreach (MovieDTO movie in model.Search)
+                if (model.Search != null)
                 {
-                    string imdbId = movie.ImdbId;
-                    var model2 = await cmdbRepository.GetCmdbRating(imdbId);
-                    if (model2 != null) {
-                        movie.NumberOfLikes = model2.NumberOfLikes;
-                        movie.NumberOfDislikes = model2.NumberOfDislikes;
+                    foreach (MovieDTO movie in model.Search)
+                    {
+                        string imdbId = movie.ImdbId;
+                        var model2 = await cmdbRepository.GetCmdbRating(imdbId);
+                        if (model2 != null)
+                        {
+                            movie.NumberOfLikes = model2.NumberOfLikes;
+                            movie.NumberOfDislikes = model2.NumberOfDislikes;
+                        }
                     }
+                    var model3 = await cmdbRepository.GetSearchResultById(model.Search[0].ImdbId);
+                    model.Search[0] = model3;
+                    SearchViewModel viewModel = new SearchViewModel(model);
+                    return View(viewModel);
                 }
-
-                var model3 = await cmdbRepository.GetSearchResultById(model.Search[0].ImdbId);
-                model.Search[0] = model3;
-
-
-                SearchViewModel viewModel = new SearchViewModel(model);
-                return View(viewModel);
+                else
+                {
+                    return RedirectToAction("PageNotFound");
+                }
             }
             else
             {
@@ -64,7 +69,14 @@ namespace Bjornroth.Controllers
                 return View(viewModel);
             }
 
-
         }
+
+        public IActionResult PageNotFound()
+        {
+            BaseViewModel viewModel = new BaseViewModel();
+            return View(viewModel);
+        }
+
+        
     }
 }
