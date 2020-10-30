@@ -25,11 +25,15 @@
     }
 }
 
-function Rating() {
-    const likes = parseInt(document.getElementByClassName("number-of-likes-label"))
-    const dislikes = parseInt(document.getElementsByClassName("number-of-dislikes-label"))
-    const ratingPercentage = Math.round(((likes / (likes + dislikes) * 100)))
-    document.getElementsByClassName("rating-percentage-label").innerHTML = ratingPercentage + "%"
+function Rating(i) {
+    const likes = parseInt(document.getElementById(`like-number${i}`).innerText)
+    console.log(likes)
+    const dislikes = parseInt(document.getElementById(`dislike-number${i}`).innerText)
+    console.log(dislikes)
+    const ratingPercentage = Math.round(((likes / (likes + dislikes) * 100))).toString()
+    console.log(ratingPercentage)
+    const ratingLabel = document.getElementsByClassName("rating-percentage-label")
+    ratingLabel[0].innerHTML = ratingPercentage + "%"
 }
 
 function helperSearch() {
@@ -67,10 +71,12 @@ function activateEventListeners() {
         document.getElementById(`like-btn${i}`).addEventListener("click", function (event) {
             event.preventDefault()
             testing(document.getElementById(`imdbId${i}`).value, "like", i)
+            Rating(i)
         })
         document.getElementById(`dislike-btn${i}`).addEventListener("click", function (event) {
             event.preventDefault()
             testing(document.getElementById(`imdbId${i}`).value, "dislike", i)
+            Rating(i)
         })
     }
     document.getElementById("searchInput").addEventListener("input", helperSearch)
@@ -79,4 +85,4 @@ function activateEventListeners() {
 
 
 activateEventListeners()
-Rating()
+Rating(0)
