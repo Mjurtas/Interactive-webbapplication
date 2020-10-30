@@ -139,13 +139,18 @@ table img {
 .single-movie-detail {
     display: flex;
     margin: auto;
-    width: 50%;
+    width: 100%;
+    background-color: #000000;
+    opacity: 0.8;
+    color: white;
+
 }
 
 .single-movie-detail-text {
-    background-color: #000000;
+    
     opacity: 0.8;
     border-radius: 10px;
+    margin-left: 10px;
 }
 
     .single-movie-detail-text h1 {
@@ -163,16 +168,22 @@ table img {
     }
 
 .single-movie-detail-img {
-    outline: 2px solid black;
+   
     height: 30vh;
+    display: flex;
+    align-items: center;
 }
 
     .single-movie-detail-img img {
         object-fit: fill;
     }
+
+.like-buttons-full-movie-detail{
+    display: flex;
+    flex-direction: row;
+}
 /*-----------------------------------*/
 /*CSS FOR RANDOMIZED MOVIES */
-
 .randomized-movies-container {
     justify-content: center;
     text-align: center;

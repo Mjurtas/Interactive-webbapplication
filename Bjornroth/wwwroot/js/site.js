@@ -25,6 +25,13 @@
     }
 }
 
+function Rating() {
+    const likes = parseInt(document.getElementByClassName("number-of-likes-label"))
+    const dislikes = parseInt(document.getElementsByClassName("number-of-dislikes-label"))
+    const ratingPercentage = Math.round(((likes / (likes + dislikes) * 100)))
+    document.getElementsByClassName("rating-percentage-label").innerHTML = ratingPercentage + "%"
+}
+
 function helperSearch() {
     const search = document.getElementById("searchInput").value.toLowerCase()
     const recommendedResults = document.getElementsByTagName("tr")
@@ -72,3 +79,4 @@ function activateEventListeners() {
 
 
 activateEventListeners()
+Rating()
