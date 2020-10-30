@@ -10,5 +10,8 @@ namespace Bjornroth.Models.ViewModels
     public class BaseViewModel
     {
         public List<MovieDTO> SearchSuggestions = JsonConvert.DeserializeObject<List<MovieDTO>>(System.IO.File.ReadAllText("movies.json"));
+        
+        
+        
     }
 }

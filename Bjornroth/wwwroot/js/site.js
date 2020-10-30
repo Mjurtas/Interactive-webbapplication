@@ -16,23 +16,30 @@
 function helperSearch() {
     const search = document.getElementById("searchInput").value
     const recommendedResults = document.getElementsByTagName("tr")
-    console.log("innertext" + recommendedResults[1].cells[0].innerText)
-    console.log("innerhtml" + recommendedResults[1].cells[0].innerHTML)
+   
+    let count = 0
     for (var i = 1; i < recommendedResults.length; i++) {
-        if (recommendedResults[i].cells[0].innerText.includes(search) && search != "") {
+
+        if (recommendedResults[i].cells[1].innerText.includes(search) && search != "" && count < 5) {
+           
             recommendedResults[i].hidden = false;
             recommendedResults[i].cells[0].hidden = false;
             recommendedResults[i].cells[1].hidden = false;
             recommendedResults[i].cells[2].hidden = false;
+            count += 1
         }
         else {
+            
             recommendedResults[i].hidden = true;
             recommendedResults[i].cells[0].hidden = true;
             recommendedResults[i].cells[1].hidden = true;
             recommendedResults[i].cells[2].hidden = true;
+            
         }
     }
 }
+
+
 
 let numberOfReactButtons = document.getElementsByClassName("submitBtn").length / 2
 
@@ -50,6 +57,7 @@ function activateEventListeners() {
         })
     }
     document.getElementById("searchInput").addEventListener("input", helperSearch)
+
 }
 
 function UpdateRatingInView(index, typeOfRating) {
