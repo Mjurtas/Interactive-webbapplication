@@ -1,28 +1,28 @@
-﻿async function testing(imdbId, newRating) {
-    const baseUrl = "http://localhost:5000/api/"
+﻿async function testing(imdbId, newRating, index) {
+    const baseUrl = "https://localhost:44313/api/"
     console.log(imdbId)
-   
     try {
-       const response = await fetch(`${baseUrl}movie/${imdbId}/${newRating}`, {
-           method: 'GET',
-           mode: 'cors'
-       })
-        console.log(response.status)
-        console.log(response.body)
-        const parsedResponse = await response.json()
-        console.log(parsedResponse)
-        
+        const api = await fetch(`${baseUrl}movie/${imdbId}/${newRating}`, {
+            method: 'GET',
+            mode: 'cors'
+        })
+        if (api.ok) {
+            const readableApi = await api.json()
+            console.log(readableApi.numberOfLikes)
+            if (newRating === 'dislike') {
+                document.getElementById(`dislike-number${index}`).innerHTML = readableApi.numberOfDislikes
+            }
+            else {
+                document.getElementById(`like-number${index}`).innerHTML = readableApi.numberOfLikes
+            }
+        }
+        else {
+            throw api.status
+        }
     }
     catch (e) {
         console.log(e.message)
     }
-}
-
-function Rating() {
-    const likes = parseInt(document.getElementByClassName("number-of-likes-label"))
-    const dislikes = parseInt(document.getElementsByClassName("number-of-dislikes-label"))
-    const ratingPercentage = Math.round(((likes / (likes + dislikes) * 100)))
-    document.getElementsByClassName("rating-percentage-label").innerHTML = ratingPercentage + "%"
 }
 
 function helperSearch() {
@@ -59,32 +59,16 @@ function activateEventListeners() {
     for (let i = 0; i < numberOfReactButtons; i++) {
         document.getElementById(`like-btn${i}`).addEventListener("click", function (event) {
             event.preventDefault()
-            testing(document.getElementById(`imdbId${i}`).value, "like")
-                UpdateRatingInView(i, "like")
+            testing(document.getElementById(`imdbId${i}`).value, "like", i)
         })
         document.getElementById(`dislike-btn${i}`).addEventListener("click", function (event) {
             event.preventDefault()
-            testing(document.getElementById(`imdbId${i}`).value, "dislike")
-            UpdateRatingInView(i, "dislike")
+            testing(document.getElementById(`imdbId${i}`).value, "dislike", i)
         })
     }
     document.getElementById("searchInput").addEventListener("input", helperSearch)
 
 }
 
-function UpdateRatingInView(index, typeOfRating) {
-    if (typeOfRating === "dislike") {
-        let rating = parseInt(document.getElementById(`dislike-number${index}`).innerHTML)
-        let newRating = rating+1
-        document.getElementById(`dislike-number${index}`).innerHTML = newRating
-    }
-    else {
-        let rating = parseInt(document.getElementById(`like-number${index}`).innerHTML)
-        let newRating = rating+1
-        document.getElementById(`like-number${index}`).innerHTML = newRating
-    }
-}
-
 
 activateEventListeners()
-Rating()
