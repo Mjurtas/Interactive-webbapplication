@@ -1,5 +1,5 @@
 ﻿async function testing(imdbId, newRating, index) {
-    const baseUrl = "https://localhost:5001/api/"
+    const baseUrl = "https://localhost:44313/api/"
     console.log(imdbId)
     try {
         const api = await fetch(`${baseUrl}movie/${imdbId}/${newRating}`, {
@@ -25,16 +25,25 @@
     }
 }
 
-
+function Rating(i) {
+    const likes = parseInt(document.getElementById(`like-number${i}`).innerText)
+    console.log(likes)
+    const dislikes = parseInt(document.getElementById(`dislike-number${i}`).innerText)
+    console.log(dislikes)
+    const ratingPercentage = Math.round(((likes / (likes + dislikes) * 100))).toString()
+    console.log(ratingPercentage)
+    const ratingLabel = document.getElementsByClassName("rating-percentage-label")
+    ratingLabel[0].innerHTML = ratingPercentage + "%"
+}
 
 function helperSearch() {
-    const search = document.getElementById("searchInput").value
+    const search = document.getElementById("searchInput").value.toLowerCase()
     const recommendedResults = document.getElementsByTagName("tr")
    
     let count = 0
     for (var i = 1; i < recommendedResults.length; i++) {
-
-        if (recommendedResults[i].cells[1].innerText.includes(search) && search != "" && count < 5) {
+        const movieTitle = recommendedResults[i].cells[1].innerText.toLowerCase();
+        if (movieTitle.includes(search) && search != "" && count < 5) {
            
             recommendedResults[i].hidden = false;
             recommendedResults[i].cells[0].hidden = false;
@@ -57,57 +66,23 @@ function helperSearch() {
 
 let numberOfReactButtons = document.getElementsByClassName("submitBtn").length / 2
 
-
-function Rating() {
-    const likes = parseInt(document.getElementById("like-number0").innerHTML)
-    console.log(likes)
-    const dislikes = parseInt(document.getElementById("dislike-number0").innerHTML)
-    console.log(dislikes)
-    const ratingPercentage = Math.round(((likes / (likes + dislikes) * 100)))
-    console.log(ratingPercentage)
-    if (likes + dislikes > 0) {
-        document.getElementById("rating-percentage-label").innerHTML = ratingPercentage.toString() + "%"
-    }
-    else {
-        document.getElementById("rating-percentage-label").innerHTML = "N/A"
-    }
-
-    if (ratingPercentage > 50) {
-        document.getElementById("rating-percentage-label").style.color = "green"
-    }
-    else if (ratingPercentage < 50) {
-        document.getElementById("rating-percentage-label").style.color = "red"
-    }
-
-    else { document.getElementById("rating-percentage-label").style.color = "yellow" }
-}
-
-
-
 function activateEventListeners() {
     for (let i = 0; i < numberOfReactButtons; i++) {
         document.getElementById(`like-btn${i}`).addEventListener("click", function (event) {
             event.preventDefault()
-            Rating()
             testing(document.getElementById(`imdbId${i}`).value, "like", i)
+            Rating(i)
         })
         document.getElementById(`dislike-btn${i}`).addEventListener("click", function (event) {
             event.preventDefault()
-            Rating()
             testing(document.getElementById(`imdbId${i}`).value, "dislike", i)
+            Rating(i)
         })
     }
     document.getElementById("searchInput").addEventListener("input", helperSearch)
-}
 
-function ShortenPlot() {
-    const fullPlot = document.getElementById("full-plot").innerHTML
-    
-    const shortenedPlot = fullPlot.substr(0, 140) + "\u2026";
-    document.getElementById("shortened-plot").innerHTML = shortenedPlot
 }
 
 
 activateEventListeners()
-ShortenPlot()
-
+Rating(0)

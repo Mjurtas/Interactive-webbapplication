@@ -116,8 +116,9 @@ namespace Bjornroth.Repositories
                     result.RemoveAt(i);
                     result.Insert(i, result2);
                 }
+                var sortedList = result.OrderByDescending(x => x.TotalRatings = (x.NumberOfLikes + x.NumberOfDislikes));
                 //Convert the movie list to a string formatted as json
-                string jsonString = System.Text.Json.JsonSerializer.Serialize(result);
+                string jsonString = System.Text.Json.JsonSerializer.Serialize(sortedList);
                 //Creates a file with the json string
                 System.IO.File.WriteAllText("movies.json", jsonString);
                 //Sets  the json file to the movie list

@@ -29,13 +29,13 @@
 
 }
 
-.info-inline
-{display: inline-block;}
+.info-inline {
+    display: inline-block;
+}
+
 header {
     display: flex;
     padding: 1%;
-   
-   
 }
 
 .search-field-and-btn {
@@ -43,21 +43,42 @@ header {
     margin: auto !important;
     display: flex;
     flex: 1;
-    
     position: relative;    
 }
 
 table {
     z-index: 10;
     background: #313131;
-    position: fixed;
-    
-    flex: 3;
+    position: absolute;
+    margin-top: 15%;
 }
 
-table a {
+td a {
     color: white;
     text-decoration: none;
+}
+
+td a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.searchLink{
+    display: block;
+    z-index: 10;
+}
+
+.searchLink:link {
+    color: white;
+    text-decoration: none;
+    display: block;
+
+}
+
+.searchLink:any-link {
+    color: white;
+    text-decoration: none;
+    display: block;
 }
 
 tr:hover {

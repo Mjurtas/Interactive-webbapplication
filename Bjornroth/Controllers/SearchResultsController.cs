@@ -23,9 +23,9 @@ namespace Bjornroth.Controllers
         [Route("/SearchResult")]
         public async Task<IActionResult> Index(string searchInput)
         {
-            string formattedString = cmdbRepository.FormatSearchString(searchInput);
-            if (formattedString != null)
+            if (searchInput != null)
             {
+                string formattedString = cmdbRepository.FormatSearchString(searchInput);
                 var model = await cmdbRepository.GetSearchResults(formattedString);
                 if (model.Search != null)
                 {
@@ -41,7 +41,7 @@ namespace Bjornroth.Controllers
                     }
                     var model3 = await cmdbRepository.GetSearchResultById(model.Search[0].ImdbId);
                     model.Search[0] = model3;
-                    SearchViewModel viewModel = new SearchViewModel(model);
+                    SearchViewModel viewModel = new SearchViewModel(model, searchInput);
                     return View(viewModel);
                 }
                 else
@@ -51,25 +51,8 @@ namespace Bjornroth.Controllers
             }
             else
             {
-
-                var model = await cmdbRepository.GetSearchResults("Jedi");
-                foreach (MovieDTO movie in model.Search)
-                {
-                    string imdbId = movie.ImdbId;
-                    var model2 = await cmdbRepository.GetCmdbRating(imdbId);
-                    if (model2 != null)
-                    {
-                        movie.NumberOfLikes = model2.NumberOfLikes;
-                        movie.NumberOfDislikes = model2.NumberOfDislikes;
-                    }
-                }
-                var model3 = await cmdbRepository.GetSearchResultById(model.Search[0].ImdbId);
-                model.Search[0] = model3;
-
-                SearchViewModel viewModel = new SearchViewModel(model);
-                return View(viewModel);
+                return RedirectToAction("PageNotFound");
             }
-
         }
 
         public IActionResult PageNotFound()
