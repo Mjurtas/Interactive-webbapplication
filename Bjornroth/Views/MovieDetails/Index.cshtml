@@ -14,31 +14,36 @@
     <div class="single-movie-detail-text">
         <h1>@Model.Title, @Model.Released</h1>
         <h3>Plot</h3>
-        <p> @Model.Plot </p>
+        <p hidden="hidden" id="full-plot"> @Model.Plot </p>
+        <div id="read-more-box">
+            <p id="shortened-plot"></p>
+            <a href="#">READ MORE</a>
+        </div>
         <ul class="single-movie-detail-ul">
             <li><b>Director:</b> @Model.Director</li>
             <li><b>Runtime:</b> @Model.Runtime</li>
             <li><b>Actors:</b> @Model.Actors.</li>
-            <li><b>ImdbRating:</b> @Model.ImdbRating</li>
+            <li><b>ImdbRating:</b> @Model.ImdbRating <img src="~/images/Icon feather-star.png" /></li>
             <li><b>Number of Likes</b></li>
-            <li class="number-of-likes-label" id="like-number0">@Model.NumberOfLikes</li>
+            <li id="like-number0">@Model.NumberOfLikes</li>
             <li><b>Number of Dislikes</b></li>
-            <li class="number-of-dislikes-label" id="dislike-number0">@Model.NumberOfDislikes</li>
+            <li id="dislike-number0">@Model.NumberOfDislikes</li>
         </ul>
         <div class="like-buttons-full-movie-detail">
             @using (Html.BeginForm("Index", "MovieDetails"))
             {
-                <input type="hidden" id="imdbId0" name="imdbId" value="@Model.ImdbId" />
+                <input type="hidden" id="imdbId0" value="@Model.ImdbId" />
                 <input type="hidden" name="newRating" value="like" />
-                <input type="submit" value="Add like" id="like-btn0" class="submitBtn" />
+                <button type="submit" id="like-btn0" class="submitBtn"><img src="~/images/like.png" /></button>
             }
-            <h1 class="rating-percentage-label"></h1>
+            <h1 id="rating-percentage-label"></h1>
             @using (Html.BeginForm("Index", "MovieDetails"))
             {
-                <input type="hidden" id="imdbId0" name="imdbId" value="@Model.ImdbId" />
+                <input type="hidden" id="imdbId0" value="@Model.ImdbId" />
                 <input type="hidden" name="newRating" value="dislike" />
-                <input type="submit" value="Add dislike" id="dislike-btn0" class="submitBtn" />
+                <button type="submit" id="dislike-btn0" class="submitBtn"><img src="~/images/dislike.png" /></button>
             }
+
         </div>
 
 
@@ -46,3 +51,4 @@
     </div>
 
 </div>
+<script src="~/js/moviedetails.js" type="module"></script>

@@ -26,7 +26,8 @@
 
                             <td hidden="hidden"><img src="@movie.Poster" /></td>
                             <td hidden="hidden">@Html.ActionLink($"{@movie.Title}","Index", "SearchResults", new { searchInput = movie.Title }, null )</td>
-                            <td hidden="hidden">@movie.imdbRating</td>
+                            
+                            <td hidden="hidden"><img id="imdb-logo" src="~/images/imdb.png" />@movie.imdbRating</td>
 
 
                         </tr>

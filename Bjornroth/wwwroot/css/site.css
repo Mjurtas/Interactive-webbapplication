@@ -7,7 +7,14 @@
     z-index: 0;
 }
 
-.carousel-sizing, .carousel-item img{
+#imdb-logo {
+    width: 25px;
+    height: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.carousel-sizing, .carousel-item img {
     width: 20vw;
     height: 50vh;
     margin: auto;
@@ -160,6 +167,30 @@ table img {
 .like-buttons-full-movie-detail{
     display: flex;
     flex-direction: row;
+    color: white;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    
+}
+    .like-buttons-full-movie-detail button {
+        border: none;
+        background: none;
+        cursor: pointer;
+        margin: 10px;
+        padding: 10%;
+        outline: none;
+       
+    }
+.read-more-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 30px 0;
+    background-image: linear-gradient(to bottom, transparent, black);
 }
 /*-----------------------------------*/
 /*CSS FOR RANDOMIZED MOVIES */
