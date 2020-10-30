@@ -10,10 +10,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.Versioning;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Bjornroth.Repositories
 {
+
 
 
     public class CmdbRepository : ICmdbRepository
@@ -122,5 +124,12 @@ namespace Bjornroth.Repositories
                 JsonConvert.DeserializeObject<List<MovieDTO>>(System.IO.File.ReadAllText("movies.json"));
             }
         }
+
+        public string FormatSearchString(string searchInput)
+        {
+            string newString = Regex.Replace(searchInput, "[^a-zA-Z0-9_.]+", " ");
+            return newString;
+        }
+
     }
 }

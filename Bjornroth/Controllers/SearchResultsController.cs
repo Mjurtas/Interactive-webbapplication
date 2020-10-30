@@ -23,9 +23,10 @@ namespace Bjornroth.Controllers
         [Route("/SearchResult")]
         public async Task<IActionResult> Index(string searchInput)
         {
-            if (searchInput != null)
+            string formattedString = cmdbRepository.FormatSearchString(searchInput);
+            if (formattedString != null)
             {
-                var model = await cmdbRepository.GetSearchResults(searchInput);
+                var model = await cmdbRepository.GetSearchResults(formattedString);
                 if (model.Search != null)
                 {
                     foreach (MovieDTO movie in model.Search)
