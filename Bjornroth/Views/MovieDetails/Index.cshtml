@@ -13,30 +13,35 @@
     </div>
     <div class="single-movie-detail-text">
         <h1>@Model.Title, @Model.Released</h1>
+        <h3>Plot</h3>
+        <p> @Model.Plot </p>
         <ul class="single-movie-detail-ul">
             <li><b>Director:</b> @Model.Director</li>
             <li><b>Runtime:</b> @Model.Runtime</li>
             <li><b>Actors:</b> @Model.Actors.</li>
             <li><b>ImdbRating:</b> @Model.ImdbRating</li>
             <li><b>Number of Likes</b></li>
-            <li id="like-number0">@Model.NumberOfLikes</li>
+            <li class="number-of-likes-label" id="like-number0">@Model.NumberOfLikes</li>
             <li><b>Number of Dislikes</b></li>
-            <li id="dislike-number0">@Model.NumberOfDislikes</li>
+            <li class="number-of-dislikes-label" id="dislike-number0">@Model.NumberOfDislikes</li>
         </ul>
-        @using (Html.BeginForm("Index", "MovieDetails"))
-        {
-            <input type="hidden" id="imdbId0" name="imdbId" value="@Model.ImdbId" />
-            <input type="hidden" name="newRating" value="like" />
-            <input type="submit" value="Add like" id="like-btn0" class="submitBtn" />
-        }
-        @using (Html.BeginForm("Index", "MovieDetails"))
-        {
-            <input type="hidden" id="imdbId0" name="imdbId" value="@Model.ImdbId" />
-            <input type="hidden" name="newRating" value="dislike" />
-            <input type="submit" value="Add dislike" id="dislike-btn0" class="submitBtn" />
-        }
-        <h3>Plot</h3>
-        <p> @Model.Plot </p>
+        <div class="like-buttons-full-movie-detail">
+            @using (Html.BeginForm("Index", "MovieDetails"))
+            {
+                <input type="hidden" id="imdbId0" name="imdbId" value="@Model.ImdbId" />
+                <input type="hidden" name="newRating" value="like" />
+                <input type="submit" value="Add like" id="like-btn0" class="submitBtn" />
+            }
+            <h1 class="rating-percentage-label"></h1>
+            @using (Html.BeginForm("Index", "MovieDetails"))
+            {
+                <input type="hidden" id="imdbId0" name="imdbId" value="@Model.ImdbId" />
+                <input type="hidden" name="newRating" value="dislike" />
+                <input type="submit" value="Add dislike" id="dislike-btn0" class="submitBtn" />
+            }
+        </div>
+
+
 
     </div>
 

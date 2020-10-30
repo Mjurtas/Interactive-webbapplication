@@ -4,7 +4,8 @@
    
     try {
        const response = await fetch(`${baseUrl}movie/${imdbId}/${newRating}`, {
-            method: 'GET'
+           method: 'GET',
+           mode: 'cors'
        })
         console.log(response.status)
         console.log(response.body)
@@ -15,7 +16,13 @@
     catch (e) {
         console.log(e.message)
     }
+}
 
+function Rating() {
+    const likes = parseInt(document.getElementByClassName("number-of-likes-label"))
+    const dislikes = parseInt(document.getElementsByClassName("number-of-dislikes-label"))
+    const ratingPercentage = Math.round(((likes / (likes + dislikes) * 100)))
+    document.getElementsByClassName("rating-percentage-label").innerHTML = ratingPercentage + "%"
 }
 
 function helperSearch() {
@@ -80,3 +87,4 @@ function UpdateRatingInView(index, typeOfRating) {
 
 
 activateEventListeners()
+Rating()
