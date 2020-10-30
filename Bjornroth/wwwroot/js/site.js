@@ -1,11 +1,16 @@
 ﻿async function testing(imdbId, newRating) {
-    const baseUrl = "https://localhost:44313/api/"
+    const baseUrl = "http://localhost:5000/api/"
     console.log(imdbId)
+   
     try {
-        await fetch(`${baseUrl}movie/${imdbId}/${newRating}`, {
-            method: 'GET',
-            mode: 'no-cors'
-        })
+       const response = await fetch(`${baseUrl}movie/${imdbId}/${newRating}`, {
+            method: 'GET'
+       })
+        console.log(response.status)
+        console.log(response.body)
+        const parsedResponse = await response.json()
+        console.log(parsedResponse)
+        
     }
     catch (e) {
         console.log(e.message)
