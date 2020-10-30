@@ -26,13 +26,13 @@
 }
 
 function helperSearch() {
-    const search = document.getElementById("searchInput").value
+    const search = document.getElementById("searchInput").value.toLowerCase()
     const recommendedResults = document.getElementsByTagName("tr")
    
     let count = 0
     for (var i = 1; i < recommendedResults.length; i++) {
-
-        if (recommendedResults[i].cells[1].innerText.includes(search) && search != "" && count < 5) {
+        const movieTitle = recommendedResults[i].cells[1].innerText.toLowerCase();
+        if (movieTitle.includes(search) && search != "" && count < 5) {
            
             recommendedResults[i].hidden = false;
             recommendedResults[i].cells[0].hidden = false;

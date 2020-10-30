@@ -10,8 +10,9 @@ namespace Bjornroth.Models.ViewModels
     public class SearchViewModel : BaseViewModel
     {
         public List<MovieDTO> Movies { get; set; } = new List<MovieDTO>();
+        public string SearchInput { get; set; }
 
-        public SearchViewModel(SearchDTO search)
+        public SearchViewModel(SearchDTO search, string searchInput)
         {
             for (int i = 0; i < search.Search.Count; i++)
             {
@@ -29,7 +30,7 @@ namespace Bjornroth.Models.ViewModels
                 }
 
             }
-            
+            SearchInput = searchInput;
         }
 
     }
