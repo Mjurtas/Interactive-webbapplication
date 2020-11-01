@@ -8,27 +8,46 @@
 @model Bjornroth.Models.ViewModels.MovieViewModel
 
 <div class="single-movie-detail">
-    <div class="single-movie-detail-img">
-        <img src="@Model.Poster">
-    </div>
-    <div class="single-movie-detail-text">
-        <h1>@Model.Title, @Model.Released</h1>
-        <h3>Plot</h3>
-        <p hidden="hidden" id="full-plot"> @Model.Plot </p>
-        <div id="read-more-box">
-            <p id="shortened-plot"></p>
-            <a href="#">READ MORE</a>
+    <div class="movie-detail-head">
+        <div class="single-movie-detail-img">
+            <img src="@Model.Poster">
         </div>
-        <ul class="single-movie-detail-ul">
-            <li><b>Director:</b> @Model.Director</li>
-            <li><b>Runtime:</b> @Model.Runtime</li>
-            <li><b>Actors:</b> @Model.Actors.</li>
-            <li><b>ImdbRating:</b> @Model.ImdbRating <img src="~/images/Icon feather-star.png" /></li>
-            <li><b>Number of Likes</b></li>
-            <li id="like-number0">@Model.NumberOfLikes</li>
-            <li><b>Number of Dislikes</b></li>
-            <li id="dislike-number0">@Model.NumberOfDislikes</li>
-        </ul>
+        <div class="head-and-plot-block">
+            <h1>@Model.Title, @Model.Released</h1>
+            <div class="plot">
+                <h3>Plot</h3>
+
+                <input hidden="hidden" value="@Model.Plot" class="p-full-plot" />
+                <div class="short-plot">
+                    <p class="p-short-plot"></p> <p class="rest-plot"></p>
+                </div>
+                <a class="read-more">READ MORE</a>
+            </div>
+        </div>
+    </div>
+           
+        
+
+    
+
+    <div class="single-movie-detail-text">
+        <div class="list-and-imdb-block">
+
+            <ul class="single-movie-detail-ul">
+                <li><b>Director:</b> @Model.Director</li>
+                <li><b>Runtime:</b> @Model.Runtime</li>
+                <li><b>Actors:</b> @Model.Actors.</li>
+                <li><b>Number of Likes</b></li>
+                <li id="like-number0">@Model.NumberOfLikes</li>
+                <li><b>Number of Dislikes</b></li>
+                <li id="dislike-number0">@Model.NumberOfDislikes</li>
+            </ul>
+            <div class="imdb-rating">
+                <img src="~/images/imdb.png" /><h1>@Model.ImdbRating</h1>
+            </div>
+        </div>
+
+
         <div class="like-buttons-full-movie-detail">
             @using (Html.BeginForm("Index", "MovieDetails"))
             {
@@ -45,10 +64,57 @@
             }
 
         </div>
-
-
-
     </div>
 
+
+
 </div>
-<script src="~/js/moviedetails.js" type="module"></script>
+
+<script src="/node_modules/readmore-js/readmore.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+<script>
+    
+   
+    
+    $(document).ready(function () {
+
+        // Get full plot from model.
+        var fullPlot = $(".p-full-plot").val();
+        //get length-value for later use in "subString-method"
+        var nmbrOfChars = $(".p-full-plot").val().length
+        //substrings full plot
+        var shortPlot = fullPlot.substring(0, 150) + "...";
+        var restPlot = fullPlot.substring(150, nmbrOfChars)
+        $(".p-short-plot").text(shortPlot);
+        $(".rest-plot").text(fullPlot);
+        $(".rest-plot").hide();
+        
+
+        console.log("kort handling" + shortPlot)
+        console.log("hela handlingen:" + fullPlot)
+        console.log("restplot:" + restPlot)
+       
+    
+
+        $(".read-more").on("click", function () {
+
+            
+            
+            if ($('.rest-plot').is(':visible')) {
+
+                $('.read-more').text('Read Less');
+            }
+            else {
+                $('.read-more').text('Read More');
+            }
+            $(".p-short-plot").slideToggle();
+            $('.rest-plot').slideToggle();
+           
+          
+            
+            
+        });
+    });
+</script>

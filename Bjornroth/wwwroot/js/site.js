@@ -1,5 +1,5 @@
 ﻿async function testing(imdbId, newRating, index) {
-    const baseUrl = "https://localhost:44313/api/"
+    const baseUrl = "https://localhost:5001/api/"
     console.log(imdbId)
     try {
         const api = await fetch(`${baseUrl}movie/${imdbId}/${newRating}`, {
@@ -32,8 +32,19 @@ function Rating(i) {
     console.log(dislikes)
     const ratingPercentage = Math.round(((likes / (likes + dislikes) * 100))).toString()
     console.log(ratingPercentage)
-    const ratingLabel = document.getElementsByClassName("rating-percentage-label")
-    ratingLabel[0].innerHTML = ratingPercentage + "%"
+    const ratingLabel = document.getElementById("rating-percentage-label")
+    ratingLabel.innerHTML = ratingPercentage.toString() + "%"
+
+    if (ratingPercentage > 50) {
+        ratingLabel.style.color =  "green"
+    }
+    else if (ratingPercentage < 50) {
+        ratingLabel.style.color = "red"
+    }
+    else {
+
+        ratingLabel.style.color = "yellow";
+    }
 }
 
 function helperSearch() {
