@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Bjornroth.Models.ViewModels
@@ -29,12 +30,17 @@ namespace Bjornroth.Models.ViewModels
 
         public MovieViewModel(MovieDTO movie, MovieDTO movie2)
         {
+            
+
+            var date = DateTime.Parse(movie.Released);
+            date.ToString("yyyy");
+
             Title = movie.Title;
             Poster = movie.Poster;
             Plot = movie.Plot;
             Director = movie.Director;
             Actors = movie.Actors;
-            Released = movie.Released;
+            Released = date.ToString();
             ImdbRating = movie.imdbRating;
             Runtime = movie.Runtime;
             ImdbId = movie.ImdbId;
