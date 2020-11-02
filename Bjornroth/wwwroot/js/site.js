@@ -1,6 +1,6 @@
 ﻿async function testing(imdbId, newRating, index) {
-    //const baseUrl = "https://localhost:5001/api/"
-    const baseUrl = "https://localhost:44313/api/"
+    const baseUrl = "https://localhost:5001/api/"
+    //const baseUrl = "https://localhost:44313/api/"
     console.log(imdbId)
     try {
         const api = await fetch(`${baseUrl}movie/${imdbId}/${newRating}`, {
@@ -80,7 +80,8 @@ function helperSearch() {
 }
 
 
-
+/*There are 2 forms per rating section, with 2 submitBtn each. Therefore, the length of class name is divided by 2, and then like/dislike
+ btn is assigned to a eventlistener in the same indexed loopround.*/
 let numberOfReactButtons = document.getElementsByClassName("submitBtn").length / 2
 
 function activateEventListeners() {
@@ -89,11 +90,13 @@ function activateEventListeners() {
             event.preventDefault()
             testing(document.getElementById(`imdbId${i}`).value, "like", i)
             Rating(i)
+            
         })
         document.getElementById(`dislike-btn${i}`).addEventListener("click", function (event) {
             event.preventDefault()
-            testing(document.getElementById(`imdbId${i}`).value, "dislike", i)
+           testing(document.getElementById(`imdbId${i}`).value, "dislike", i)
             Rating(i)
+            
         })
     }
     document.getElementById("searchInput").addEventListener("input", helperSearch)

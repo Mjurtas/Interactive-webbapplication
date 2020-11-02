@@ -12,6 +12,7 @@
     height: 15px;
     margin-right: 10px;
     margin-left: 10px;
+    
 }
 
 .carousel-sizing, .carousel-item img {
@@ -43,22 +44,22 @@ header {
     position: relative;
 }
 
-table {
+#searchTable {
     z-index: 10;
     background: #313131;
     position: absolute;
     margin-top: 15%;
 }
 
-td a {
+#searchTable td a {
     color: white;
     text-decoration: none;
 }
 
-    td a:hover {
-        color: white;
-        text-decoration: none;
-    }
+#searchTable td a:hover {
+    color: white;
+    text-decoration: none;
+}
 
 .searchLink {
     display: block;
@@ -77,14 +78,17 @@ td a {
         display: block;
     }
 
-tr:hover {
+#searchTable tr:hover {
     background: black;
     color: white;
 }
 
-table img {
+#searchTable img {
     width: 30px;
     height: 55px;
+}
+.logo {
+    outline: 1px solid orange;
 }
 
 
@@ -136,7 +140,7 @@ table img {
             font-size: 200%;
         }
 
-
+    
 
 /*CSS FOR FULL MOVIE DETAIL*/
 
@@ -157,7 +161,7 @@ table img {
     display: block;
     position: absolute;
     margin-left: 30%;
-    z-index: 10;
+    
 }
 
 .single-movie-detail-text {
@@ -185,9 +189,11 @@ table img {
     }
 
 .single-movie-detail-img {
-    height: 40vw;
-    display: flex;
-    align-items: center;
+    height: 20%;
+  
+}
+td {
+    padding: 6%;
 }
 
 
@@ -196,20 +202,62 @@ table img {
     align-items: center;
 }
 
-.imdb-rating {
+.rating {
+    display: block;
     margin-left: 20%;
+    
     justify-content: center;
+    
+}
+
+.rating-logos, .rating-values {
+    display: flex;
+
+    
 }
 
 
-    .imdb-rating img {
-        width: 5vw;
+    .rating img {
+        width: 4vw;
         flex: 1;
-    }
+        outline: 1px solid pink;
+        margin: auto;  }
 
-    .imdb-rating h1 {
-        font-size: 4rem;
+#img-cmbd-rating {
+    text-align: center;
+}
+#cmdb-logo-cell {
+    
+    width: 4vw;
+}
+
+#cmdb-logo-cell img {
+    margin: auto;
+}
+
+
+
+
+
+
+
+.rating h1 {
+    font-size: 4rem;
+}
+.rating h2 {
+    font-size: 4rem;
+    font-family: Anton;
+   
+    
+}
+
+    .rating-left, .rating-right {
+        display: block;
     }
+.likes-dislikes-rating {
+    display: flex;
+    
+}
 
 
 .like-buttons-full-movie-detail {
@@ -233,6 +281,8 @@ table img {
 
 .plot {
     padding: 2%;
+    
+    
 }
 
 .rest-plot {
