@@ -81,6 +81,8 @@ function helperSearch() {
 
 
 
+/*There are 2 forms per rating section, with 2 submitBtn each. Therefore, the length of class name is divided by 2, and then like/dislike
+ btn is assigned to a eventlistener in the same indexed loopround.*/
 let numberOfReactButtons = document.getElementsByClassName("submitBtn").length / 2
 
 async function activateEventListeners() {

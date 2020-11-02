@@ -148,7 +148,7 @@ header {
     display: block;
     margin: auto;
     width: 100%;
-    background-color: rgb(0, 0, 0, 0.8);
+    background-color: rgb(0, 0, 0, 0.9);
     color: white;
 }
 
@@ -161,7 +161,6 @@ header {
     display: block;
     position: absolute;
     margin-left: 30%;
-    
 }
 
 .single-movie-detail-text {
@@ -190,8 +189,10 @@ header {
 
 .single-movie-detail-img {
     height: 20%;
-  
+    display: flex;
+    align-items: center;  
 }
+
 td {
     padding: 6%;
 }
@@ -212,8 +213,6 @@ td {
 
 .rating-logos, .rating-values {
     display: flex;
-
-    
 }
 
 
@@ -423,16 +422,46 @@ td {
 
 /* CSS FOR TOPLIST */
 
+.ranking0 {
+    width: 7vh;
+    height: 7vh;
+    line-height: 7vh;
+    border-radius: 50%;
+    text-align: center;
+    background: #8D0801;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    font-size: 7vh;
+}
+
+.ranking {
+    width: 7vh;
+    height: 7vh;
+    line-height: 7vh;
+    border-radius: 50%;
+    text-align: center;
+    background: #8D0801;
+    color: white;
+    font-size: 7vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
 .top-list-index-1-3-container {
     display: flex;
     justify-content: space-evenly;
-    background-color: rgb(0, 0, 0, 0.8);
+    background-color: rgb(0, 0, 0, 0.9);
     width: 100%;
     text-align: center;
 }
 
 .top-list-index-1-3 {
     width: 25vw;
+    position: relative;
 }
 
     .top-list-index-1-3 img {
@@ -471,13 +500,13 @@ td {
     width: 100%;
     display: flex;
     justify-content: space-around;
-    background-color: rgb(0, 0, 0, 0.8);
+    background-color: rgb(0, 0, 0, 0.9);
 }
 
 .read-more-btns {
     display: flex;
     justify-content: space-evenly;
-    background-color: rgb(0, 0, 0, 0.8);
+    background-color: rgb(0, 0, 0, 0.9);
     width: 100%;
     text-align: center;
     padding-left: 15%;
