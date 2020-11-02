@@ -19,14 +19,11 @@
     height: 50vh;
     margin: auto;
 }
-.carousel-background
-{
+
+.carousel-background {
     background: black;
     opacity: 0.8;
-    
     margin-bottom: 0px;
-
-
 }
 
 .info-inline {
@@ -43,7 +40,7 @@ header {
     margin: auto !important;
     display: flex;
     flex: 1;
-    position: relative;    
+    position: relative;
 }
 
 table {
@@ -58,28 +55,27 @@ td a {
     text-decoration: none;
 }
 
-td a:hover {
-    color: white;
-    text-decoration: none;
-}
+    td a:hover {
+        color: white;
+        text-decoration: none;
+    }
 
-.searchLink{
+.searchLink {
     display: block;
     z-index: 10;
 }
 
-.searchLink:link {
-    color: white;
-    text-decoration: none;
-    display: block;
+    .searchLink:link {
+        color: white;
+        text-decoration: none;
+        display: block;
+    }
 
-}
-
-.searchLink:any-link {
-    color: white;
-    text-decoration: none;
-    display: block;
-}
+    .searchLink:any-link {
+        color: white;
+        text-decoration: none;
+        display: block;
+    }
 
 tr:hover {
     background: black;
@@ -92,21 +88,21 @@ table img {
 }
 
 
-    .search-field-and-btn input[type=text] {
-        padding: 5% !important;
-        border-radius: 20px;
-        border: 0px;
-        box-shadow: 4px;
-        display: block;
-    }
+.search-field-and-btn input[type=text] {
+    padding: 5% !important;
+    border-radius: 20px;
+    border: 0px;
+    box-shadow: 4px;
+    display: block;
+}
 
-    .search-field-and-btn input[type=submit] {
-        background: transparent;
-        border: 0px;
-        font-family: 'Arial';
-        color: #8D0801;
-        font-weight: bold;
-    }
+.search-field-and-btn input[type=submit] {
+    background: transparent;
+    border: 0px;
+    font-family: 'Arial';
+    color: #8D0801;
+    font-weight: bold;
+}
 
 
 .links {
@@ -121,7 +117,6 @@ table img {
     justify-content: left;
     display: flex;
     flex: 1;
-    
 }
 
 .links ul {
@@ -141,7 +136,7 @@ table img {
             font-size: 200%;
         }
 
-      
+
 
 /*CSS FOR FULL MOVIE DETAIL*/
 
@@ -149,58 +144,48 @@ table img {
     display: block;
     margin: auto;
     width: 100%;
-    background-color: #000000;
-    opacity: 0.8;
+    background-color: rgb(0, 0, 0, 0.8);
     color: white;
-    
-
 }
 
 .movie-detail-head {
     display: flex;
     position: relative;
-
 }
 
 .head-and-plot-block {
     display: block;
     position: absolute;
     margin-left: 30%;
-   
     z-index: 10;
-    
 }
 
 .single-movie-detail-text {
     opacity: 0.8;
-    
     margin-left: 10px;
-    
 }
 
     .single-movie-detail-text h1 {
         font-family: "Anton", sans-serif;
-        
     }
 
     .single-movie-detail-text ul {
         list-style: none;
         margin-left: 0;
         padding-top: 8%;
-        
     }
+
         .single-movie-detail-text ul li {
-            width:100%;
+            width: 100%;
             padding: 5px;
         }
 
-        .single-movie-detail-text li, p, h3 {
-            font-family: 'Arial';
-        }
+    .single-movie-detail-text li, p, h3 {
+        font-family: 'Arial';
+    }
 
 .single-movie-detail-img {
-   
-    height: 30vh;
+    height: 40vw;
     display: flex;
     align-items: center;
 }
@@ -214,7 +199,6 @@ table img {
 .imdb-rating {
     margin-left: 20%;
     justify-content: center;
-     
 }
 
 
@@ -222,21 +206,22 @@ table img {
         width: 5vw;
         flex: 1;
     }
-    .imdb-rating h1{
+
+    .imdb-rating h1 {
         font-size: 4rem;
-
     }
 
 
-    .like-buttons-full-movie-detail {
-        display: flex;
-        flex-direction: row;
-        color: white;
-        margin: auto;
-        justify-content: center;
-        align-items: center;
-        padding: 0 3% 0 3%;
-    }
+.like-buttons-full-movie-detail {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    padding: 0 3% 0 3%;
+}
+
     .like-buttons-full-movie-detail button {
         border: none;
         background: none;
@@ -244,7 +229,6 @@ table img {
         margin: 10px;
         padding: 10%;
         outline: none;
-       
     }
 
 .plot {
@@ -257,13 +241,11 @@ table img {
 
 
 .read-more {
-    
     display: flex;
     justify-content: center;
-    margin: auto;
+    margin: 0 auto;
     width: 20%;
     height: 100% !important;
-    
 }
 /*-----------------------------------*/
 /*CSS FOR RANDOMIZED MOVIES */
@@ -276,7 +258,7 @@ table img {
     margin: 10% 20% 0 20%
 }
 
- .randomized-movies-container img {
+    .randomized-movies-container img {
         height: 100%;
     }
 
@@ -310,6 +292,8 @@ table img {
     border-radius: 10px;
     color: #8D0801;
     text-decoration: none;
+    width: 8vw;
+    margin-bottom: 2%;
 }
 
     .read-more:hover {
@@ -328,7 +312,7 @@ table img {
 
 /* CSS FOR Searchbar */
 
-#searchBar{
+#searchBar {
     color: white;
 }
 
@@ -384,75 +368,67 @@ table img {
 }
 
 .search-or-did-you-mean img {
-    width: 6vh;
+    width: 6vw;
 }
 
 /* CSS FOR TOPLIST */
 
-.top-list-index0-container{
+.top-list-index-1-3-container {
     display: flex;
-    justify-content: space-around;
-    padding: 10%;
-    margin: 5%;
-    background-color: rgb(141, 8, 1, 0.2);
-    color: white;
-}
-
-.top-list-index0 {
-    display: inline-block;
-}
-
-.toplist-index0-info {
-    display: flex;
-    justify-content: space-around;
-}
-
-.top-list-index0 p {
-    padding-left: 10%;
-}
-
-
-.top-list-index0 ul {
-    display: inline-block;
-    padding-left: 10%;
-    margin-left: 10%;
-    list-style: none;
-}
-
-    .top-list-index0 ul h2 {
-        font-family: "Anton", sans-serif;
-    }
-.top-list-index0 .percentageBubble{
-    padding: -80px;
-}
-
-.percentageBubble {
-    width: 15vh;
-    height: 15vh;
-    line-height: 15vh;
-    border-radius: 50%;
+    justify-content: space-evenly;
+    background-color: rgb(0, 0, 0, 0.8);
+    width: 100%;
     text-align: center;
-    background: pink;
-}
-
-.percentageBubble h2{
-    color: black;
-    font-size: 6vh;
-}
-
-.top-list-index-1-3-container{
-    display: flex;
-    justify-content: space-around;
 }
 
 .top-list-index-1-3 {
-    color: white;
+    width: 25vw;
 }
 
-.top-list-index-1-3-info{
+    .top-list-index-1-3 img {
+        height: 75%;
+        max-width: 75%;
+        margin: 0 auto;
+    }
 
+    .top-list-index-1-3-info h2 {
+        color: white;
+        text-align: center;
+    }
+
+.like-buttons-top-list-1-3 {
+    display: flex;
+    flex-direction: row;
 }
 
-.top-list-index-1-3 ul {
+    .like-buttons-top-list-1-3 button, .like-buttons-top-list-1-3 img {
+        width: 7vw;
+        cursor: pointer;
+        background: none;
+        max-height: 7vw;
+        border: none;
+        padding: 0px 1% 0px 1%;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+    }
 
+    .like-buttons-top-list-1-3 h1 {
+        margin: 3%;
+    }
+
+.top-list-interactive-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(0, 0, 0, 0.8);
+}
+
+.read-more-btns {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgb(0, 0, 0, 0.8);
+    width: 100%;
+    text-align: center;
+    padding-left: 15%;
 }

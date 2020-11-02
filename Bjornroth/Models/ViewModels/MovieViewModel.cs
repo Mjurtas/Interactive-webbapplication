@@ -30,18 +30,20 @@ namespace Bjornroth.Models.ViewModels
 
         public MovieViewModel(MovieDTO movie, MovieDTO movie2)
         {
-            
+            DateTime date;
+            Released = movie.Released;
 
-            var date = DateTime.Parse(movie.Released);
-            date.ToString("yyyy");
+            if (DateTime.TryParse(movie.Released, out date))
+            {
+                Released = date.ToString("yyyy");
+            }
 
             Title = movie.Title;
             Poster = movie.Poster;
             Plot = movie.Plot;
             Director = movie.Director;
             Actors = movie.Actors;
-            Released = date.ToString();
-            ImdbRating = movie.imdbRating;
+            ImdbRating = movie.ImdbRating;
             Runtime = movie.Runtime;
             ImdbId = movie.ImdbId;
             Type = movie.Type;

@@ -29,30 +29,26 @@ namespace Bjornroth.Controllers
                 var model = await cmdbRepository.GetSearchResults(formattedString);
                 if (model.Search != null)
                 {
+                    var model2 = await cmdbRepository.GetSearchResultById(model.Search[0].ImdbId);
+                    model.Search[0] = model2;
                     foreach (MovieDTO movie in model.Search)
                     {
                         string imdbId = movie.ImdbId;
-                        var model2 = await cmdbRepository.GetCmdbRating(imdbId);
-                        if (model2 != null)
+                        var model3 = await cmdbRepository.GetCmdbRating(imdbId);
+                        if (model3 != null)
                         {
-                            movie.NumberOfLikes = model2.NumberOfLikes;
-                            movie.NumberOfDislikes = model2.NumberOfDislikes;
+                            movie.NumberOfLikes = model3.NumberOfLikes;
+                            movie.NumberOfDislikes = model3.NumberOfDislikes;
                         }
                     }
-                    var model3 = await cmdbRepository.GetSearchResultById(model.Search[0].ImdbId);
-                    model.Search[0] = model3;
                     SearchViewModel viewModel = new SearchViewModel(model, searchInput);
-                    return View(viewModel);
-                }
-                else
-                {
-                    return RedirectToAction("PageNotFound");
+                    if (viewModel.Movies.Count >= 1)
+                    {
+                        return View(viewModel);
+                    }
                 }
             }
-            else
-            {
-                return RedirectToAction("PageNotFound");
-            }
+            return RedirectToAction("PageNotFound");
         }
 
         public IActionResult PageNotFound()

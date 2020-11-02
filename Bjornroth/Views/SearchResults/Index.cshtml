@@ -29,6 +29,7 @@
                 <img src="@Model.Movies[i].Poster">
                 <div class="search-or-did-you-mean-result-info">
                     <h2>@Model.Movies[i].Title, @Model.Movies[i].Released</h2>
+
                     @using (Html.BeginForm("Index", "MovieDetails"))
                     {
                         <input type="hidden" name="imdbId" value="@Model.Movies[i].ImdbId" />

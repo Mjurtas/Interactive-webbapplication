@@ -55,7 +55,7 @@
                 <input type="hidden" name="newRating" value="like" />
                 <button type="submit" id="like-btn0" class="submitBtn"><img src="~/images/like.png" /></button>
             }
-            <h1 id="rating-percentage-label"></h1>
+            <h1 class="rating-percentage-label"></h1>
             @using (Html.BeginForm("Index", "MovieDetails"))
             {
                 <input type="hidden" id="imdbId0" value="@Model.ImdbId" />
@@ -104,10 +104,10 @@
             
             if ($('.rest-plot').is(':visible')) {
 
-                $('.read-more').text('Read Less');
+                $('.read-more').text('Read More');
             }
             else {
-                $('.read-more').text('Read More');
+                $('.read-more').text('Read Less');
             }
             $(".p-short-plot").slideToggle();
             $('.rest-plot').slideToggle();

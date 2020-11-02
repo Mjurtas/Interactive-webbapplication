@@ -1,5 +1,6 @@
 ﻿async function testing(imdbId, newRating, index) {
-    const baseUrl = "https://localhost:5001/api/"
+    //const baseUrl = "https://localhost:5001/api/"
+    const baseUrl = "https://localhost:44313/api/"
     console.log(imdbId)
     try {
         const api = await fetch(`${baseUrl}movie/${imdbId}/${newRating}`, {
@@ -26,24 +27,29 @@
 }
 
 function Rating(i) {
-    const likes = parseInt(document.getElementById(`like-number${i}`).innerText)
-    console.log(likes)
-    const dislikes = parseInt(document.getElementById(`dislike-number${i}`).innerText)
-    console.log(dislikes)
-    const ratingPercentage = Math.round(((likes / (likes + dislikes) * 100))).toString()
-    console.log(ratingPercentage)
-    const ratingLabel = document.getElementById("rating-percentage-label")
-    ratingLabel.innerHTML = ratingPercentage.toString() + "%"
-
-    if (ratingPercentage > 50) {
-        ratingLabel.style.color =  "green"
-    }
-    else if (ratingPercentage < 50) {
-        ratingLabel.style.color = "red"
+    const likes = parseInt(document.getElementById(`like-number${i}`).innerHTML)
+    console.log("likes "+ likes + "label" + i)
+    const dislikes = parseInt(document.getElementById(`dislike-number${i}`).innerHTML)
+    console.log("likes " + dislikes + "label" + i)
+    const ratingPercentage = Math.round(((likes / (likes + dislikes) * 100)))
+    const ratingLabel = document.getElementsByClassName("rating-percentage-label")
+    console.log(ratingPercentage + i)
+    console.log("antal labels" + ratingLabel.length)
+    if (ratingPercentage) {
+        ratingLabel[i].innerHTML = ratingPercentage.toString() + "%"
     }
     else {
+        ratingLabel[i].innerHTML = "N/A"
+    }
 
-        ratingLabel.style.color = "yellow";
+    if (ratingPercentage > 50) {
+        ratingLabel[i].style.color = "green"
+    }
+    else if (ratingPercentage < 50) {
+        ratingLabel[i].style.color = "red"
+    }
+    else {
+        ratingLabel[i].style.color = "yellow"
     }
 }
 
@@ -94,6 +100,12 @@ function activateEventListeners() {
 
 }
 
+function setRatingLabels() {
+    for (let i = 0; i < numberOfReactButtons; i++) {
+        Rating(i)
+    }
+}
+
 
 activateEventListeners()
-Rating(0)
+setRatingLabels()

@@ -26,7 +26,7 @@
 
                         <td hidden="hidden"><a href="/MovieDetails?imdbId=@movie.ImdbId"><img src="@movie.Poster" /></a></td>
                         <td hidden="hidden">@Html.ActionLink($"{@movie.Title}", "Index", "MovieDetails", new { imdbId = @movie.ImdbId }, new { @class = "searchLink" })</td>
-                        <td hidden="hidden"><a href="/MovieDetails?imdbId=@movie.ImdbId">@movie.imdbRating</a></td>
+                        <td hidden="hidden"><a href="/MovieDetails?imdbId=@movie.ImdbId">@movie.ImdbRating</a></td>
 
 
                     </tr>
