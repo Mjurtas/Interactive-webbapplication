@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Start Page";
 }
 @model Bjornroth.Models.ViewModels.StartViewModel
 
@@ -55,30 +55,81 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100" src="@Model.GeneratedMovies[0].Poster" alt="First slide">
-                
+                <div class="random-movie-details">
+                    <div class="like-buttons-start">
+                        @using (Html.BeginForm("Index", "MovieDetails"))
+                        {
+                            <input type="hidden" id="imdbId0" value="@Model.GeneratedMovies[0].ImdbId" />
+                            <input type="hidden" name="newRating" value="like" />
+                            <button type="submit" id="like-btn0" class="submitBtn" style="background-image: url(../images/like.png)"></button>
+                        }
+                        <h1 class="rating-percentage-label">17%</h1>
+                        @using (Html.BeginForm("Index", "MovieDetails"))
+                        {
+                            <input type="hidden" id="imdbId0" value="@Model.GeneratedMovies[0].ImdbId" />
+                            <input type="hidden" name="newRating" value="dislike" />
+                            <button type="submit" id="dislike-btn0" class="submitBtn" style="background-image: url(../images/dislike.png)"></button>
+                        }
+                    </div>
+                    <img class="d-block w-100" src="@Model.GeneratedMovies[0].Poster" alt="Slide number one">
+                    <div class="top-list-index-1-3">
+                        @using (Html.BeginForm("Index", "MovieDetails"))
+                        {
+                            <input type="hidden" name="imdbId" value="@Model.GeneratedMovies[0].ImdbId" />
+                            <input type="submit" class="read-more" value="Read More" />
+                        }
+                    </div>
+                    <ul hidden="hidden">
+                        <li id="like-number0">@Model.GeneratedMovies[0].NumberOfLikes</li>
+                        <li id="dislike-number0">@Model.GeneratedMovies[0].NumberOfDislikes</li>
+                    </ul>
+                </div>
                 <div class="carousel-caption d-none d-md-block carousel-background">
                     <h1>@Model.GeneratedMovies[0].Title</h1>
                     <p>@Model.GeneratedMovies[0].Runtime</p>
                 </div>
-                
-            </div>
-                
-               <div class="carousel-item">
-                   <img class="d-block w-100" src="@Model.GeneratedMovies[1].Poster" alt="Second slide">
-                   <div class="carousel-caption d-none d-md-block carousel-background">
-                       <h1>@Model.GeneratedMovies[1].Title</h1>
-                       <p>@Model.GeneratedMovies[1].Runtime</p>
-                   </div>
-               </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="@Model.GeneratedMovies[2].Poster" alt="Third slide">
-                    <div class="carousel-caption d-none d-md-block carousel-background">
-                        <h1>@Model.GeneratedMovies[2].Title</h1>
-                        <p>@Model.GeneratedMovies[2].Runtime</p>
-                    </div>
 
+            </div>
+
+            @for (int i = 1; i < Model.GeneratedMovies.Count; i++)
+            {
+        <div class="carousel-item">
+            <div class="random-movie-details">
+                <div class="like-buttons-start">
+                    @using (Html.BeginForm("Index", "MovieDetails"))
+                    {
+                        <input type="hidden" id="imdbId@(i)" value="@Model.GeneratedMovies[i].ImdbId" />
+                        <input type="hidden" name="newRating" value="like" />
+                        <button type="submit" id="like-btn@(i)" class="submitBtn" style="background-image: url(../images/like.png);"></button>
+                    }
+                    <h1 class="rating-percentage-label">17%</h1>
+                    @using (Html.BeginForm("Index", "MovieDetails"))
+                    {
+                        <input type="hidden" id="imdbId@(i)" value="@Model.GeneratedMovies[i].ImdbId" />
+                        <input type="hidden" name="newRating" value="dislike" />
+                        <button type="submit" id="dislike-btn@(i)" class="submitBtn" style="background-image: url(../images/dislike.png)"></button>
+                    }
                 </div>
+                <img class="d-block w-100" src="@Model.GeneratedMovies[i].Poster" alt="Slide number @(i+1)">
+                <div class="top-list-index-1-3">
+                    @using (Html.BeginForm("Index", "MovieDetails"))
+                    {
+                        <input type="hidden" name="imdbId" value="@Model.GeneratedMovies[i].ImdbId" />
+                        <input type="submit" class="read-more" value="Read More" />
+                    }
+                </div>
+                <ul hidden="hidden">
+                    <li id="like-number@(i)">@Model.GeneratedMovies[i].NumberOfLikes</li>
+                    <li id="dislike-number@(i)">@Model.GeneratedMovies[i].NumberOfDislikes</li>
+                </ul>
+            </div>
+            <div class="carousel-caption d-none d-md-block carousel-background">
+                <h1>@Model.GeneratedMovies[i].Title</h1>
+                <p>@Model.GeneratedMovies[i].Runtime</p>
+            </div>
+
+        </div>
+            }
             </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -93,4 +144,6 @@
 
 
 </div>
+<br />
+<br />
 

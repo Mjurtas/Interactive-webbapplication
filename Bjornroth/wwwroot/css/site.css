@@ -11,14 +11,23 @@
     width: 25px;
     height: 15px;
     margin-right: 10px;
-    margin-left: 10px;
-    
+    margin-left: 10px; 
 }
 
-.carousel-sizing, .carousel-item img {
-    width: 20vw;
+.carousel-sizing {
+    width: 80%;
     height: 50vh;
     margin: auto;
+    background-image: url(../images/movieScroll.png), radial-gradient(#8D0801, rgb(255, 255, 255, 0.2));
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.carousel-item img {
+    height: 50vh;
+    max-width: 20%;
+    margin-left: 10%;
 }
 
 .carousel-background {
@@ -27,8 +36,42 @@
     margin-bottom: 0px;
 }
 
-.info-inline {
-    display: inline-block;
+.random-movie-details{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.like-buttons-start {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15%;
+}
+
+    .like-buttons-start button {
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: rgb(141, 8, 1, 0.1);
+        cursor: pointer;
+        border: none;
+        margin-top: 0;
+        width: 150%;
+        height: 200%;
+    }
+
+    .like-buttons-start h1{
+        margin-top: 50%;
+    }
+
+    .info-inline {
+        display: inline-block;
+    }
+
+.read-more-start {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10%;
+    margin-top: 5%;
 }
 
 header {
@@ -86,9 +129,6 @@ header {
 #searchTable img {
     width: 30px;
     height: 55px;
-}
-.logo {
-    
 }
 
 

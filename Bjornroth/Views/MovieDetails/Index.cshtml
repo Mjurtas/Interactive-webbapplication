@@ -1,11 +1,9 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-
-}
-
+﻿
 @model Bjornroth.Models.ViewModels.MovieViewModel
+
+@{
+    ViewData["Title"] = "Details - @Model.Title";
+}
 
 <div class="single-movie-detail">
     <div class="movie-detail-head">
@@ -25,10 +23,10 @@
             </div>
         </div>
     </div>
-           
-        
 
-    
+
+
+
 
     <div class="single-movie-detail-text">
         <div class="list-and-imdb-block">
@@ -47,8 +45,8 @@
                 <table>
                     <thead>
                         <tr>
-                           <th class="rating-th"><img src="~/images/imdb.png" /></th> 
-                           <th class="rating-th"> <img id="img-cmbd-rating"src="~/images/cropped logo.png" /></th>
+                            <th class="rating-th"><img src="~/images/imdb.png" /></th>
+                            <th class="rating-th"> <img id="img-cmbd-rating" src="~/images/cropped logo.png" /></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,10 +56,10 @@
                         </tr>
                     </tbody>
                 </table>
-                
-              
-                   
-             </div>
+
+
+
+            </div>
         </div>
 
 
@@ -92,9 +90,9 @@
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
         crossorigin="anonymous"></script>
 <script>
-    
-   
-    
+
+
+
     $(document).ready(function () {
 
         // Get full plot from model.
@@ -107,18 +105,18 @@
         $(".p-short-plot").text(shortPlot);
         $(".rest-plot").text(fullPlot);
         $(".rest-plot").hide();
-        
+
 
         console.log("kort handling" + shortPlot)
         console.log("hela handlingen:" + fullPlot)
         console.log("restplot:" + restPlot)
-       
-    
+
+
 
         $(".read-more").on("click", function () {
 
-            
-            
+
+
             if ($('.rest-plot').is(':visible')) {
 
                 $('.read-more').text('Read More');
@@ -128,10 +126,10 @@
             }
             $(".p-short-plot").slideToggle();
             $('.rest-plot').slideToggle();
-           
-          
-            
-            
+
+
+
+
         });
     });
 </script>
