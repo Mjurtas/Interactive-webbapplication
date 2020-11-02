@@ -42,9 +42,26 @@
                 <li><b>Number of Dislikes</b></li>
                 <li id="dislike-number0">@Model.NumberOfDislikes</li>
             </ul>
-            <div class="imdb-rating">
-                <img src="~/images/imdb.png" /><h1>@Model.ImdbRating</h1>
-            </div>
+
+            <div class="rating">
+                <table>
+                    <thead>
+                        <tr>
+                           <th class="rating-th"><img src="~/images/imdb.png" /></th> 
+                           <th class="rating-th"> <img id="img-cmbd-rating"src="~/images/cropped logo.png" /></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><h1>@Model.ImdbRating</h1></td>
+                            <td><h2 style="color: green" class="nmbr-of-likes">@Model.NumberOfLikes<span style="color: white">/</span><span style="color: red;">@Model.NumberOfDislikes</span></h2></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+              
+                   
+             </div>
         </div>
 
 
