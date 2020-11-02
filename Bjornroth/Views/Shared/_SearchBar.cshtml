@@ -22,13 +22,13 @@
         {
            
  
-        <tr>
+        <tr class="searchTableRow">
 
 
 
             <td hidden="hidden"><a href="/MovieDetails?imdbId=@movie.ImdbId"><img src="@movie.Poster" /></a></td>
             <td hidden="hidden">@Html.ActionLink($"{@movie.Title}", "Index", "MovieDetails", new { imdbId = @movie.ImdbId }, new { @class = "searchLink" })</td>
-            <td hidden="hidden" class="cmdb-rating-label-searchbar"><a href="/MovieDetails?imdbId=@movie.ImdbId"></a></td>
+            <td hidden="hidden"><a href="/MovieDetails?imdbId=@movie.ImdbId"><h3 class="cmdb-rating-label-searchbar"></h3></a></td>
             <td class="numberOfLikes-td" hidden="hidden">@movie.NumberOfLikes</td>
             <td class="numberOfDislikes-td" hidden="hidden">@movie.NumberOfDislikes </td>
 
@@ -44,15 +44,3 @@
         </tbody>
     </table>
 </div>
-<script>
-    
-    const row = document.getElementsByTagName("tr"))
-     
-    for (var i = 0; i < row.length; i++) {
-        var likes = parseInt(row[i].cell[3].innerText)
-        var dislikes = parseInt(row[i].cell[4].innerText)
-        var rating = Math.round(((likes / (likes + dislikes) * 100)))
-        row[i].children[2].innerHTML = rating.ToString()
-    }
-   
-</script>

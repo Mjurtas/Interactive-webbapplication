@@ -9,12 +9,18 @@
         })
         if (api.ok) {
             const readableApi = await api.json()
-            console.log(readableApi.numberOfLikes)
+
             if (newRating === 'dislike') {
                 document.getElementById(`dislike-number${index}`).innerHTML = readableApi.numberOfDislikes
+                if (document.getElementById(`nmbr-of-dislikes`)) {
+                    document.getElementById(`nmbr-of-dislikes`).innerHTML = readableApi.numberOfDislikes
+                }
             }
             else {
                 document.getElementById(`like-number${index}`).innerHTML = readableApi.numberOfLikes
+                if (document.getElementById(`nmbr-of-likes`)) {
+                    document.getElementById(`nmbr-of-likes`).innerHTML = readableApi.numberOfLikes
+                }
             }
             return Promise
         }
@@ -77,8 +83,26 @@ function helperSearch() {
             
         }
     }
+    updateSearchRatings()
 }
 
+function updateSearchRatings() {
+    const row = document.getElementsByClassName("searchTableRow")
+    const likeColumns = document.getElementsByClassName("numberOfLikes-td")
+    const dislikeColumns = document.getElementsByClassName("numberOfDislikes-td")
+    for (var i = 0; i < row.length; i++) {
+        let likes = parseInt(likeColumns[i].innerText)
+        let dislikes = parseInt(dislikeColumns[i].innerText)
+        let rating = Math.round(((likes / (likes + dislikes) * 100)))
+        row[i].children[2].lastChild.innerText = rating.toString() + "%"
+    }
+}
+
+function movieDetails() {
+    const nmbrOfLikesLabel = document.getElementById("nmbr-of-likes")
+    const nmbrOfDislikesLabel = document.getElementById("nmbr-of-dislikes")
+
+}
 
 
 /*There are 2 forms per rating section, with 2 submitBtn each. Therefore, the length of class name is divided by 2, and then like/dislike
