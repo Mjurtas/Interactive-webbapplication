@@ -5,37 +5,54 @@
         <input type="text" autocomplete="off" id="searchInput" name="searchInput" placeholder="Search movie title...." />
 
         <input type="submit" value="Search" />
+        
     }
 
-        <table id="searchTable">
-            <thead>
-                <tr hidden="hidden">
-                    <th>Title</th>
-                    <th>Actors</th>
-                    <th>Director</th>
-                </tr>
-            </thead>
-            <tbody id="searchBar">
+<table id="searchTable">
+    <thead>
+        <tr hidden="hidden">
+            <th>Title</th>
+            <th>Actors</th>
+            <th>Director</th>
+        </tr>
+    </thead>
+    <tbody id="searchBar">
 
-                @foreach (var movie in Model.SearchSuggestions)
-                {
-
-                    <tr>
-
-
-
-                        <td hidden="hidden"><a href="/MovieDetails?imdbId=@movie.ImdbId"><img src="@movie.Poster" /></a></td>
-                        <td hidden="hidden">@Html.ActionLink($"{@movie.Title}", "Index", "MovieDetails", new { imdbId = @movie.ImdbId }, new { @class = "searchLink" })</td>
-                        <td hidden="hidden"><a href="/MovieDetails?imdbId=@movie.ImdbId">@movie.ImdbRating</a></td>
-
-
-                    </tr>
-                }
+        @foreach (var movie in Model.SearchSuggestions)
+        {
+           
+ 
+        <tr>
 
 
 
+            <td hidden="hidden"><a href="/MovieDetails?imdbId=@movie.ImdbId"><img src="@movie.Poster" /></a></td>
+            <td hidden="hidden">@Html.ActionLink($"{@movie.Title}", "Index", "MovieDetails", new { imdbId = @movie.ImdbId }, new { @class = "searchLink" })</td>
+            <td hidden="hidden" class="cmdb-rating-label-searchbar"><a href="/MovieDetails?imdbId=@movie.ImdbId"></a></td>
+            <td class="numberOfLikes-td" hidden="hidden">@movie.NumberOfLikes</td>
+            <td class="numberOfDislikes-td" hidden="hidden">@movie.NumberOfDislikes </td>
 
 
-            </tbody>
-        </table>
+
+        </tr>
+    }
+
+
+
+
+
+        </tbody>
+    </table>
 </div>
+<script>
+    
+    const row = document.getElementsByTagName("tr"))
+     
+    for (var i = 0; i < row.length; i++) {
+        var likes = parseInt(row[i].cell[3].innerText)
+        var dislikes = parseInt(row[i].cell[4].innerText)
+        var rating = Math.round(((likes / (likes + dislikes) * 100)))
+        row[i].children[2].innerHTML = rating.ToString()
+    }
+   
+</script>

@@ -205,7 +205,6 @@ td {
 .rating {
     display: block;
     margin-left: 20%;
-    
     justify-content: center;
     
 }
@@ -220,7 +219,7 @@ td {
     .rating img {
         width: 4vw;
         flex: 1;
-        outline: 1px solid pink;
+        
         margin: auto;  }
 
 #img-cmbd-rating {

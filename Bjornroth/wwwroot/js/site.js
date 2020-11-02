@@ -38,6 +38,7 @@ function Rating(i) {
     if (ratingPercentage) {
         ratingLabel[i].innerHTML = ratingPercentage.toString() + "%"
     }
+
     else {
         ratingLabel[i].innerHTML = "N/A"
     }
@@ -64,9 +65,11 @@ function helperSearch() {
            
             recommendedResults[i].hidden = false;
             recommendedResults[i].cells[0].hidden = false;
-            recommendedResults[i].cells[1].hidden = false;
+            recommendedResults[i].cells[1].hidden = false;  
             recommendedResults[i].cells[2].hidden = false;
+            
             count += 1
+           
         }
         else {
             
