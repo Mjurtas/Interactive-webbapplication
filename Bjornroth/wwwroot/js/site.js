@@ -1,6 +1,6 @@
 ﻿async function testing(imdbId, newRating, index) {
-    const baseUrl = "https://localhost:5001/api/"
-    //const baseUrl = "https://localhost:44313/api/"
+    //const baseUrl = "https://localhost:5001/api/"
+    const baseUrl = "https://localhost:44313/api/"
     console.log(imdbId)
     try {
         const api = await fetch(`${baseUrl}movie/${imdbId}/${newRating}`, {
@@ -16,6 +16,7 @@
             else {
                 document.getElementById(`like-number${index}`).innerHTML = readableApi.numberOfLikes
             }
+            return Promise
         }
         else {
             throw api.status
@@ -28,17 +29,15 @@
 
 function Rating(i) {
     const likes = parseInt(document.getElementById(`like-number${i}`).innerHTML)
-    console.log("likes "+ likes + "label" + i)
     const dislikes = parseInt(document.getElementById(`dislike-number${i}`).innerHTML)
-    console.log("likes " + dislikes + "label" + i)
     const ratingPercentage = Math.round(((likes / (likes + dislikes) * 100)))
     const ratingLabel = document.getElementsByClassName("rating-percentage-label")
-    console.log(ratingPercentage + i)
-    console.log("antal labels" + ratingLabel.length)
     if (ratingPercentage) {
         ratingLabel[i].innerHTML = ratingPercentage.toString() + "%"
     }
-
+    else if (likes || dislikes) {
+        ratingLabel[i].innerHTML = ratingPercentage.toString() + "%"
+    }
     else {
         ratingLabel[i].innerHTML = "N/A"
     }
@@ -65,11 +64,9 @@ function helperSearch() {
            
             recommendedResults[i].hidden = false;
             recommendedResults[i].cells[0].hidden = false;
-            recommendedResults[i].cells[1].hidden = false;  
+            recommendedResults[i].cells[1].hidden = false;
             recommendedResults[i].cells[2].hidden = false;
-            
             count += 1
-           
         }
         else {
             
@@ -83,27 +80,26 @@ function helperSearch() {
 }
 
 
+
 /*There are 2 forms per rating section, with 2 submitBtn each. Therefore, the length of class name is divided by 2, and then like/dislike
  btn is assigned to a eventlistener in the same indexed loopround.*/
 let numberOfReactButtons = document.getElementsByClassName("submitBtn").length / 2
 
-function activateEventListeners() {
+async function activateEventListeners() {
     for (let i = 0; i < numberOfReactButtons; i++) {
-        document.getElementById(`like-btn${i}`).addEventListener("click", function (event) {
+        document.getElementById(`like-btn${i}`).addEventListener("click", async function (event) {
             event.preventDefault()
-            testing(document.getElementById(`imdbId${i}`).value, "like", i)
+            await testing(document.getElementById(`imdbId${i}`).value, "like", i)
             Rating(i)
-            
         })
-        document.getElementById(`dislike-btn${i}`).addEventListener("click", function (event) {
+        document.getElementById(`dislike-btn${i}`).addEventListener("click", async function (event) {
             event.preventDefault()
-           testing(document.getElementById(`imdbId${i}`).value, "dislike", i)
+            await testing(document.getElementById(`imdbId${i}`).value, "dislike", i)
             Rating(i)
-            
         })
+
     }
     document.getElementById("searchInput").addEventListener("input", helperSearch)
-
 }
 
 function setRatingLabels() {
