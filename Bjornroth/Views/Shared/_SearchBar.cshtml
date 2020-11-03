@@ -1,7 +1,7 @@
 ﻿<div class="search-field-and-btn">
 
-    @using (@Html.BeginForm("Index", "SearchResults"))
-     {
+    @using (@Html.BeginForm("Index", "SearchResults", null, FormMethod.Post , null, new { @class = "search-form" }))
+    {
         <input type="text" autocomplete="off" id="searchInput" name="searchInput" placeholder="Search movie title...." />
 
         <button type="submit"> <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-search" fill="#8D0801" xmlns="http://www.w3.org/2000/svg">

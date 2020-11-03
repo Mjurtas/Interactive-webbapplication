@@ -70,9 +70,9 @@
         height: 200%;
     }
 
-    form {
+    .search-form {
         display: flex;
-        width: 120%;
+        width: 100%;
     }
 
     .like-buttons-start h1{
