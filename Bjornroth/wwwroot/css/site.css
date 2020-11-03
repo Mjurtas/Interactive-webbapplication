@@ -16,7 +16,7 @@
 
 .carousel-sizing {
     width: 80%;
-    height: 50vh;
+    height: 50%;
     margin: auto;
     background-image: url(../images/movieScroll.png), radial-gradient(#8D0801, rgb(255, 255, 255, 0.2));
     background-position: center;
@@ -26,8 +26,9 @@
 
 .carousel-item img {
     height: 50vh;
-    max-width: 20%;
+    max-width: 40%;
     margin-left: 10%;
+    margin: auto;
 }
 
 .carousel-background {
@@ -35,16 +36,25 @@
     opacity: 0.8;
     margin-bottom: 0px;
 }
+    .carousel-background:hover  {
+        opacity: 1;
+        
+    }
 
-.random-movie-details{
-    display: flex;
-    justify-content: space-evenly;
-}
+    .carousel-background h1:hover {
+        text-decoration: underline;
+    }
+
+    .random-movie-details {
+        display: flex;
+        justify-content: space-evenly;
+    }
 
 .like-buttons-start {
     display: flex;
     flex-direction: column;
     margin-left: 15%;
+   
 }
 
     .like-buttons-start button {
