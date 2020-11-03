@@ -61,7 +61,7 @@ function Rating(i) {
 
 function helperSearch() {
     const search = document.getElementById("searchInput").value.toLowerCase()
-    const recommendedResults = document.getElementsByTagName("tr")
+    const recommendedResults = document.getElementsByClassName("searchTableRow")
    
     let count = 0
     for (var i = 1; i < recommendedResults.length; i++) {
