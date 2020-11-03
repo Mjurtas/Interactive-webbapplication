@@ -18,7 +18,7 @@
     width: 80%;
     height: 50%;
     margin: auto;
-    background-image: url(../images/movieScroll.png), radial-gradient(#8D0801, rgb(255, 255, 255, 0.2));
+    background-image: url(../images/movieScroll.png), radial-gradient(#000, rgb(255, 255, 255, 0.2));
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -159,6 +159,7 @@ header {
     font-family: "Staatliches";
     font-size: 1.5rem;
     color: #8D0801;
+    background: #808080
 }
 
 
