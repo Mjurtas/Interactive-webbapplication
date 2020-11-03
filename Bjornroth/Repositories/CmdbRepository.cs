@@ -121,8 +121,8 @@ namespace Bjornroth.Repositories
                 string jsonString = System.Text.Json.JsonSerializer.Serialize(sortedList);
                 //Creates a file with the json string
                 System.IO.File.WriteAllText("movies.json", jsonString);
-                //Sets  the json file to the movie list
-                JsonConvert.DeserializeObject<List<MovieDTO>>(System.IO.File.ReadAllText("movies.json"));
+                ////Sets  the json file to the movie list
+                //JsonConvert.DeserializeObject<List<MovieDTO>>(System.IO.File.ReadAllText("movies.json"));
             }
         }
 
