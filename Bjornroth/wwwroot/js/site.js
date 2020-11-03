@@ -32,7 +32,8 @@
         console.log(e.message)
     }
 }
-
+/* This function is fired by button click (assigned in the AddEventListeners-function. 
+   i-value is passed in, and generetes the rating-score for each rating section in each film. */
 function Rating(i) {
     const likes = parseInt(document.getElementById(`like-number${i}`).innerHTML)
     const dislikes = parseInt(document.getElementById(`dislike-number${i}`).innerHTML)
@@ -59,6 +60,11 @@ function Rating(i) {
     }
 }
 
+/*1. Value is submitted by the user in the text-input.
+ * 2. A "searchTableRow is generetaed in the HTML for every movie in CMDb database, and is by default "hidden".
+ * 3. The if-case compares the searchinput to every movietitle in the table (CMDb), if it's true, that row is visible.
+ * To limit the search to 5, a counter is initially set to 0 and increments every time the if-case = true. */
+
 function helperSearch() {
     const search = document.getElementById("searchInput").value.toLowerCase()
     const recommendedResults = document.getElementsByClassName("searchTableRow")
@@ -67,23 +73,34 @@ function helperSearch() {
     for (var i = 1; i < recommendedResults.length; i++) {
         const movieTitle = recommendedResults[i].cells[1].innerText.toLowerCase();
         if (movieTitle.includes(search) && search != "" && count < 5) {
-           
+
             recommendedResults[i].hidden = false;
             recommendedResults[i].cells[0].hidden = false;
             recommendedResults[i].cells[1].hidden = false;
             recommendedResults[i].cells[2].hidden = false;
-            
+
             count += 1
         }
         else {
-            
+
             recommendedResults[i].hidden = true;
             recommendedResults[i].cells[0].hidden = true;
             recommendedResults[i].cells[1].hidden = true;
             recommendedResults[i].cells[2].hidden = true;
-           
-            
+
+
         }
+    }
+
+    let searchValue = document.getElementById("search-input-holder")
+    searchValue.value = search;
+    document.getElementById("search-value-btn").value = searchValue.value
+    if (search != "") {
+        document.getElementById("suggestion-search").hidden = false;
+    }
+
+    else {
+        document.getElementById("suggestion-search").hidden = true;
     }
     updateSearchRatings()
 }
@@ -118,7 +135,12 @@ function movieDetails() {
 
 
 /*There are 2 forms per rating section, with 2 submitBtn each. Therefore, the length of class name is divided by 2, and then like/dislike
- btn is assigned to a eventlistener in the same indexed loopround.*/
+ btn is assigned to a eventlistener in the same indexed loopround.
+ 
+ Then, this function adds eventlisteners on every element with the corresponding id. Since the elements in the HTML are generated with
+ a loop where "i" is inserted at the end of the Id, every buttons is assigned to an eventlisteners. To assign the rating percentage to its label, the
+ Rating(i)-function is fired at the end of every loop, generating visual presentation of rating to each element.*/
+
 let numberOfReactButtons = document.getElementsByClassName("submitBtn").length / 2
 
 async function activateEventListeners() {

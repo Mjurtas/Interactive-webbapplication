@@ -112,7 +112,7 @@ header {
     width: auto !important;
 }
 
-#searchTable td a {
+#searchTable td a, #search-suggestion h3 {
     color: white;
     text-decoration: none;
     font-family: "Staatliches";
@@ -144,13 +144,23 @@ header {
 #searchTable tr:hover {
     background: black;
     color: white;
-}
+}  
+
+
 
 #searchTable img {
     width: 25px;
     height: 35px;
     
 }
+
+#suggestion-search {
+    text-align: center;
+    font-family: "Staatliches";
+    font-size: 1.5rem;
+    color: #8D0801;
+}
+
 
 
 .search-field-and-btn input[type=text] {
@@ -170,7 +180,7 @@ header {
         outline: none;
     }
 
-.search-field-and-btn button {
+.search-field-and-btn button, #search-value-btn {
     background: transparent;
     border: 0px;
     font-family: 'Arial';
@@ -182,9 +192,27 @@ header {
     padding: 0;
 }
 
-    .search-field-and-btn button:focus {
-        outline: none;
-    }
+#search-value-btn {
+    background: transparent;
+    border: 0px;
+    font-family: 'Staatliches';
+    color: white;
+    font-weight: bold;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+#suggestion-search h3{
+    font-size: 1.5rem;
+    font-family: 'Staatliches';
+    white-space: pre;
+}
+
+.search-field-and-btn button:focus, #search-value-btn:focus {
+    outline: none;
+}
 
 
 
@@ -579,6 +607,12 @@ td {
     display: flex;
     justify-content: space-around;
     background-color: rgb(0, 0, 0, 0.9);
+    
+}
+.top-list-1-3 {
+    margin: auto;
+
+    margin-left: 0;
 }
 
 .read-more-btns {

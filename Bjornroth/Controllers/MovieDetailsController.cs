@@ -26,10 +26,7 @@ namespace Bjornroth.Controllers
             
                 var model = await cmdbRepository.GetSearchResultByIdFullPlot(imdbId);
                 string id = model.ImdbId;
-            
                 var model2 = await cmdbRepository.GetCmdbRating(id);
-
-
                 MovieViewModel viewModel = new MovieViewModel(model, model2);
                 return View(viewModel);
             
