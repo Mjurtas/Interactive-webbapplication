@@ -10,15 +10,9 @@ namespace Bjornroth.Models.ViewModels
     public class StartViewModel : BaseViewModel
     {
         public List<MovieViewModel> GeneratedMovies { get; set; } = new List<MovieViewModel>();
-        //public List<MovieDTO> SearchSuggestions { get; set; } = new List<MovieDTO>();
+        public List<MovieDTO> RatedMovies { get; set; } = new List<MovieDTO>();
 
-        
-
-        //TODO: Delete this empty constructor when StartController isn't handling the like function anymore
-
-        public StartViewModel() { }
-
-        public StartViewModel(List<MovieViewModel> generatedMovies)
+        public StartViewModel(List<MovieViewModel> generatedMovies, List<MovieDTO> ratedMovies)
         {
             for (int i = 0; i < generatedMovies.Count; i++)
             {
@@ -28,11 +22,20 @@ namespace Bjornroth.Models.ViewModels
                     {
                         generatedMovies[i].Poster = "../images/posterlessPoster.png";
                     }
-                    if (generatedMovies[i].Plot == "N/A")
+                    if (generatedMovies[i].Runtime == "N/A")
                     {
-                        generatedMovies[i].Plot = "This movie doesn't have a plot";
+                        generatedMovies[i].Runtime = "Length unknown";
+                    }
+                    if (ratedMovies[i].Poster == "N/A")
+                    {
+                        ratedMovies[i].Poster = "../images/posterlessPoster.png";
+                    }
+                    if (ratedMovies[i].Runtime == "N/A")
+                    {
+                        ratedMovies[i].Runtime = "Length unknown";
                     }
                     GeneratedMovies.Add(generatedMovies[i]);
+                    RatedMovies.Add(ratedMovies[i]);
                 }
             }
         }
