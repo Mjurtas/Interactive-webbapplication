@@ -1,6 +1,6 @@
 ﻿async function testing(imdbId, newRating, index) {
-    const baseUrl = "https://localhost:5001/api/"
-    //const baseUrl = "https://localhost:44313/api/"
+    //const baseUrl = "https://localhost:5001/api/"
+    const baseUrl = "https://localhost:44313/api/"
     console.log(imdbId)
     try {
         const api = await fetch(`${baseUrl}movie/${imdbId}/${newRating}`, {
@@ -59,30 +59,128 @@ function Rating(i) {
     }
 }
 
+// Function that filters through the movies in cdmb's database according to the search. Showcases the five most relevant
+// movies according to three filters. Firstly it filters through to show the movies that title begins with the searched string, 
+// secondly shows movies whoose title has a word starting with the search term 
+// and lastly shows movies where the searched term is included somwhere in the title.
+
 function helperSearch() {
+
+    // Define the search term to filter the movies with
     const search = document.getElementById("searchInput").value.toLowerCase()
+
+    // Get all of the movies to filter through
     const recommendedResults = document.getElementsByClassName("searchTableRow")
-   
+
+    // Define the arrays that the next 2 loops will filter through
+    let recommendedResultsToFilterFurther = []
+    let recommendedResultsToFilterALastTime = []
+
+    // The count of how many movies are beign showcased
     let count = 0
-    for (var i = 1; i < recommendedResults.length; i++) {
-        const movieTitle = recommendedResults[i].cells[1].innerText.toLowerCase();
-        if (movieTitle.includes(search) && search != "" && count < 5) {
-           
-            recommendedResults[i].hidden = false;
-            recommendedResults[i].cells[0].hidden = false;
-            recommendedResults[i].cells[1].hidden = false;
-            recommendedResults[i].cells[2].hidden = false;
-            
-            count += 1
+
+    // Filter the movies if the search has a value
+    if (search != "") {
+
+        // Loops through all the movies
+        for (let i = 0; i < recommendedResults.length; i++) {
+
+            const movieTitle = recommendedResults[i].cells[1].innerText.toLowerCase();
+            // Shows the row displaying the movie if the title starts with the searchterm
+            if (movieTitle.startsWith(search) && count < 5) {
+
+                recommendedResults[i].hidden = false;
+                recommendedResults[i].cells[0].hidden = false;
+                recommendedResults[i].cells[1].hidden = false;
+                recommendedResults[i].cells[2].hidden = false;
+
+                // Rearranges the movielist to ensure the movie starting with the searchterm is displayed at the top
+                recommendedResults[i].parentNode.insertBefore(recommendedResults[i], recommendedResults[count]);
+                count += 1
+
+            }
+
+            // If the movietitle doesn't include the searchterm, hide it
+            else {
+
+                recommendedResults[i].hidden = true;
+                recommendedResults[i].cells[0].hidden = true;
+                recommendedResults[i].cells[1].hidden = true;
+                recommendedResults[i].cells[2].hidden = true;
+
+                // But if the Movie title includes the searched term, then it is added to an array to iterate through later
+                // if there are less than 5 movies showing after this loop 
+                if (movieTitle.includes(search)) {
+                    recommendedResultsToFilterFurther.push(recommendedResults[i])
+                }
+            }
         }
-        else {
-            
+        if (count < 5) {
+            for (let i = 0; i < recommendedResultsToFilterFurther.length; i++) {
+                const movieTitle = recommendedResultsToFilterFurther[i].cells[1].innerText.toLowerCase();
+
+                // Splits the movie's title into substrings so every word can be compared to the searched term
+                const movieTitleSubStrings = movieTitle.split(" ")
+
+                // If a movie has a word that starts with the searched term, then it will be showcased
+                for (let j = 0; j < movieTitleSubStrings.length; j++) {
+                    if (movieTitleSubStrings[j].startsWith(search) && count < 5) {
+
+                        recommendedResultsToFilterFurther[i].hidden = false;
+                        recommendedResultsToFilterFurther[i].cells[0].hidden = false;
+                        recommendedResultsToFilterFurther[i].cells[1].hidden = false;
+                        recommendedResultsToFilterFurther[i].cells[2].hidden = false;
+
+                        // Rearranges the movielist to ensure the movie is displayed underneath the better 
+                        // matching results but over the results that doesn't match as well
+                        recommendedResults[i].parentNode.insertBefore(recommendedResultsToFilterFurther[i], recommendedResults[count]);
+                        count += 1
+
+                        // Stops the iteration of substrings if one substring already matched the searhed term
+                        j = movieTitleSubStrings.length
+
+                        // If a movie has been added to the final array to filter through but one of the words in the movie's 
+                        // title begins with the searched term, it is removed from the array because it is already being displayed
+                        if (recommendedResultsToFilterALastTime.includes(recommendedResultsToFilterFurther[i]))
+                        {
+                            recommendedResultsToFilterALastTime.pop()
+                        }
+                    }
+
+                    // If the movies first word doesn't start with the searched term but the movie title includes it,
+                    // it is added to the final array to filter through if there still aren't 5 movies that are being displayed
+                    else if (movieTitle.includes(search) && j === 0) {
+                        recommendedResultsToFilterALastTime.push(recommendedResultsToFilterFurther[i])
+                    }
+                }
+            }
+        }
+
+        // If there still aren't 5 movies beign showcased then this will showcase movies where the searched term is included in the title
+        if (count < 5) {
+            for (let i = 0; i < recommendedResultsToFilterALastTime.length; i++) {
+                const movieTitle = recommendedResultsToFilterALastTime[i].cells[1].innerText.toLowerCase();
+                if (movieTitle.includes(search) && count < 5) {
+                    recommendedResultsToFilterALastTime[i].hidden = false;
+                    recommendedResultsToFilterALastTime[i].cells[0].hidden = false;
+                    recommendedResultsToFilterALastTime[i].cells[1].hidden = false;
+                    recommendedResultsToFilterALastTime[i].cells[2].hidden = false;
+                    count += 1
+                }
+
+                // If there are 5 movies being displayed, then the job is done!
+                else if (count === 5) {
+                    break
+                }
+            }
+        }
+    }
+    else {
+        for (let i = 0; i < recommendedResults.length; i++) {
             recommendedResults[i].hidden = true;
             recommendedResults[i].cells[0].hidden = true;
             recommendedResults[i].cells[1].hidden = true;
             recommendedResults[i].cells[2].hidden = true;
-           
-            
         }
     }
     updateSearchRatings()
