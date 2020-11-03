@@ -97,6 +97,16 @@ function updateSearchRatings() {
         let dislikes = parseInt(dislikeColumns[i].innerText)
         let rating = Math.round(((likes / (likes + dislikes) * 100)))
         row[i].children[2].lastChild.innerText = rating.toString() + "%"
+
+        if (rating > 50) {
+            row[i].children[2].lastChild.style.color = "green"
+        }
+        else if (rating < 50) {
+            row[i].children[2].lastChild.style.color = "red"
+        }
+        else {
+            row[i].children[2].lastChild.style.color = "yellow"
+        }
     }
 }
 

@@ -26,16 +26,17 @@
 
 .carousel-item img {
     height: 50vh;
-    max-width: 40%;
-    margin-left: 10%;
+    max-width: 15vw;
+   
     margin: auto;
 }
+    
 
-.carousel-background {
-    background: black;
-    opacity: 0.8;
-    margin-bottom: 0px;
-}
+    .carousel-background {
+        background: black;
+        opacity: 0.8;
+        margin-bottom: 0px;
+    }
     .carousel-background:hover  {
         opacity: 1;
         
@@ -69,6 +70,11 @@
         height: 200%;
     }
 
+    form {
+        display: flex;
+        width: 120%;
+    }
+
     .like-buttons-start h1{
         margin-top: 50%;
     }
@@ -95,18 +101,22 @@ header {
     display: flex;
     flex: 1;
     position: relative;
+
 }
 
 #searchTable {
     z-index: 10;
     background: #313131;
     position: absolute;
-    margin-top: 15%;
+    margin-top: 10%;
+    width: auto !important;
 }
 
 #searchTable td a {
     color: white;
     text-decoration: none;
+    font-family: "Staatliches";
+    letter-spacing: 2px;
 }
 
 #searchTable td a:hover {
@@ -137,35 +147,54 @@ header {
 }
 
 #searchTable img {
-    width: 30px;
-    height: 55px;
+    width: 25px;
+    height: 35px;
+    
 }
 
 
 .search-field-and-btn input[type=text] {
-    padding: 5% !important;
+    padding: 2% !important;
     border-radius: 20px;
     border: 0px;
     box-shadow: 4px;
     display: block;
+    font-family: "Staatliches";
+    letter-spacing: 1px;
+    width: 80%;
+    text-align: center;
+    margin: auto;
 }
 
-.search-field-and-btn input[type=submit] {
+    .search-field-and-btn input[type=text]:focus{
+        outline: none;
+    }
+
+.search-field-and-btn button {
     background: transparent;
     border: 0px;
     font-family: 'Arial';
     color: #8D0801;
     font-weight: bold;
+    background: none;
+    cursor: pointer;
+  
+    padding: 0;
 }
 
+    .search-field-and-btn button:focus {
+        outline: none;
+    }
 
-.links {
-    margin-left: 70%;
-    justify-content: right;
-    margin: auto;
-    flex: 1;
-    display: flex;
-}
+
+
+    .links {
+        margin-left: 70%;
+        justify-content: right;
+        margin: auto;
+        flex: 1;
+        display: flex;
+    }
 
 .logo {
     justify-content: left;
