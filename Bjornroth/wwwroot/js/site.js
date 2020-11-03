@@ -79,8 +79,16 @@ function helperSearch() {
     // The count of how many movies are beign showcased
     let count = 0
 
+    // Sets the sixth's rows value to the searched term to let the user easily navigate to further search
+    let searchValue = document.getElementById("search-input-holder")
+    searchValue.value = search;
+    document.getElementById("search-value-btn").value = searchValue.value
+
     // Filter the movies if the search has a value
     if (search != "") {
+
+        // Display the sixth row
+        document.getElementById("suggestion-search").hidden = false;
 
         // Loops through all the movies
         for (let i = 0; i < recommendedResults.length; i++) {
@@ -175,12 +183,17 @@ function helperSearch() {
             }
         }
     }
+
+    // If search has no value, hide all the movies
     else {
         for (let i = 0; i < recommendedResults.length; i++) {
             recommendedResults[i].hidden = true;
             recommendedResults[i].cells[0].hidden = true;
             recommendedResults[i].cells[1].hidden = true;
             recommendedResults[i].cells[2].hidden = true;
+
+            //Hide the sixth row too
+            document.getElementById("suggestion-search").hidden = true;
         }
     }
     updateSearchRatings()
