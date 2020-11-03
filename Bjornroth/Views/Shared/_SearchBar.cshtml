@@ -28,9 +28,11 @@
 
             <td hidden="hidden"><a href="/MovieDetails?imdbId=@movie.ImdbId"><img src="@movie.Poster" /></a></td>
             <td hidden="hidden">@Html.ActionLink($"{@movie.Title}", "Index", "MovieDetails", new { imdbId = @movie.ImdbId }, new { @class = "searchLink" })</td>
-            <td hidden="hidden"><a href="/MovieDetails?imdbId=@movie.ImdbId"><h3 class="cmdb-rating-label-searchbar"></h3></a></td>
+            
+            <td hidden="hidden"><img  class=""search-bar-cmdb-logo"" src="~/images/cropped logo.png" /><a href="/MovieDetails?imdbId=@movie.ImdbId"><h3 class="cmdb-rating-label-searchbar"></h3></a></td>
             <td class="numberOfLikes-td" hidden="hidden">@movie.NumberOfLikes</td>
             <td class="numberOfDislikes-td" hidden="hidden">@movie.NumberOfDislikes </td>
+
 
 
 

@@ -31,6 +31,8 @@
     display: inline-block;
 }
 
+
+
 header {
     display: flex;
     padding: 1%;
@@ -47,8 +49,9 @@ header {
 #searchTable {
     z-index: 10;
     background: #313131;
-    position: absolute;
+    position: absolute !important;
     margin-top: 15%;
+    width: 30%;
 }
 
 #searchTable td a {
@@ -84,11 +87,8 @@ header {
 }
 
 #searchTable img {
-    width: 30px;
-    height: 55px;
-}
-.logo {
-    
+    width: 2vh;
+    height: auto;
 }
 
 
@@ -161,6 +161,7 @@ header {
     display: block;
     position: absolute;
     margin-left: 30%;
+    
 }
 
 .single-movie-detail-text {
@@ -288,6 +289,8 @@ td {
 }
 
 
+
+
 .read-more {
     display: flex;
     justify-content: center;
@@ -333,7 +336,7 @@ td {
     display: flex;
 }
 
-.read-more {
+.read-more, .read-more-link {
     border: 1px solid #8D0801;
     padding: 10px;
     font-family: 'Anton';
@@ -342,9 +345,10 @@ td {
     text-decoration: none;
     width: 8vw;
     margin-bottom: 2%;
+    opacity: 1;
 }
 
-    .read-more:hover {
+    .read-more:hover, .read-more-link:hover {
         background: #8D0801;
         color: black;
     }
@@ -364,10 +368,13 @@ td {
     color: white;
 }
 
-/* CSS FOR SEARCH INDEX 0 RESULT  */
-.search-movie-header {
-    font-size: 4rem;
-}
+    #searchBar .search-bar-cmdb-logo{
+        width: 70%;
+    }
+    /* CSS FOR SEARCH INDEX 0 RESULT  */
+    .search-movie-header {
+        font-size: 4rem;
+    }
 
 .search-movies-container {
     margin: 10% 20% 0 20%
