@@ -20,7 +20,7 @@ namespace Bjornroth.Controllers
             this.cmdbRepository = cmdbRepository;
             
         }
-        [Route("/SearchResult")]
+        [Route("/SearchResult/")]
         public async Task<IActionResult> Index(string searchInput)
         {
             if (searchInput != null)

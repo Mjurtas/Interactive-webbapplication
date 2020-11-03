@@ -23,29 +23,32 @@
 
         @foreach (var movie in Model.SearchSuggestions)
         {
-           
- 
-        <tr class="searchTableRow">
 
 
+            <tr class="searchTableRow">
+                <td hidden="hidden"><a href="/MovieDetails?imdbId=@movie.ImdbId"><img src="@movie.Poster" /></a></td>
+                <td hidden="hidden">@Html.ActionLink($"{@movie.Title}", "Index", "MovieDetails", new { imdbId = @movie.ImdbId }, new { @class = "searchLink" })</td>
 
-            <td hidden="hidden"><a href="/MovieDetails?imdbId=@movie.ImdbId"><img src="@movie.Poster" /></a></td>
-            <td hidden="hidden">@Html.ActionLink($"{@movie.Title}", "Index", "MovieDetails", new { imdbId = @movie.ImdbId }, new { @class = "searchLink" })</td>
-            
-            <td hidden="hidden"><img  class=""search-bar-cmdb-logo"" src="~/images/cropped logo.png" /><a href="/MovieDetails?imdbId=@movie.ImdbId"><h3 class="cmdb-rating-label-searchbar"></h3></a></td>
-            <td class="numberOfLikes-td" hidden="hidden">@movie.NumberOfLikes</td>
-            <td class="numberOfDislikes-td" hidden="hidden">@movie.NumberOfDislikes </td>
+                <td hidden="hidden"><img class="" search-bar-cmdb-logo"" src="~/images/cropped logo.png" /><a href="/MovieDetails?imdbId=@movie.ImdbId"><h3 class="cmdb-rating-label-searchbar"></h3></a></td>
+                <td class="numberOfLikes-td" hidden="hidden">@movie.NumberOfLikes</td>
+                <td class="numberOfDislikes-td" hidden="hidden">@movie.NumberOfDislikes </td>
+            </tr>
+        }
 
+        <tr hidden="hidden" id="suggestion-search">
+            <td>
+                
+            </td>
+            <td>
+                @using (@Html.BeginForm("Index", "SearchResults"))
+                {
+                <h3>Did you mean     <input hidden="hidden" name="searchInput" id="search-input-holder" /> <input id="search-value-btn" type="submit" value="" />     ?</h3>
 
-
-
+                }
+            </td>
+            <td></td>
         </tr>
-    }
-
-
-
-
-
-        </tbody>
-    </table>
+    </tbody>
+    
+</table>
 </div>
