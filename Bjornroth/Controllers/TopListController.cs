@@ -20,7 +20,8 @@ namespace Bjornroth.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var model = await cmdbRepository.GetCurrentTopList();
+            var model = await cmdbRepository.GetCurrentTopList("popularity");
+            var model2 = await cmdbRepository.GetCurrentTopList("rating");
 
             for (var i = 0; i < model.Count; i++) 
             {
@@ -31,7 +32,17 @@ namespace Bjornroth.Controllers
                 model.Insert(i, movie);
             }
 
-            TopListViewModel viewModel = new TopListViewModel(model);
+            for (var i = 0; i < model2.Count; i++)
+            {
+                var movie = await cmdbRepository.GetSearchResultById(model2[i].ImdbId);
+                movie.NumberOfLikes = model2[i].NumberOfLikes;
+                movie.NumberOfDislikes = model2[i].NumberOfDislikes;
+                model2.RemoveAt(i);
+                model2.Insert(i, movie);
+            }
+
+
+            TopListViewModel viewModel = new TopListViewModel(model, model2);
             return View(viewModel);
         }
     }

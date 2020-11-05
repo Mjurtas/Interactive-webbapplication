@@ -19,7 +19,7 @@ namespace Bjornroth.Interfaces
 
         Task<MovieDTO> GetSearchResultById(string imdbId);
 
-        Task<List<MovieDTO>> GetCurrentTopList();
+        Task<List<MovieDTO>> GetCurrentTopList(string sort);
 
         Task<MovieDTO> GetSearchResultByIdFullPlot(string imdbId);
 

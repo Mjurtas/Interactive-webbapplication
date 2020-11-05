@@ -85,11 +85,11 @@ namespace Bjornroth.Repositories
             return await Connect(endpoint);
         }
 
-        public async Task<List<MovieDTO>> GetCurrentTopList()
+        public async Task<List<MovieDTO>> GetCurrentTopList(string sort)
         {
             using (HttpClient client = new HttpClient())
             {
-                string endpoint = $"{baseUrl2}toplist?type=popularity&sort=desc&count=4";
+                string endpoint = $"{baseUrl2}toplist?type={sort}&sort=desc&count=4";
                 var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
                 response.EnsureSuccessStatusCode();
                 var data = await response.Content.ReadAsStringAsync();
