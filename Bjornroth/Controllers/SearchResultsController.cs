@@ -23,6 +23,7 @@ namespace Bjornroth.Controllers
         [Route("/SearchResult/")]
         public async Task<IActionResult> Index(string searchInput)
         {
+            
             if (searchInput != null)
                 
             {    //Formats string to avoid bugs where "-" and such returns the wrong search results
@@ -32,30 +33,34 @@ namespace Bjornroth.Controllers
                 var model = await cmdbRepository.GetSearchResults(formattedString);
                 if (model.Search != null)
                 {
-                    /* This method fetches the 1st movie in the list and and returns
-                     * a more detailed movie-object for us to highlight in the search-resultview*/
-
-                    var model2 = await cmdbRepository.GetSearchResultById(model.Search[0].ImdbId);
-                    model.Search[0] = model2;
-                    foreach (MovieDTO movie in model.Search)
+                    for (int i = 0; i < model.Search.Count; i++)
                     {
+                        var model1 = await cmdbRepository.GetSearchResultById(model.Search[i].ImdbId);
+                        
                         // If the movie exists in the CMDb, it assigns the likes/dislikes to the movie.
-                        string imdbId = movie.ImdbId;
+                        string imdbId = model1.ImdbId;
                         var model3 = await cmdbRepository.GetCmdbRating(imdbId);
                         if (model3 != null)
                         {
-                            movie.NumberOfLikes = model3.NumberOfLikes;
-                            movie.NumberOfDislikes = model3.NumberOfDislikes;
+                            model1.NumberOfLikes = model3.NumberOfLikes;
+                            model1.NumberOfDislikes = model3.NumberOfDislikes;
                         }
+                        model.Search.RemoveAt(i);
+                        model.Search.Insert(i, model1);
                     }
+                    
                     SearchViewModel viewModel = new SearchViewModel(model, searchInput);
                     if (viewModel.Movies.Count >= 1)
                     {
                         return View(viewModel);
                     }
+                    
+                        
+                    
                 }
             }
             return RedirectToAction("PageNotFound");
+
         }
 
         public IActionResult PageNotFound()
