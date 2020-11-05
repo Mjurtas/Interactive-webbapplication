@@ -1,6 +1,6 @@
 ﻿async function testing(imdbId, newRating, index) {
-    const baseUrl = "https://localhost:5001/api/"
-    //const baseUrl = "https://localhost:44313/api/"
+    //const baseUrl = "https://localhost:5001/api/"
+    const baseUrl = "https://localhost:44313/api/"
     console.log(imdbId)
     try {
         const api = await fetch(`${baseUrl}movie/${imdbId}/${newRating}`, {
@@ -32,8 +32,7 @@
         console.log(e.message)
     }
 }
-/* This function is fired by button click (assigned in the AddEventListeners-function. 
-   i-value is passed in, and generetes the rating-score for each rating section in each film. */
+
 function Rating(i) {
     const likes = parseInt(document.getElementById(`like-number${i}`).innerHTML)
     const dislikes = parseInt(document.getElementById(`dislike-number${i}`).innerHTML)
@@ -60,47 +59,142 @@ function Rating(i) {
     }
 }
 
-/*1. Value is submitted by the user in the text-input.
- * 2. A "searchTableRow is generetaed in the HTML for every movie in CMDb database, and is by default "hidden".
- * 3. The if-case compares the searchinput to every movietitle in the table (CMDb), if it's true, that row is visible.
- * To limit the search to 5, a counter is initially set to 0 and increments every time the if-case = true. */
+// Function that filters through the movies in cdmb's database according to the search. Showcases the five most relevant
+// movies according to three filters. Firstly it filters through to show the movies that title begins with the searched string, 
+// secondly shows movies whoose title has a word starting with the search term 
+// and lastly shows movies where the searched term is included somwhere in the title.
 
 function helperSearch() {
+
+    // Define the search term to filter the movies with
     const search = document.getElementById("searchInput").value.toLowerCase()
+
+    // Get all of the movies to filter through
     const recommendedResults = document.getElementsByClassName("searchTableRow")
-   
+
+    // Define the arrays that the next 2 loops will filter through
+    let recommendedResultsToFilterFurther = []
+    let recommendedResultsToFilterALastTime = []
+
+    // The count of how many movies are beign showcased
     let count = 0
-    for (var i = 1; i < recommendedResults.length; i++) {
-        const movieTitle = recommendedResults[i].cells[1].innerText.toLowerCase();
-        if (movieTitle.includes(search) && search != "" && count < 5) {
 
-            recommendedResults[i].hidden = false;
-            recommendedResults[i].cells[0].hidden = false;
-            recommendedResults[i].cells[1].hidden = false;
-            recommendedResults[i].cells[2].hidden = false;
+    // Sets the sixth's rows value to the searched term to let the user easily navigate to further search
+    let searchValue = document.getElementById("search-input-holder")
+    searchValue.value = search;
+    document.getElementById("search-value-btn").value = searchValue.value
 
-            count += 1
+    // Filter the movies if the search has a value
+    if (search != "") {
+
+        // Display the sixth row
+        document.getElementById("suggestion-search").hidden = false;
+
+        // Loops through all the movies
+        for (let i = 0; i < recommendedResults.length; i++) {
+
+            const movieTitle = recommendedResults[i].cells[1].innerText.toLowerCase();
+            // Shows the row displaying the movie if the title starts with the searchterm
+            if (movieTitle.startsWith(search) && count < 5) {
+
+                recommendedResults[i].hidden = false;
+                recommendedResults[i].cells[0].hidden = false;
+                recommendedResults[i].cells[1].hidden = false;
+                recommendedResults[i].cells[2].hidden = false;
+
+                // Rearranges the movielist to ensure the movie starting with the searchterm is displayed at the top
+                recommendedResults[i].parentNode.insertBefore(recommendedResults[i], recommendedResults[count]);
+                count += 1
+
+            }
+
+            // If the movietitle doesn't include the searchterm, hide it
+            else {
+
+                recommendedResults[i].hidden = true;
+                recommendedResults[i].cells[0].hidden = true;
+                recommendedResults[i].cells[1].hidden = true;
+                recommendedResults[i].cells[2].hidden = true;
+
+                // But if the Movie title includes the searched term, then it is added to an array to iterate through later
+                // if there are less than 5 movies showing after this loop 
+                if (movieTitle.includes(search)) {
+                    recommendedResultsToFilterFurther.push(recommendedResults[i])
+                }
+            }
         }
-        else {
+        if (count < 5) {
+            for (let i = 0; i < recommendedResultsToFilterFurther.length; i++) {
+                const movieTitle = recommendedResultsToFilterFurther[i].cells[1].innerText.toLowerCase();
 
+                // Splits the movie's title into substrings so every word can be compared to the searched term
+                const movieTitleSubStrings = movieTitle.split(" ")
+
+                // If a movie has a word that starts with the searched term, then it will be showcased
+                for (let j = 0; j < movieTitleSubStrings.length; j++) {
+                    if (movieTitleSubStrings[j].startsWith(search) && count < 5) {
+
+                        recommendedResultsToFilterFurther[i].hidden = false;
+                        recommendedResultsToFilterFurther[i].cells[0].hidden = false;
+                        recommendedResultsToFilterFurther[i].cells[1].hidden = false;
+                        recommendedResultsToFilterFurther[i].cells[2].hidden = false;
+
+                        // Rearranges the movielist to ensure the movie is displayed underneath the better 
+                        // matching results but over the results that doesn't match as well
+                        recommendedResults[i].parentNode.insertBefore(recommendedResultsToFilterFurther[i], recommendedResults[count]);
+                        count += 1
+
+                        // Stops the iteration of substrings if one substring already matched the searhed term
+                        j = movieTitleSubStrings.length
+
+                        // If a movie has been added to the final array to filter through but one of the words in the movie's 
+                        // title begins with the searched term, it is removed from the array because it is already being displayed
+                        if (recommendedResultsToFilterALastTime.includes(recommendedResultsToFilterFurther[i]))
+                        {
+                            recommendedResultsToFilterALastTime.pop()
+                        }
+                    }
+
+                    // If the movies first word doesn't start with the searched term but the movie title includes it,
+                    // it is added to the final array to filter through if there still aren't 5 movies that are being displayed
+                    else if (movieTitle.includes(search) && j === 0) {
+                        recommendedResultsToFilterALastTime.push(recommendedResultsToFilterFurther[i])
+                    }
+                }
+            }
+        }
+
+        // If there still aren't 5 movies beign showcased then this will showcase movies where the searched term is included in the title
+        if (count < 5) {
+            for (let i = 0; i < recommendedResultsToFilterALastTime.length; i++) {
+                const movieTitle = recommendedResultsToFilterALastTime[i].cells[1].innerText.toLowerCase();
+                if (movieTitle.includes(search) && count < 5) {
+                    recommendedResultsToFilterALastTime[i].hidden = false;
+                    recommendedResultsToFilterALastTime[i].cells[0].hidden = false;
+                    recommendedResultsToFilterALastTime[i].cells[1].hidden = false;
+                    recommendedResultsToFilterALastTime[i].cells[2].hidden = false;
+                    count += 1
+                }
+
+                // If there are 5 movies being displayed, then the job is done!
+                else if (count === 5) {
+                    break
+                }
+            }
+        }
+    }
+
+    // If search has no value, hide all the movies
+    else {
+        for (let i = 0; i < recommendedResults.length; i++) {
             recommendedResults[i].hidden = true;
             recommendedResults[i].cells[0].hidden = true;
             recommendedResults[i].cells[1].hidden = true;
             recommendedResults[i].cells[2].hidden = true;
 
-
+            //Hide the sixth row too
+            document.getElementById("suggestion-search").hidden = true;
         }
-    }
-
-    let searchValue = document.getElementById("search-input-holder")
-    searchValue.value = search;
-    document.getElementById("search-value-btn").value = searchValue.value
-    if (search != "") {
-        document.getElementById("suggestion-search").hidden = false;
-    }
-
-    else {
-        document.getElementById("suggestion-search").hidden = true;
     }
     updateSearchRatings()
 }
@@ -135,12 +229,7 @@ function movieDetails() {
 
 
 /*There are 2 forms per rating section, with 2 submitBtn each. Therefore, the length of class name is divided by 2, and then like/dislike
- btn is assigned to a eventlistener in the same indexed loopround.
- 
- Then, this function adds eventlisteners on every element with the corresponding id. Since the elements in the HTML are generated with
- a loop where "i" is inserted at the end of the Id, every buttons is assigned to an eventlisteners. To assign the rating percentage to its label, the
- Rating(i)-function is fired at the end of every loop, generating visual presentation of rating to each element.*/
-
+ btn is assigned to a eventlistener in the same indexed loopround.*/
 let numberOfReactButtons = document.getElementsByClassName("submitBtn").length / 2
 
 async function activateEventListeners() {
