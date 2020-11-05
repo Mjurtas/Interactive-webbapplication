@@ -23,6 +23,7 @@ namespace Bjornroth.Controllers
         [Route("/SearchResult/")]
         public async Task<IActionResult> Index(string searchInput)
         {
+            
             if (searchInput != null)
                 
             {    //Formats string to avoid bugs where "-" and such returns the wrong search results
@@ -32,7 +33,7 @@ namespace Bjornroth.Controllers
                 var model = await cmdbRepository.GetSearchResults(formattedString);
                 if (model.Search != null)
                 {
-                    for (int i = 0; i < model.Search.Count - 1; i++)
+                    for (int i = 0; i < model.Search.Count; i++)
                     {
                         var model1 = await cmdbRepository.GetSearchResultById(model.Search[i].ImdbId);
                         
@@ -53,9 +54,13 @@ namespace Bjornroth.Controllers
                     {
                         return View(viewModel);
                     }
+                    
+                        
+                    
                 }
             }
             return RedirectToAction("PageNotFound");
+
         }
 
         public IActionResult PageNotFound()
