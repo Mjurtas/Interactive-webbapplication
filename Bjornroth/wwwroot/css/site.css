@@ -215,6 +215,12 @@ header {
     outline: none;
 }
 
+.short-plot {
+   width: auto;
+   text-align: center;
+   overflow-wrap: break-word;
+
+}
 
 
     .links {
@@ -478,7 +484,7 @@ td {
 }
 
 .search-movies-container {
-    margin: 10% 20% 0 20%
+   
 }
 
 .search-index-0 {
@@ -496,8 +502,10 @@ td {
 /*-----------------------------------*/
 /* CSS FOR "OR DID YOU MEAN" SECTION*/
 .search-or-did-you-mean {
-    width: 70%;
+    width: 100%;
     margin: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .or-did-you-mean-header {
@@ -521,6 +529,8 @@ td {
     color: white;
     font-family: "Staatliches";
     margin-bottom: 10px;
+    word-wrap: break-word;
+    padding: 3%;
 }
 
 .search-or-did-you-mean img {

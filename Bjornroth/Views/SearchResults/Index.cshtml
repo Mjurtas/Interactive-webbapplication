@@ -29,6 +29,7 @@
                 <img src="@Model.Movies[i].Poster">
                 <div class="search-or-did-you-mean-result-info">
                     <h2>@Model.Movies[i].Title, @Model.Movies[i].Released</h2>
+                    <p style="color: white;" class="short-plot">@Model.Movies[i].Plot</p>
 
                     @using (Html.BeginForm("Index", "MovieDetails"))
                     {
@@ -45,3 +46,24 @@
 
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+       
+        $(".search-or-did-you-mean-result-info").children("p").hide();
+        $(".search-or-did-you-mean-result-info").hover(function () {
+            
+            console.log("2");
+            $(this).children('p').slideToggle();
+            let test = $(this).children("p").html();
+            console.log(test)
+
+        });
+
+
+
+    });
+
+</script>
