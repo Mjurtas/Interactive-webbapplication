@@ -21,28 +21,27 @@
     </thead>
     <tbody id="searchBar">
 
-        @foreach (var movie in Model.SearchSuggestions)
+        @for (int i = 0; i < @Model.SearchSuggestions.Count; i++)
         {
 
 
-            <tr class="searchTableRow">
-                <td hidden="hidden"><a href="/MovieDetails?imdbId=@movie.ImdbId"><img src="@movie.Poster" /></a></td>
-                <td hidden="hidden">@Html.ActionLink($"{@movie.Title}", "Index", "MovieDetails", new { imdbId = @movie.ImdbId }, new { @class = "searchLink" })</td>
+            <tr class="searchTableRow" id="@(i)">
+                <td hidden="hidden"><a href="/MovieDetails?imdbId=@Model.SearchSuggestions[i].ImdbId"><img src="@Model.SearchSuggestions[i].Poster" /></a></td>
+                <td hidden="hidden">@Html.ActionLink($"{@Model.SearchSuggestions[i].Title}", "Index", "MovieDetails", new { imdbId = @Model.SearchSuggestions[i].ImdbId }, new { @class = "searchLink" })</td>
 
-                <td hidden="hidden"><img class="" search-bar-cmdb-logo"" src="~/images/cropped logo.png" /><a href="/MovieDetails?imdbId=@movie.ImdbId"><h3 class="cmdb-rating-label-searchbar"></h3></a></td>
-                <td class="numberOfLikes-td" hidden="hidden">@movie.NumberOfLikes</td>
-                <td class="numberOfDislikes-td" hidden="hidden">@movie.NumberOfDislikes </td>
+                <td hidden="hidden"><img class="" search-bar-cmdb-logo"" src="~/images/cropped logo.png" /><a href="/MovieDetails?imdbId=@Model.SearchSuggestions[i].ImdbId"><h3 class="cmdb-rating-label-searchbar"></h3></a></td>
+                <td class="numberOfLikes-td" hidden="hidden">@Model.SearchSuggestions[i].NumberOfLikes</td>
+                <td class="numberOfDislikes-td" hidden="hidden">@Model.SearchSuggestions[i].NumberOfDislikes </td>
             </tr>
         }
 
         <tr hidden="hidden" id="suggestion-search">
             <td>
-                
             </td>
             <td>
                 @using (@Html.BeginForm("Index", "SearchResults"))
                 {
-                <h3>Did you mean     <input hidden="hidden" name="searchInput" id="search-input-holder" /> <input id="search-value-btn" type="submit" value="" />     ?</h3>
+                    <h3>Did you mean     <input hidden="hidden" name="searchInput" id="search-input-holder" /> <input id="search-value-btn" type="submit" value="" />     ?</h3>
 
                 }
             </td>

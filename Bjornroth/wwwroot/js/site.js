@@ -79,6 +79,9 @@ function helperSearch() {
     // The count of how many movies are beign showcased
     let count = 0
 
+    // Reorders the table to its original order
+    resetTableOrder(recommendedResults)
+
     // Sets the sixth's rows value to the searched term to let the user easily navigate to further search
     let searchValue = document.getElementById("search-input-holder")
     searchValue.value = search;
@@ -221,10 +224,14 @@ function updateSearchRatings() {
     }
 }
 
-function movieDetails() {
-    const nmbrOfLikesLabel = document.getElementById("nmbr-of-likes")
-    const nmbrOfDislikesLabel = document.getElementById("nmbr-of-dislikes")
+function resetTableOrder(rowsToOrder) {
 
+    for (let i = 0; i < rowsToOrder.length; i++) {
+
+        const rowToMove = document.getElementById(`${i}`)
+        rowsToOrder[i].parentNode.insertBefore(rowToMove, rowsToOrder[i]);
+
+    }
 }
 
 
