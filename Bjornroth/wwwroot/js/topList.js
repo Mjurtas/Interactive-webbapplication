@@ -1,8 +1,9 @@
 ﻿let numberOfReactButtons
+let countOfNumberOfTimesSwitched = 0
 
 async function testing(imdbId, newRating, index) {
-    //const baseUrl = "https://localhost:5001/api/"
-    const baseUrl = "https://localhost:44313/api/"
+    const baseUrl = "https://localhost:5001/api/"
+    //const baseUrl = "https://localhost:44313/api/"
     console.log(imdbId)
     try {
         const api = await fetch(`${baseUrl}movie/${imdbId}/${newRating}`, {
@@ -62,44 +63,28 @@ function Rating(i) {
 }
 
 function ChangeContent(rating, i) {
-    var form = document.getElementsByClassName("like-buttons-full-movie-detail")
+    var likebtn = document.getElementById(`like-btn${i}`)
+    var dislikebtn = document.getElementById(`dislike-btn${i}`)
 
     if (rating == "liked") {
-        form[i].innerHTML = "<h1 style='color: green'>LIKED</h1>"
+        likebtn.parentNode.parentNode.innerHTML = "<h1 style='color: green'>LIKED</h1>"
     }
 
     else {
-        form[i].innerHTML = "<h1 style='color: red'>DISLIKED</h1>"
+        dislikebtn.parentNode.parentNode.innerHTML = "<h1 style='color: red'>DISLIKED</h1>"
     }
 
-}
-
-async function activateEventListeners() {
-    for (let i = 0; i < numberOfReactButtons; i++) {
-        document.getElementById(`like-btn${i}`).addEventListener("click", async function (event) {
-            event.preventDefault()
-            await testing(document.getElementById(`imdbId${i}`).value, "like", i)
-            Rating(i)
-            ChangeContent("liked", i)
-        })
-        document.getElementById(`dislike-btn${i}`).addEventListener("click", async function (event) {
-            event.preventDefault()
-            await testing(document.getElementById(`imdbId${i}`).value, "dislike", i)
-            Rating(i)
-            ChangeContent("disliked", i)
-        })
-
-    }
 }
 
 async function activateEventListeners2() {
     console.log("called activateEventListeners")
-    for (let i = numberOfReactButtons; i < numberOfReactButtons + 4; i++) {
+    for (let i = 4; i < numberOfReactButtons + 4; i++) {
         console.log("loop körs för knapparna" + i)
         document.getElementById(`like-btn${i}`).addEventListener("click", async function (event) {
             event.preventDefault()
             console.log("preventdefff")
             await testing(document.getElementById(`imdbId${i}`).value, "like", i)
+            console.log("undra om detta sparas" + i)
             Rating(i)
             ChangeContent("liked", i)
         })
@@ -107,6 +92,7 @@ async function activateEventListeners2() {
             event.preventDefault()
             console.log("preventdefff")
             await testing(document.getElementById(`imdbId${i}`).value, "dislike", i)
+            console.log("undra om detta sparas" + i)
             Rating(i)
             ChangeContent("disliked", i)
         })
@@ -123,18 +109,18 @@ function onChange() {
         headers[0].innerHTML = "Top 4 most voted"
         topListDivs[0].hidden = false
         topListDivs[1].hidden = true
-        numberOfReactButtons = document.getElementsByClassName("submitBtn").length / 2
-        activateEventListeners()
-
     }
     else {
         headers[0].innerHTML = "Top 4 best rated"
         topListDivs[0].hidden = true;
         topListDivs[1].hidden = false;
-        numberOfReactButtons = document.getElementsByClassName("submitBtn2").length  /2
-        activateEventListeners2()
+        numberOfReactButtons = document.getElementsByClassName("submitBtn2").length / 2
+        if (countOfNumberOfTimesSwitched === 0) {
+            activateEventListeners2()
+            countOfNumberOfTimesSwitched++
         for (let i = 4; i < numberOfReactButtons + 4; i++) {
             Rating(i)
+            }
         }
     }
 

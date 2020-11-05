@@ -24,22 +24,7 @@ namespace Bjornroth
             
             Configuration = configuration;
 
-            // Deletes existing file, to get a new updates list of movies.
-            //if (File.Exists("../json/movies.json"))
-            //{
-            //    File.Delete("../movies.json");
-                //List<MovieDTO> movies = await cmdbRepository.GetMovies();
-                //string jsonString = JsonSerializer.Serialize(movies);
-                //File.WriteAllText("movies.json", jsonString);
-                //Movies = (List<MovieDTO>)FileOperations.Deserialize("../json/movies.json");
-            //}
-
-            //var output = cmdbRepository.GetMovies();
-
-            //File.WriteAllText("movies.json", output);
-
         }
-        //public List<MovieDTO> Movies { get; set; }
         public IConfiguration Configuration { get; }
      
 

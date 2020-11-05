@@ -3,7 +3,7 @@
 }
 @model Bjornroth.Models.ViewModels.TopListViewModel
 
-<p id="dropDownList">@Html.DropDownListFor(x => Model.SelectedList, new SelectList(Model.Toplists), "Välj topplista")</p>
+<p id="dropDownList">@Html.DropDownListFor(x => Model.SelectedList, new SelectList(Model.Toplists))</p>
 <h1 class="randomized-movie-header">TOP 4 @Model.SelectedList</h1>
 <div class="toggleTopList">
     <div class="single-movie-detail">
@@ -144,7 +144,7 @@
             @for (int i = 5; i < Model.TopList.Count; i++)
             {
                 <div class="top-list-column">
-                    <figure class="ranking"><h2>@(i-5 + 1)</h2></figure>
+                    <figure class="ranking"><h2>@(i-4 + 1)</h2></figure>
                     <img src=@Model.TopList[i].Poster />
                     <h2>@Model.TopList[i].Title</h2>
                 </div>

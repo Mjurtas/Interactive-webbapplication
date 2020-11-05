@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="wwwroot\favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="wwwroot\images\logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

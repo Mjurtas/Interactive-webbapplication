@@ -609,6 +609,22 @@ td {
         margin: 3%;
     }
 
+#SelectedList {
+    width: 33vw;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Staatliches';
+    height: 7vh;
+}
+
+select {
+    border-color: #8D0801;
+}
+
+#dropDownList{
+    text-align: center;
+}
+
 
 
 
