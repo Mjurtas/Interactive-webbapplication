@@ -32,8 +32,10 @@ namespace Bjornroth.Controllers
         }
 
         public async Task<IActionResult> Index()
-        {
+        {   
             List<MovieDTO> cmdbRatedMovies = JsonConvert.DeserializeObject<List<MovieDTO>>(System.IO.File.ReadAllText("movies.json"));
+            
+            //Randomizer for the carousels
             for (var i = 0; i < 3; i++)
                 {
                     int number = random.Next(1, 1000000);
@@ -46,7 +48,7 @@ namespace Bjornroth.Controllers
                         var fullModel = await cmdbRepository.GetCmdbRating(id);
                         MovieViewModel completeMovie = new MovieViewModel(model, fullModel);
                         generatedMovies.Add(completeMovie);
-                    ratedMovies.Add(cmdbRatedMovies[index]);
+                        ratedMovies.Add(cmdbRatedMovies[index]);
 
                     }
                     else

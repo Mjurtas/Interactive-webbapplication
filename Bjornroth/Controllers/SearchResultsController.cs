@@ -24,15 +24,22 @@ namespace Bjornroth.Controllers
         public async Task<IActionResult> Index(string searchInput)
         {
             if (searchInput != null)
-            {
+                
+            {    //Formats string to avoid bugs where "-" and such returns the wrong search results
                 string formattedString = cmdbRepository.FormatSearchString(searchInput);
+
+                /* This method returns a SearchDTO which holds a List<MovieDTO> */
                 var model = await cmdbRepository.GetSearchResults(formattedString);
                 if (model.Search != null)
                 {
+                    /* This method fetches the 1st movie in the list and and returns
+                     * a more detailed movie-object for us to highlight in the search-resultview*/
+
                     var model2 = await cmdbRepository.GetSearchResultById(model.Search[0].ImdbId);
                     model.Search[0] = model2;
                     foreach (MovieDTO movie in model.Search)
                     {
+                        // If the movie exists in the CMDb, it assigns the likes/dislikes to the movie.
                         string imdbId = movie.ImdbId;
                         var model3 = await cmdbRepository.GetCmdbRating(imdbId);
                         if (model3 != null)

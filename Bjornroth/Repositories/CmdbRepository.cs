@@ -47,15 +47,17 @@ namespace Bjornroth.Repositories
             return await Connect(endpoint);
         }
 
+        //returns a MovieObject with from CMDb with title, likes, dislikes.
         public async Task<MovieDTO> GetCmdbRating(string imdbId)
         {
             string endpoint = $"{baseUrl2}movie/{imdbId}";
             return await Connect(endpoint);
         }
 
+        /*This Method returns a SearchDTO - which holds a List<MovieDTO> Search*/
         public async Task<SearchDTO> GetSearchResults(string searchInput)
         {
-            //TODO: Fixa så att koden inte upprepas
+            
             using (HttpClient client = new HttpClient())
             {
                 string endpoint = $"{baseUrl1}s={searchInput}";
@@ -67,12 +69,14 @@ namespace Bjornroth.Repositories
             }
         }
 
+        // This method returns a movie object, and is used by the randomizer on the startpage. 
         public async Task<MovieDTO> GetSearchResultById(string imdbId)
         {
             string endpoint = $"{baseUrl1}i={imdbId}";
             return await Connect(endpoint);
         }
 
+        //This method returns a detailed movie-object with full plot
         public async Task<MovieDTO> GetSearchResultByIdFullPlot(string imdbId)
         {
             string endpoint = $"{baseUrl1}i={imdbId}&plot=full";
@@ -102,14 +106,14 @@ namespace Bjornroth.Repositories
         {
             using (HttpClient client = new HttpClient())
             {
-                string endpoint = $"{baseUrl2}movie";
+                string endpoint = $"{baseUrl2}movie"; // Endpoint for full list of movies in CMDB api
                 var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
                 response.EnsureSuccessStatusCode();
                 var data = await response.Content.ReadAsStringAsync();
                 var result = JsonConvert.DeserializeObject<List<MovieDTO>>(data);
-                for (int i = 0; i < result.Count; i++)
+                for (int i = 0; i < result.Count; i++)  //For every movie in CMDB....
                 {
-                    string endpoint2 = $"{baseUrl1}i={result[i].ImdbId}";
+                    string endpoint2 = $"{baseUrl1}i={result[i].ImdbId}"; //...set the likes/dislikes for every movie in OMDB
                     var result2 = await Connect(endpoint2);
                     result2.NumberOfLikes = result[i].NumberOfLikes;
                     result2.NumberOfDislikes = result[i].NumberOfDislikes;
