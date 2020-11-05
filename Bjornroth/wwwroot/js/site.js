@@ -225,17 +225,21 @@ function updateSearchRatings() {
 }
 
 function ChangeContent(rating, i) {
-    var form = document.getElementsByClassName("like-buttons-full-movie-detail")
+    var likebtn = document.getElementById(`like-btn${i}`)
+    var dislikebtn = document.getElementById(`dislike-btn${i}`)
 
     if (rating == "liked") {
-        form[i].innerHTML = "<h1 style='color: green'>LIKED</h1>"
+        likebtn.parentNode.parentNode.innerHTML = "<h1 style='color: green'>LIKED</h1>"
     }
 
     else {
-        form[i].innerHTML = "<h1 style='color: red'>DISLIKED</h1>"
+        dislikebtn.parentNode.parentNode.innerHTML = "<h1 style='color: red'>DISLIKED</h1>"
     }
 
 }
+
+
+
 
 function resetTableOrder(rowsToOrder) {
 
@@ -259,12 +263,14 @@ async function activateEventListeners() {
             await testing(document.getElementById(`imdbId${i}`).value, "like", i)
             Rating(i)
             ChangeContent("liked", i)
+           
         })
         document.getElementById(`dislike-btn${i}`).addEventListener("click", async function (event) {
             event.preventDefault()
             await testing(document.getElementById(`imdbId${i}`).value, "dislike", i)
             Rating(i)
             ChangeContent("disliked", i)
+          
         })
 
     }
