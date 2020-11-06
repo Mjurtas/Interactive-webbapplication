@@ -26,9 +26,8 @@
 
 .carousel-item img {
     height: 50vh;
-    max-width: 15vw;
-   
     margin: auto;
+    max-width: none;
 }
     
 
@@ -583,9 +582,9 @@ td {
 /* CSS FOR TOPLIST */
 
 .ranking0 {
-    width: 7vh;
-    height: 7vh;
-    line-height: 7vh;
+    width: 5vw;
+    height: 5vw;
+    line-height: 5vw;
     border-radius: 50%;
     text-align: center;
     background: #8D0801;
@@ -593,19 +592,31 @@ td {
     top: 0;
     left: 0;
     color: white;
-    font-size: 7vh;
+    font-size: 5vw;
+} 
+.ranking0 h2{
+    line-height: 5vw;
+    text-align: center;
+    color: white;
+    font-size: 5vw;
 }
-
 .ranking {
-    width: 7vh;
-    height: 7vh;
-    line-height: 7vh;
+    width: 5vw;
+    height: 5vw;
+    line-height: 5vw;
     border-radius: 50%;
     text-align: center;
     background: #8D0801;
     color: white;
-    font-size: 7vh;
+    font-size: 5vw;
     position: absolute;
+}
+
+.ranking h2 {
+    line-height: 5vw;
+    text-align: center;
+    color: white;
+    font-size: 5vw;
 }
 
 .top-list-index-1-3-container {
@@ -685,4 +696,11 @@ select {
 
 
 
+@media only screen and (min-width: 700px) {
+    .carousel-item img {
+        height: 50vh;
+        margin: auto;
+        max-width: 15vw;
+    }
 
+}

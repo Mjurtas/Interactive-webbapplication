@@ -2,8 +2,8 @@
 let countOfNumberOfTimesSwitched = 0
 
 async function testing(imdbId, newRating, index) {
-    const baseUrl = "https://localhost:5001/api/"
-    //const baseUrl = "https://localhost:44313/api/"
+    //const baseUrl = "https://localhost:5001/api/"
+    const baseUrl = "https://localhost:44313/api/"
     console.log(imdbId)
     try {
         const api = await fetch(`${baseUrl}movie/${imdbId}/${newRating}`, {
@@ -40,25 +40,25 @@ function Rating(i) {
     const likes = parseInt(document.getElementById(`like-number${i}`).innerHTML)
     const dislikes = parseInt(document.getElementById(`dislike-number${i}`).innerHTML)
     const ratingPercentage = Math.round(((likes / (likes + dislikes) * 100)))
-    const ratingLabel = document.getElementsByClassName("rating-percentage-label")
+    const ratingLabel = document.getElementsByClassName("rating-percentage-label2")
     if (ratingPercentage) {
-        ratingLabel[i].innerHTML = ratingPercentage.toString() + "%"
+        ratingLabel[i-4].innerHTML = ratingPercentage.toString() + "%"
     }
     else if (likes || dislikes) {
-        ratingLabel[i].innerHTML = ratingPercentage.toString() + "%"
+        ratingLabel[i-4].innerHTML = ratingPercentage.toString() + "%"
     }
     else {
-        ratingLabel[i].innerHTML = "N/A"
+        ratingLabel[i-4].innerHTML = "N/A"
     }
 
     if (ratingPercentage > 50) {
-        ratingLabel[i].style.color = "green"
+        ratingLabel[i-4].style.color = "green"
     }
     else if (ratingPercentage < 50) {
-        ratingLabel[i].style.color = "red"
+        ratingLabel[i-4].style.color = "red"
     }
     else {
-        ratingLabel[i].style.color = "yellow"
+        ratingLabel[i-4].style.color = "yellow"
     }
 }
 
@@ -78,14 +78,13 @@ function ChangeContent(rating, i) {
 
 async function activateEventListeners2() {
     console.log("called activateEventListeners")
-    for (let i = 4; i < numberOfReactButtons + 4; i++) {
+    for (let i = 4; i < 8; i++) {
         console.log("loop körs för knapparna" + i)
         document.getElementById(`like-btn${i}`).addEventListener("click", async function (event) {
             event.preventDefault()
             console.log("preventdefff")
             await testing(document.getElementById(`imdbId${i}`).value, "like", i)
             console.log("undra om detta sparas" + i)
-            Rating(i)
             ChangeContent("liked", i)
         })
         document.getElementById(`dislike-btn${i}`).addEventListener("click", async function (event) {
@@ -93,7 +92,6 @@ async function activateEventListeners2() {
             console.log("preventdefff")
             await testing(document.getElementById(`imdbId${i}`).value, "dislike", i)
             console.log("undra om detta sparas" + i)
-            Rating(i)
             ChangeContent("disliked", i)
         })
 
