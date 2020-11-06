@@ -1,6 +1,6 @@
 ﻿async function testing(imdbId, newRating, index) {
-    //const baseUrl = "https://localhost:5001/api/"
-    const baseUrl = "https://localhost:44313/api/"
+    const baseUrl = "https://localhost:5001/api/"
+    //const baseUrl = "https://localhost:44313/api/"
     console.log(imdbId)
     try {
         const api = await fetch(`${baseUrl}movie/${imdbId}/${newRating}`, {

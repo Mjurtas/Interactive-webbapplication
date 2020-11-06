@@ -680,6 +680,8 @@ select {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        border-bottom: 1px solid #313131;
+        padding: 1%;
     }
 
     .single-movie-detail-img {
@@ -687,9 +689,48 @@ select {
     }
     .single-movie-detail-ul {
         display: flex;
+        border-bottom: 1px solid #313131;
+        padding: 1%;
     }
     .single-movie-detail-ul li {
         flex: 1;
+    }
+    .list-and-imdb-block {
+        display: flex;
+        flex-direction:column;
+        margin-left: 0;
+        padding: 1%;
+
+    }
+
+    .list-and-imdb-block img {
+       
+    }
+
+    .rating {
+        justify-content: center;
+        margin-left: 0;
+        margin-top: 2%;
+        border-bottom: 1px solid #313131
+    }
+
+    .like-buttons-full-movie-detail {
+        padding: 0;
+        justify-content: center;
+    }
+
+    .top-list-index-1-3-container, .top-list-row {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .top-list-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .top-list-index-1-3-container {
+        display: block;
     }
 }
 
