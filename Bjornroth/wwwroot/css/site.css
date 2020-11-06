@@ -732,6 +732,20 @@ select {
     .top-list-index-1-3-container {
         display: block;
     }
+
+    .hamburger {
+        display: flex;
+        color: white;
+    }
+
+    .hamburger-inner, .hamburger, .hamburger-box {
+        color: white;
+        background-color: white;
+    }
+
+    .links {
+        display: none;
+    }
 }
 
 
