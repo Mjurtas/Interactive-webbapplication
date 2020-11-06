@@ -1,6 +1,6 @@
 ﻿async function testing(imdbId, newRating, index) {
-    const baseUrl = "https://localhost:5001/api/"
-    //const baseUrl = "https://localhost:44313/api/"
+    //const baseUrl = "https://localhost:5001/api/"
+    const baseUrl = "https://localhost:44313/api/"
     console.log(imdbId)
     try {
         const api = await fetch(`${baseUrl}movie/${imdbId}/${newRating}`, {
@@ -261,14 +261,14 @@ async function activateEventListeners() {
         document.getElementById(`like-btn${i}`).addEventListener("click", async function (event) {
             event.preventDefault()
             await testing(document.getElementById(`imdbId${i}`).value, "like", i)
-            Rating(i)
+            //Rating(i)
             ChangeContent("liked", i)
            
         })
         document.getElementById(`dislike-btn${i}`).addEventListener("click", async function (event) {
             event.preventDefault()
             await testing(document.getElementById(`imdbId${i}`).value, "dislike", i)
-            Rating(i)
+            //Rating(i)
             ChangeContent("disliked", i)
           
         })

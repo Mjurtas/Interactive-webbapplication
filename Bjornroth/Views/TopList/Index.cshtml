@@ -124,7 +124,7 @@
                         <input type="hidden" value="like" />
                         <button type="submit" id="like-btn4" class="submitBtn2"><img src="~/images/like.png" /></button>
                     }
-                    <h1 class="rating-percentage-label"></h1>
+                    <h1 class="rating-percentage-label2"></h1>
                     @using (Html.BeginForm("Index", "MovieDetails"))
                     {
                         <input type="hidden" id="imdbId4" value="@Model.TopList[4].ImdbId" />
@@ -166,7 +166,7 @@
                             <input type="hidden" value="like" />
                             <button type="submit" id="like-btn@(i)" class="submitBtn2"><img src="~/images/like.png" /></button>
                         }
-                        <h1 class="rating-percentage-label">17%</h1>
+                        <h1 class="rating-percentage-label2">17%</h1>
                         @using (Html.BeginForm("Index", "MovieDetails"))
                         {
                             <input type="hidden" id="imdbId@(i)" value="@Model.TopList[i].ImdbId" />
