@@ -8,19 +8,25 @@
 <div class="toggleTopList">
     <div class="single-movie-detail">
         <div class="movie-detail-head">
-            <div class="single-movie-detail-img">
-                <img src="@Model.TopList[0].Poster">
-                <figure class="ranking0"><h2>1</h2></figure>
+            <div class="image-and-text">
+                <div class="single-movie-detail-img">
+                    <img src="@Model.TopList[0].Poster">
+                    <figure class="ranking0"><h2>1</h2></figure>
+                </div>
+
+                <div class="head-and-plot-block">
+                    <h1>@Model.TopList[0].Title, @Model.TopList[0].Released</h1>
+                    <h3>Plot</h3>
+                    <p>@Model.TopList[0].Plot</p>
+                    @using (Html.BeginForm("Index", "MovieDetails"))
+                    {
+                        <input type="hidden" name="imdbId" value="@Model.TopList[0].ImdbId" />
+                        <input type="submit" class="read-more" value="Read More" />
+                    }
+                </div>
+             
             </div>
-            <div class="head-and-plot-block">
-                <h1>@Model.TopList[0].Title, @Model.TopList[0].Released</h1>
-                <h3>Plot</h3>
-                <p>@Model.TopList[0].Plot</p>
-                @using (Html.BeginForm("Index", "MovieDetails"))
-                {
-                    <input type="hidden" name="imdbId" value="@Model.TopList[0].ImdbId" />
-                    <input type="submit" class="read-more" value="Read More" />
-                }
+                
 
                 <ul hidden="hidden">
                     <li id="like-number0">@Model.TopList[0].NumberOfLikes</li>
@@ -43,7 +49,7 @@
                     }
 
                 </div>
-            </div>
+            
         </div>
 
     </div>

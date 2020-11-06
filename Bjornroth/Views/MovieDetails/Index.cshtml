@@ -7,20 +7,22 @@
 
 <div class="single-movie-detail">
     <div class="movie-detail-head">
-        <div class="single-movie-detail-img">
-            <img src="@Model.Poster">
-        </div>
-        <div class="head-and-plot-block">
-            <h1>@Model.Title, <br /> @Model.Released</h1>
-            <div class="plot">
-                <h3>Plot</h3>
+        <div class="image-and-text">
+            <div class="single-movie-detail-img">
+                <img src="@Model.Poster">
+            </div>
+            <div class="head-and-plot-block">
+                <h1>@Model.Title, <br /> @Model.Released</h1>
+                <div class="plot">
+                    <h3>Plot</h3>
 
-                <input hidden="hidden" value="@Model.Plot" class="p-full-plot" />
-                <div class="short-plot">
-                    <p class="p-short-plot"></p> <p class="rest-plot"></p>
+                    <input hidden="hidden" value="@Model.Plot" class="p-full-plot" />
+                    <div class="short-plot">
+                        <p class="p-short-plot"></p> <p class="rest-plot"></p>
+                    </div>
+               </div>
+                    <a class="read-more">READ MORE</a>
                 </div>
-                <a class="read-more">READ MORE</a>
-            </div>
         </div>
     </div>
 
@@ -28,62 +30,62 @@
 
 
 
-    <div class="single-movie-detail-text">
-        <div class="list-and-imdb-block">
+        <div class="single-movie-detail-text">
+            <div class="list-and-imdb-block">
 
-            <ul class="single-movie-detail-ul">
-                <li><b>Director:</b> @Model.Director</li>
-                <li><b>Runtime:</b> @Model.Runtime</li>
-                <li><b>Actors:</b> @Model.Actors.</li>
-                <li><b>Number of Likes</b></li>
-                <li id="like-number0">@Model.NumberOfLikes</li>
-                <li><b>Number of Dislikes</b></li>
-                <li id="dislike-number0">@Model.NumberOfDislikes</li>
-            </ul>
+                <ul class="single-movie-detail-ul">
+                    <li><b>Director:</b> @Model.Director</li>
+                    <li><b>Runtime:</b> @Model.Runtime</li>
+                    <li><b>Actors:</b> @Model.Actors.</li>
+                    <li><b>Number of Likes</b></li>
+                    <li id="like-number0">@Model.NumberOfLikes</li>
+                    <li><b>Number of Dislikes</b></li>
+                    <li id="dislike-number0">@Model.NumberOfDislikes</li>
+                </ul>
 
-            <div class="rating">
-                <table>
-                    <thead>
-                        <tr>
-                            <th class="rating-th"><img src="~/images/imdb.png" /></th>
-                            <th class="rating-th"> <img id="img-cmbd-rating" src="~/images/cropped logo.png" /></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><h1>@Model.ImdbRating</h1></td>
-                            <td><h2 style="color: green"><span id="nmbr-of-likes">@Model.NumberOfLikes</span><span style="color: white">/</span><span style="color: red;" id="nmbr-of-dislikes">@Model.NumberOfDislikes</span></h2></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="rating">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="rating-th"><img src="~/images/imdb.png" /></th>
+                                <th class="rating-th"> <img id="img-cmbd-rating" src="~/images/cropped logo.png" /></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><h1>@Model.ImdbRating</h1></td>
+                                <td><h2 style="color: green"><span id="nmbr-of-likes">@Model.NumberOfLikes</span><span style="color: white">/</span><span style="color: red;" id="nmbr-of-dislikes">@Model.NumberOfDislikes</span></h2></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
 
+
+                </div>
+            </div>
+
+
+            <div class="like-buttons-full-movie-detail">
+                @using (Html.BeginForm("Index", "MovieDetails"))
+                {
+                    <input type="hidden" id="imdbId0" value="@Model.ImdbId" />
+                    <input type="hidden" name="newRating" value="like" />
+                    <button type="submit" id="like-btn0" class="submitBtn"><img src="~/images/like.png" /></button>
+                }
+                <h1 class="rating-percentage-label"></h1>
+                @using (Html.BeginForm("Index", "MovieDetails"))
+                {
+                    <input type="hidden" id="imdbId0" value="@Model.ImdbId" />
+                    <input type="hidden" name="newRating" value="dislike" />
+                    <button type="submit" id="dislike-btn0" class="submitBtn"><img src="~/images/dislike.png" /></button>
+                }
 
             </div>
         </div>
 
 
-        <div class="like-buttons-full-movie-detail">
-            @using (Html.BeginForm("Index", "MovieDetails"))
-            {
-                <input type="hidden" id="imdbId0" value="@Model.ImdbId" />
-                <input type="hidden" name="newRating" value="like" />
-                <button type="submit" id="like-btn0" class="submitBtn"><img src="~/images/like.png" /></button>
-            }
-            <h1 class="rating-percentage-label"></h1>
-            @using (Html.BeginForm("Index", "MovieDetails"))
-            {
-                <input type="hidden" id="imdbId0" value="@Model.ImdbId" />
-                <input type="hidden" name="newRating" value="dislike" />
-                <button type="submit" id="dislike-btn0" class="submitBtn"><img src="~/images/dislike.png" /></button>
-            }
 
-        </div>
     </div>
-
-
-
-</div>
 
 <script src="/node_modules/readmore-js/readmore.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"
