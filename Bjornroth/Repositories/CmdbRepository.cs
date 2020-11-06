@@ -112,8 +112,8 @@ namespace Bjornroth.Repositories
                     string endpoint = $"{baseUrl2}movie"; // Endpoint for full list of movies in CMDB api
                     var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
                     response.EnsureSuccessStatusCode();
-                if (response.StatusCode.ToString() == "200")
-                {
+                if (response.IsSuccessStatusCode) 
+                { 
                     var data = await response.Content.ReadAsStringAsync();
                     var result = JsonConvert.DeserializeObject<List<MovieDTO>>(data);
                     for (int i = 0; i < result.Count; i++)  //For every movie in CMDB....
@@ -122,6 +122,10 @@ namespace Bjornroth.Repositories
                         var result2 = await Connect(endpoint2);
                         result2.NumberOfLikes = result[i].NumberOfLikes;
                         result2.NumberOfDislikes = result[i].NumberOfDislikes;
+                        if (result2.Poster == "N/A")
+                        {
+                            result2.Poster = "../images/posterlessPoster.png";
+                        }
                         result.RemoveAt(i);
                         result.Insert(i, result2);
                     }
@@ -131,18 +135,9 @@ namespace Bjornroth.Repositories
                     //Creates a file with the json string
                     System.IO.File.WriteAllText("movies.json", jsonString);
                     ////Sets  the json file to the movie list
-                    //JsonConvert.DeserializeObject<List<MovieDTO>>(System.IO.File.ReadAllText("movies.json"));
                 }
-                
-
               
                 }
-            
-
-
-
-
-
 
         }
 
