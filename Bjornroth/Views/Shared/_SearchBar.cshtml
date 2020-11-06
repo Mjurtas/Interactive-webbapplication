@@ -31,7 +31,7 @@
                 <td hidden="hidden"><a href="/MovieDetails?imdbId=@Model.SearchSuggestions[i].ImdbId"><img src="@Model.SearchSuggestions[i].Poster" /></a></td>
                 <td hidden="hidden">@Html.ActionLink($"{@Model.SearchSuggestions[i].Title}", "Index", "MovieDetails", new { imdbId = @Model.SearchSuggestions[i].ImdbId }, new { @class = "searchLink" })</td>
 
-                <td hidden="hidden"><img class="" search-bar-cmdb-logo"" src="~/images/cropped logo.png" /><a href="/MovieDetails?imdbId=@Model.SearchSuggestions[i].ImdbId"><h3 class="cmdb-rating-label-searchbar"></h3></a></td>
+                <td hidden="hidden"><a href="/MovieDetails?imdbId=@Model.SearchSuggestions[i].ImdbId"><img class="" search-bar-cmdb-logo"" src="~/images/cropped logo.png" /></a><a href="/MovieDetails?imdbId=@Model.SearchSuggestions[i].ImdbId"><h3 class="cmdb-rating-label-searchbar"></h3></a></td>
                 <td class="numberOfLikes-td" hidden="hidden">@Model.SearchSuggestions[i].NumberOfLikes</td>
                 <td class="numberOfDislikes-td" hidden="hidden">@Model.SearchSuggestions[i].NumberOfDislikes </td>
             </tr>
