@@ -221,14 +221,30 @@ header {
 
 }
 
+.links2, .links2 ul {
+    margin: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: black;
+    list-style: none;
+}
 
-    .links {
-        margin-left: 70%;
-        justify-content: right;
-        margin: auto;
-        flex: 1;
-        display: flex;
-    }
+#mobile-nav-menu {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
+}
+
+.links {
+    margin-left: 70%;
+    justify-content: right;
+    margin: auto;
+    flex: 1;
+    display: flex;
+}
 
 .logo {
     justify-content: left;
@@ -674,6 +690,8 @@ select {
 #dropDownList{
     text-align: center;
 }
+
+
 
 @media only screen and (max-width: 767px) {
     .image-and-text {

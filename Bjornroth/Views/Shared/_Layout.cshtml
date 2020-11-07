@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
     <link rel="icon" href="@Url.Content("~/images/favicon.ico")" />
-
+        
 </head>
 
 <body>
@@ -40,6 +40,14 @@
        
     </header>
     <div class="container">
+        <div  hidden="hidden" id="mobile-nav-menu">
+            <div class="links2">
+                <ul>
+                    <li>@Html.ActionLink("HOME", "Index", "Start")</li>
+                    <li>@Html.ActionLink("TOPLIST", "Index", "TopList")</li>
+                </ul>
+            </div>
+        </div>
         @RenderBody()
     </div>
 
@@ -55,16 +63,23 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script type="module" src="~/js/site.js"></script>
     <script>
-        // Look for .hamburger
-        var hamburger = document.querySelector(".hamburger");
-        // On click
-        hamburger.addEventListener("click", function () {
-            // Toggle class "is-active"
-            hamburger.classList.toggle("is-active");
-            console.log(hamburger.classList.value)
-            console.log("lol")
-            // Do something else, like open/close menu
-        });
+        function toggleMenu() {
+            $(document).ready(function () {
+                var hamburger = document.querySelector(".hamburger");
+                var menu = document.getElementById("mobile-nav-bar")
+                // On click
+                hamburger.addEventListener("click", function () {
+                    // Toggle class "is-active"
+                    hamburger[0].classList.toggle("is-active");
+                    menu.hidden = false;
+                    console.log(hamburger.classList.value)
+                    console.log("lol")
+                    // Do something else, like open/close menu
+                });
+
+            })
+
+        }
     </script>
 </body>
 </html>

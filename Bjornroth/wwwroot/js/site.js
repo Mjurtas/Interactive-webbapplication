@@ -275,6 +275,7 @@ async function activateEventListeners() {
 
     }
     document.getElementById("searchInput").addEventListener("input", helperSearch)
+    document.getElementByClassName("hamburger").addEventListener("click", toggleMenu)
 }
 
 function setRatingLabels() {
@@ -282,6 +283,8 @@ function setRatingLabels() {
         Rating(i)
     }
 }
+
+
 
 
 activateEventListeners()
