@@ -26,8 +26,9 @@
 
 .carousel-item img {
     height: 50vh;
-    margin: auto;
-    max-width: none;
+    margin: 20%;
+    max-width: 100% !important;
+    width: 50%;
 }
     
 
@@ -50,12 +51,13 @@
         justify-content: space-evenly;
     }
 
-.like-buttons-start {
-    display: flex;
-    flex-direction: column;
-    margin-left: 15%;
-   
-}
+        
+
+        .like-buttons-start {
+            display: flex;
+            flex-direction: column;
+            margin-left: 15%;
+        }
 
     .like-buttons-start button {
         background-position: center top;
@@ -144,6 +146,13 @@ header {
     background: black;
     color: white;
 }  
+
+button, button:focus {
+    outline: none;
+    color: white;
+   
+
+}
 
 
 
@@ -691,6 +700,15 @@ select {
     text-align: center;
 }
 
+.hamburger {
+    display: none;
+}
+
+@media only screen and (min-width: 768px) {
+    .links2{
+        display: none;
+    }
+}
 
 
 @media only screen and (max-width: 767px) {
@@ -721,9 +739,7 @@ select {
 
     }
 
-    .list-and-imdb-block img {
-       
-    }
+   
 
     .rating {
         justify-content: center;
@@ -759,29 +775,30 @@ select {
             margin: 0 auto;
         }
 
-    .hamburger {
-        display: flex;
-        color: white;
-    }
 
-    .hamburger-inner, .hamburger, .hamburger-box {
-        color: white;
-        background-color: white;
-    }
 
     .links {
         display: none;
     }
+
+    .hamburger-inner, .hamburger, .hamburger-box, .hamburger--3dx {
+        display: flex;
+        color: white;
+       
+        margin: auto auto auto 5%;
+    }
+
 }
 
 
 
 
-@media only screen and (min-width: 700px) {
+@media only screen and (max-width: 700px) {
     .carousel-item img {
         height: 50vh;
         margin: auto;
-        max-width: 15vw;
+        width: 100%;
+       
     }
 
 }

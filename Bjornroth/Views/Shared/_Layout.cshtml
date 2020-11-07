@@ -8,13 +8,14 @@
     <meta name="description" content="">
     <!-- <meta name=”viewport” content=”width=device-width, initial-scale=”1.0”>-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="~/css/site.css" rel="stylesheet" />
+
     <link href="~/css/hamburgers-master/dist/hamburgers.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
     <link rel="icon" href="@Url.Content("~/images/favicon.ico")" />
-        
+
 </head>
 
 <body>
@@ -40,7 +41,7 @@
        
     </header>
     <div class="container">
-        <div  hidden="hidden" id="mobile-nav-menu">
+        <div  id="mobile-nav-menu">
             <div class="links2">
                 <ul>
                     <li>@Html.ActionLink("HOME", "Index", "Start")</li>
@@ -63,23 +64,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script type="module" src="~/js/site.js"></script>
     <script>
-        function toggleMenu() {
-            $(document).ready(function () {
-                var hamburger = document.querySelector(".hamburger");
-                var menu = document.getElementById("mobile-nav-bar")
-                // On click
-                hamburger.addEventListener("click", function () {
-                    // Toggle class "is-active"
-                    hamburger[0].classList.toggle("is-active");
-                    menu.hidden = false;
-                    console.log(hamburger.classList.value)
-                    console.log("lol")
-                    // Do something else, like open/close menu
-                });
-
-            })
-
-        }
+       
     </script>
 </body>
 </html>

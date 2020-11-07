@@ -275,8 +275,28 @@ async function activateEventListeners() {
 
     }
     document.getElementById("searchInput").addEventListener("input", helperSearch)
-    document.getElementByClassName("hamburger").addEventListener("click", toggleMenu)
+    
 }
+
+
+    $(document).ready(function () {
+        var $hamburger = $(".hamburger");
+        var $menu = $("#mobile-nav-menu");
+       
+        $menu.hide();
+        // On click
+        $hamburger.on("click", function (e) {
+            console.log($menu.html());
+            // Toggle class "is-active"
+            $hamburger.toggleClass("is-active");
+            $menu.slideToggle();
+            
+            // Do something else, like open/close menu
+        });
+
+    })
+
+
 
 function setRatingLabels() {
     for (let i = 0; i < numberOfReactButtons; i++) {
