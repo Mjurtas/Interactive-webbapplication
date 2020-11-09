@@ -54,7 +54,6 @@ namespace Bjornroth.Controllers
                         MovieViewModel completeMovie = new MovieViewModel(model, fullModel);
                         generatedMovies.Add(completeMovie);
                         ratedMovies.Add(cmdbRatedMovies[index]);
-
                     }
                     else
                     {
@@ -66,14 +65,14 @@ namespace Bjornroth.Controllers
             }
             catch
             {
-                return RedirectToAction("Index", "Error");
+                return RedirectToAction("Error");
             }
-
-            
    
         }
-
         
-
+        public IActionResult Error()
+        {
+            return View();
+        }
     }
 }

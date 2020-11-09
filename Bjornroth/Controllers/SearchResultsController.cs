@@ -23,7 +23,7 @@ namespace Bjornroth.Controllers
         [Route("/SearchResult/")]
         public async Task<IActionResult> Index(string searchInput)
         {
-            
+            try { 
             if (searchInput != null)
                 
             {    //Formats string to avoid bugs where "-" and such returns the wrong search results
@@ -60,6 +60,11 @@ namespace Bjornroth.Controllers
                 }
             }
             return RedirectToAction("PageNotFound");
+            }
+            catch
+            {
+                return RedirectToAction("Error");
+            }
 
         }
 
@@ -67,6 +72,11 @@ namespace Bjornroth.Controllers
         {
             BaseViewModel viewModel = new BaseViewModel();
             return View(viewModel);
+        }
+
+        public IActionResult Error()
+        {
+            return View();
         }
 
         

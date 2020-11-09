@@ -22,15 +22,22 @@ namespace Bjornroth.Controllers
 
         public async Task<IActionResult> Index(string imdbId)
         {
-            
-            
+            try { 
                 var model = await cmdbRepository.GetSearchResultByIdFullPlot(imdbId);
                 string id = model.ImdbId;
                 var model2 = await cmdbRepository.GetCmdbRating(id);
                 MovieViewModel viewModel = new MovieViewModel(model, model2);
                 return View(viewModel);
-            
-            
+            }
+            catch
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
+        public IActionResult Error()
+        { 
+            return View();
         }
     }
 }

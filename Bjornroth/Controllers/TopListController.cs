@@ -17,9 +17,10 @@ namespace Bjornroth.Controllers
             this.cmdbRepository = cmdbRepository;
 
         }
-
+       
         public async Task<IActionResult> Index()
         {
+            try { 
             var model = await cmdbRepository.GetCurrentTopList("popularity");
             var model2 = await cmdbRepository.GetCurrentTopList("rating");
 
@@ -44,6 +45,17 @@ namespace Bjornroth.Controllers
 
             TopListViewModel viewModel = new TopListViewModel(model, model2);
             return View(viewModel);
+            }
+
+            catch
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
+        public IActionResult Error()
+        {
+            return View();
         }
     }
 }

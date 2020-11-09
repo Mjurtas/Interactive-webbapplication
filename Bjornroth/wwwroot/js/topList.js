@@ -1,9 +1,9 @@
 ﻿let numberOfReactButtons
 let countOfNumberOfTimesSwitched = 0
 
-async function testing(imdbId, newRating, index) {
-    //const baseUrl = "https://localhost:5001/api/"
-    const baseUrl = "https://localhost:44313/api/"
+async function updateRating(imdbId, newRating, index) {
+    const baseUrl = "https://localhost:5001/api/"
+    //const baseUrl = "https://localhost:44313/api/"
     console.log(imdbId)
     try {
         const api = await fetch(`${baseUrl}movie/${imdbId}/${newRating}`, {
@@ -36,33 +36,33 @@ async function testing(imdbId, newRating, index) {
     }
 }
 
-function Rating(i) {
+function setRatingPercentage(i) {
     const likes = parseInt(document.getElementById(`like-number${i}`).innerHTML)
     const dislikes = parseInt(document.getElementById(`dislike-number${i}`).innerHTML)
     const ratingPercentage = Math.round(((likes / (likes + dislikes) * 100)))
     const ratingLabel = document.getElementsByClassName("rating-percentage-label2")
     if (ratingPercentage) {
-        ratingLabel[i-4].innerHTML = ratingPercentage.toString() + "%"
+        ratingLabel[i - 4].innerHTML = ratingPercentage.toString() + "%"
     }
     else if (likes || dislikes) {
-        ratingLabel[i-4].innerHTML = ratingPercentage.toString() + "%"
+        ratingLabel[i - 4].innerHTML = ratingPercentage.toString() + "%"
     }
     else {
-        ratingLabel[i-4].innerHTML = "N/A"
+        ratingLabel[i - 4].innerHTML = "N/A"
     }
 
     if (ratingPercentage > 50) {
-        ratingLabel[i-4].style.color = "green"
+        ratingLabel[i - 4].style.color = "green"
     }
     else if (ratingPercentage < 50) {
-        ratingLabel[i-4].style.color = "red"
+        ratingLabel[i - 4].style.color = "red"
     }
     else {
-        ratingLabel[i-4].style.color = "yellow"
+        ratingLabel[i - 4].style.color = "yellow"
     }
 }
 
-function ChangeContent(rating, i) {
+function changeContent(rating, i) {
     var likebtn = document.getElementById(`like-btn${i}`)
     var dislikebtn = document.getElementById(`dislike-btn${i}`)
 
@@ -76,23 +76,17 @@ function ChangeContent(rating, i) {
 
 }
 
-async function activateEventListeners2() {
-    console.log("called activateEventListeners")
+async function activateEventListeners() {
     for (let i = 4; i < 8; i++) {
-        console.log("loop körs för knapparna" + i)
         document.getElementById(`like-btn${i}`).addEventListener("click", async function (event) {
             event.preventDefault()
-            console.log("preventdefff")
-            await testing(document.getElementById(`imdbId${i}`).value, "like", i)
-            console.log("undra om detta sparas" + i)
-            ChangeContent("liked", i)
+            await updateRating(document.getElementById(`imdbId${i}`).value, "like", i)
+            changeContent("liked", i)
         })
         document.getElementById(`dislike-btn${i}`).addEventListener("click", async function (event) {
             event.preventDefault()
-            console.log("preventdefff")
-            await testing(document.getElementById(`imdbId${i}`).value, "dislike", i)
-            console.log("undra om detta sparas" + i)
-            ChangeContent("disliked", i)
+            await updateRating(document.getElementById(`imdbId${i}`).value, "dislike", i)
+            changeContent("disliked", i)
         })
 
     }
@@ -114,10 +108,10 @@ function onChange() {
         topListDivs[1].hidden = false;
         numberOfReactButtons = document.getElementsByClassName("submitBtn2").length / 2
         if (countOfNumberOfTimesSwitched === 0) {
-            activateEventListeners2()
+            activateEventListeners()
             countOfNumberOfTimesSwitched++
-        for (let i = 4; i < numberOfReactButtons + 4; i++) {
-            Rating(i)
+            for (let i = 4; i < numberOfReactButtons + 4; i++) {
+                setRatingPercentage(i)
             }
         }
     }

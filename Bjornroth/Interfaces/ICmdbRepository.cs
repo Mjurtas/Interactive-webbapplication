@@ -9,13 +9,11 @@ namespace Bjornroth.Interfaces
 {
     public interface ICmdbRepository
     {
-
         Task<MovieDTO> GetSearchResult(string searchInput);
 
         Task<MovieDTO> GetCmdbRating(string imdb);
 
         Task<SearchDTO> GetSearchResults(string searchInput);
-       
 
         Task<MovieDTO> GetSearchResultById(string imdbId);
 
@@ -23,9 +21,8 @@ namespace Bjornroth.Interfaces
 
         Task<MovieDTO> GetSearchResultByIdFullPlot(string imdbId);
 
-        Task<MovieDTO> UpdateRating(string imdbId, string newRating);
-
         public void GetMovies();
+
         string FormatSearchString(string searchInput);
     }
 }

@@ -17,17 +17,14 @@ using System.Threading.Tasks;
 
 namespace Bjornroth.Repositories
 {
-
-
-
     public class CmdbRepository : ICmdbRepository
     {
         string baseUrl1;
         string baseUrl2;
         public CmdbRepository(IConfiguration config)
         {
-            baseUrl1 = config.GetValue<string>("CMDBApi:BaseUrl1");
-            baseUrl2 = config.GetValue<string>("CMDBApi:BaseUrl2");
+            baseUrl2 = config.GetValue<string>("CMDBApi:BaseUrl");
+            baseUrl1 = config.GetValue<string>("OMDbApi:BaseUrl");
         }
 
         private async Task<MovieDTO> Connect(string endpoint)
@@ -85,6 +82,7 @@ namespace Bjornroth.Repositories
             return await Connect(endpoint);
         }
 
+        //Returns current TopList from CMDB
         public async Task<List<MovieDTO>> GetCurrentTopList(string sort)
         {
             using (HttpClient client = new HttpClient())
@@ -98,15 +96,9 @@ namespace Bjornroth.Repositories
             }
         }
 
-        public async Task<MovieDTO> UpdateRating(string imdbId, string newRating)
-        {
-            string endpoint = $"{baseUrl2}movie/{imdbId}/{newRating}";
-            return await Connect(endpoint);
-        }
 
         public async void GetMovies()
         {
-           
                 using (HttpClient client = new HttpClient())
                 {
                     string endpoint = $"{baseUrl2}movie"; // Endpoint for full list of movies in CMDB api
@@ -134,7 +126,6 @@ namespace Bjornroth.Repositories
                     string jsonString = System.Text.Json.JsonSerializer.Serialize(sortedList);
                     //Creates a file with the json string
                     System.IO.File.WriteAllText("movies.json", jsonString);
-                    ////Sets  the json file to the movie list
                 }
               
                 }

@@ -1,4 +1,5 @@
-﻿body {
+﻿/*CSS FOR SHARED CONTENT*/
+body {
     height: 100vh;
     background-image: url(../images/cinema.jpg);
     background-position: center;
@@ -11,89 +12,25 @@
     width: 25px;
     height: 15px;
     margin-right: 10px;
-    margin-left: 10px; 
-}
-
-.carousel-sizing {
-    width: 80%;
-    height: 50%;
-    margin: auto;
-    background-image: url(../images/movieScroll.png), radial-gradient(#000, rgb(255, 255, 255, 0.2));
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.carousel-item img {
-    height: 50vh;
-    margin: 20%;
-    max-width: 100% !important;
-    width: 50%;
-}
-    
-
-    .carousel-background {
-        background: black;
-        opacity: 0.8;
-        margin-bottom: 0px;
-    }
-    .carousel-background:hover  {
-        opacity: 1;
-        
-    }
-
-    .carousel-background h1:hover {
-        text-decoration: underline;
-    }
-
-    .random-movie-details {
-        display: flex;
-        justify-content: space-evenly;
-    }
-
-        
-
-        .like-buttons-start {
-            display: flex;
-            flex-direction: column;
-            margin-left: 15%;
-        }
-
-    .like-buttons-start button {
-        background-position: center top;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-color: rgb(141, 8, 1, 0.1);
-        cursor: pointer;
-        border: none;
-        margin-top: 0;
-        width: 150%;
-        height: 200%;
-    }
-
-    .search-form {
-        display: flex;
-        width: 100%;
-    }
-
-    .like-buttons-start h1{
-        margin-top: 50%;
-    }
-
-    .info-inline {
-        display: inline-block;
-    }
-
-.read-more-start {
-    display: flex;
-    flex-direction: column;
-    margin-right: 10%;
-    margin-top: 5%;
+    margin-left: 10px;
 }
 
 header {
     display: flex;
     padding: 1%;
+}
+
+.hamburger {
+    display: none;
+}
+/* CSS FOR Searchbar */
+#searchBar {
+    color: white;
+}
+
+.search-form {
+    display: flex;
+    width: 100%;
 }
 
 .search-field-and-btn {
@@ -102,7 +39,6 @@ header {
     display: flex;
     flex: 1;
     position: relative;
-
 }
 
 #searchTable {
@@ -113,17 +49,17 @@ header {
     width: auto !important;
 }
 
-#searchTable td a, #search-suggestion h3 {
-    color: white;
-    text-decoration: none;
-    font-family: "Staatliches";
-    letter-spacing: 2px;
-}
+    #searchTable td a, #search-suggestion h3 {
+        color: white;
+        text-decoration: none;
+        font-family: "Staatliches";
+        letter-spacing: 2px;
+    }
 
-#searchTable td a:hover {
-    color: white;
-    text-decoration: none;
-}
+        #searchTable td a:hover {
+            color: white;
+            text-decoration: none;
+        }
 
 .searchLink {
     display: block;
@@ -145,21 +81,16 @@ header {
 #searchTable tr:hover {
     background: black;
     color: white;
-}  
+}
 
 button, button:focus {
     outline: none;
     color: white;
-   
-
 }
-
-
 
 #searchTable img {
     width: 25px;
     height: 35px;
-    
 }
 
 #suggestion-search {
@@ -169,8 +100,6 @@ button, button:focus {
     color: #8D0801;
     background: #808080
 }
-
-
 
 .search-field-and-btn input[type=text] {
     padding: 2% !important;
@@ -185,7 +114,7 @@ button, button:focus {
     margin: auto;
 }
 
-    .search-field-and-btn input[type=text]:focus{
+    .search-field-and-btn input[type=text]:focus {
         outline: none;
     }
 
@@ -197,7 +126,6 @@ button, button:focus {
     font-weight: bold;
     background: none;
     cursor: pointer;
-  
     padding: 0;
 }
 
@@ -213,7 +141,8 @@ button, button:focus {
     font-size: 1.5rem;
     letter-spacing: 1px;
 }
-#suggestion-search h3{
+
+#suggestion-search h3 {
     font-size: 1.5rem;
     font-family: 'Staatliches';
     white-space: pre;
@@ -221,13 +150,6 @@ button, button:focus {
 
 .search-field-and-btn button:focus, #search-value-btn:focus {
     outline: none;
-}
-
-.short-plot {
-   width: auto;
-   text-align: center;
-   overflow-wrap: break-word;
-
 }
 
 .links2, .links2 ul {
@@ -311,11 +233,148 @@ li > a {
         visibility: visible;
         transform: scaleX(1);
     }
+/*CSS FOR START PAGE*/
+.carousel-sizing {
+    width: 80%;
+    height: 50%;
+    margin: auto;
+    background-image: url(../images/movieScroll.png), radial-gradient(#000, rgb(255, 255, 255, 0.2));
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
-    
+.carousel-item img {
+    height: 50vh;
+    margin: 25%;
+    max-width: 100% !important;
+    width: 30%;
+}
 
+.carousel-background {
+    background: black;
+    opacity: 0.8;
+    margin-bottom: 0px;
+}
+
+    .carousel-background:hover {
+        opacity: 1;
+    }
+
+    .carousel-background h1:hover {
+        text-decoration: underline;
+    }
+
+.like-buttons-start {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15%;
+}
+
+    .like-buttons-start button {
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: rgb(141, 8, 1, 0.1);
+        cursor: pointer;
+        border: none;
+        margin-top: 0;
+        width: 150%;
+        height: 200%;
+    }
+
+    .like-buttons-start h1 {
+        margin-top: 50%;
+    }
+
+.info-inline {
+    display: inline-block;
+}
+
+.read-more-start {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10%;
+    margin-top: 5%;
+}
+
+.short-plot {
+    width: auto;
+    text-align: center;
+    overflow-wrap: break-word;
+}
+/*CSS FOR RANDOMIZED MOVIES */
+.randomized-movies-container {
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    background: #000000;
+    opacity: 0.8;
+    margin: 10% 20% 0 20%
+}
+
+    .randomized-movies-container img {
+        height: 100%;
+    }
+
+.randomized-movie-header {
+    font-size: 4rem;
+}
+
+.randomized-movie h3, h1 {
+    color: white;
+    font-family: "Staatliches";
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.error-message {
+    color: white;
+    font-family: "Staatliches";
+    letter-spacing: 2px;
+    text-align: center;
+    font-size: 4rem;
+}
+
+.randomized-movie p {
+    color: white;
+    font-family: "Ubuntu";
+    letter-spacing: 2px;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+.randomized-movie {
+    display: flex;
+}
+
+.read-more {
+    border: 1px solid #8D0801;
+    padding: 10px;
+    font-family: 'Anton';
+    border-radius: 10px;
+    color: #8D0801;
+    text-decoration: none;
+    width: 8vw;
+    margin-bottom: 2%;
+}
+
+    .read-more:hover {
+        background: #8D0801;
+        color: black;
+    }
+
+.randomized-movie-info {
+    padding: 10%;
+    text-align: center;
+    margin: auto;
+}
+
+.random-movie-details {
+    display: flex;
+    justify-content: space-evenly;
+}
 /*CSS FOR FULL MOVIE DETAIL*/
-
 .single-movie-detail {
     display: block;
     margin: auto;
@@ -363,7 +422,7 @@ li > a {
 .single-movie-detail-img {
     height: 20%;
     display: flex;
-    align-items: center;  
+    align-items: center;
 }
 
 .image-and-text {
@@ -374,7 +433,6 @@ td {
     padding: 6%;
 }
 
-
 .list-and-imdb-block {
     display: flex;
     align-items: center;
@@ -384,56 +442,46 @@ td {
     display: block;
     margin-left: 20%;
     justify-content: center;
-    
 }
 
 .rating-logos, .rating-values {
     display: flex;
 }
 
-
-    .rating img {
-        width: 4vw;
-        flex: 1;
-        
-        margin: auto;  }
+.rating img {
+    width: 4vw;
+    flex: 1;
+    margin: auto;
+}
 
 #img-cmbd-rating {
     text-align: center;
 }
+
 #cmdb-logo-cell {
-    
     width: 4vw;
 }
 
-#cmdb-logo-cell img {
-    margin: auto;
-}
-
-
-
-
-
-
+    #cmdb-logo-cell img {
+        margin: auto;
+    }
 
 .rating h1 {
     font-size: 4rem;
 }
+
 .rating h2 {
     font-size: 4rem;
     font-family: Anton;
-   
-    
 }
 
-    .rating-left, .rating-right {
-        display: block;
-    }
+.rating-left, .rating-right {
+    display: block;
+}
+
 .likes-dislikes-rating {
     display: flex;
-    
 }
-
 
 .like-buttons-full-movie-detail {
     display: flex;
@@ -456,98 +504,24 @@ td {
 
 .plot {
     padding: 2%;
-    
-    
 }
 
 .rest-plot {
     display: inline-block;
 }
 
-
 .read-more {
     display: flex;
     justify-content: center;
     margin: 0 auto;
     width: 20%;
-   
 }
-/*-----------------------------------*/
-/*CSS FOR RANDOMIZED MOVIES */
-.randomized-movies-container {
-    justify-content: center;
-    text-align: center;
-    display: flex;
-    background: #000000;
-    opacity: 0.8;
-    margin: 10% 20% 0 20%
-}
-
-    .randomized-movies-container img {
-        height: 100%;
-    }
-
-.randomized-movie-header {
-    font-size: 4rem;
-}
-
-.randomized-movie h3, h1 {
-    color: white;
-    font-family: "Staatliches";
-    letter-spacing: 2px;
-    text-align: center;
-}
-
-.randomized-movie p {
-    color: white;
-    font-family: "Ubuntu";
-    letter-spacing: 2px;
-    margin-top: 5px;
-    text-transform: uppercase;
-}
-
-.randomized-movie {
-    display: flex;
-}
-
-.read-more {
-    border: 1px solid #8D0801;
-    padding: 10px;
-    font-family: 'Anton';
-    border-radius: 10px;
-    color: #8D0801;
-    text-decoration: none;
-    width: 8vw;
-    margin-bottom: 2%;
-}
-
-    .read-more:hover {
-        background: #8D0801;
-        color: black;
-    }
-
-
-.randomized-movie-info {
-    padding: 10%;
-    text-align: center;
-    margin: auto;
-}
-/* -------------------------*/
-
-
-/* CSS FOR Searchbar */
-
-#searchBar {
-    color: white;
-}
-
-/* CSS FOR SEARCH INDEX 0 RESULT  */
+/* CSS FOR SEARCH INDEX 0 RESULT */
 .search-movie-header {
     font-size: 4rem;
 }
 
 .search-movies-container {
-   
 }
 
 .search-index-0 {
@@ -566,12 +540,8 @@ td {
 /* CSS FOR "OR DID YOU MEAN" SECTION*/
 .search-or-did-you-mean {
     width: 100%;
-   
-
     display: flex;
     flex-direction: column;
-    
- 
 }
 
 .or-did-you-mean-header {
@@ -603,9 +573,7 @@ td {
 .search-or-did-you-mean img {
     width: 6vw;
 }
-
 /* CSS FOR TOPLIST */
-
 .ranking0 {
     width: 5vw;
     height: 5vw;
@@ -618,13 +586,15 @@ td {
     left: 0;
     color: white;
     font-size: 5vw;
-} 
-.ranking0 h2{
-    line-height: 5vw;
-    text-align: center;
-    color: white;
-    font-size: 5vw;
 }
+
+    .ranking0 h2 {
+        line-height: 5vw;
+        text-align: center;
+        color: white;
+        font-size: 5vw;
+    }
+
 .ranking {
     width: 5vw;
     height: 5vw;
@@ -637,12 +607,12 @@ td {
     position: absolute;
 }
 
-.ranking h2 {
-    line-height: 5vw;
-    text-align: center;
-    color: white;
-    font-size: 5vw;
-}
+    .ranking h2 {
+        line-height: 5vw;
+        text-align: center;
+        color: white;
+        font-size: 5vw;
+    }
 
 .top-list-index-1-3-container {
     display: table;
@@ -696,20 +666,15 @@ select {
     border-color: #8D0801;
 }
 
-#dropDownList{
+#dropDownList {
     text-align: center;
 }
-
-.hamburger {
-    display: none;
-}
-
+/*MEDIA QUERIES FOR RESPONSIVE DESIGN*/
 @media only screen and (min-width: 768px) {
-    .links2{
+    .links2 {
         display: none;
     }
 }
-
 
 @media only screen and (max-width: 767px) {
     .image-and-text {
@@ -723,23 +688,23 @@ select {
     .single-movie-detail-img {
         margin: auto;
     }
+
     .single-movie-detail-ul {
         display: flex;
         border-bottom: 1px solid #313131;
         padding: 1%;
     }
-    .single-movie-detail-ul li {
-        flex: 1;
-    }
+
+        .single-movie-detail-ul li {
+            flex: 1;
+        }
+
     .list-and-imdb-block {
         display: flex;
-        flex-direction:column;
+        flex-direction: column;
         margin-left: 0;
         padding: 1%;
-
     }
-
-   
 
     .rating {
         justify-content: center;
@@ -754,9 +719,9 @@ select {
         width: 33%;
     }
 
-    .top-list-column img {
-        width: 70%;
-    }
+        .top-list-column img {
+            width: 70%;
+        }
 
     .like-buttons-top-list-1-3 {
         display: flex;
@@ -775,8 +740,6 @@ select {
             margin: 0 auto;
         }
 
-
-
     .links {
         display: none;
     }
@@ -784,21 +747,14 @@ select {
     .hamburger-inner, .hamburger, .hamburger-box, .hamburger--3dx {
         display: flex;
         color: white;
-       
         margin: auto auto auto 5%;
     }
-
 }
-
-
-
 
 @media only screen and (max-width: 700px) {
     .carousel-item img {
         height: 50vh;
         margin: auto;
         width: 100%;
-       
     }
-
 }

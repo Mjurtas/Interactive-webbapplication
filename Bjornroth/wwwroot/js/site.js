@@ -1,4 +1,4 @@
-﻿async function testing(imdbId, newRating, index) {
+﻿async function updateRating(imdbId, newRating, index) {
     const baseUrl = "https://localhost:5001/api/"
     //const baseUrl = "https://localhost:44313/api/"
     console.log(imdbId)
@@ -9,52 +9,49 @@
         })
         if (api.ok) {
             const readableApi = await api.json()
-
-            if (newRating === 'dislike') {
-                document.getElementById(`dislike-number${index}`).innerHTML = readableApi.numberOfDislikes
-                if (document.getElementById(`nmbr-of-dislikes`)) {
-                    document.getElementById(`nmbr-of-dislikes`).innerHTML = readableApi.numberOfDislikes
-                }
-            }
-            else {
-                document.getElementById(`like-number${index}`).innerHTML = readableApi.numberOfLikes
-                if (document.getElementById(`nmbr-of-likes`)) {
-                    document.getElementById(`nmbr-of-likes`).innerHTML = readableApi.numberOfLikes
-                }
-            }
+            updateRatingInUI(readableApi, newRating, index)
             return Promise
-        }
-        else {
+        } else {
             throw api.status
         }
-    }
-    catch (e) {
+    } catch (e) {
         console.log(e.message)
     }
 }
 
-function Rating(i) {
+function updateRatingInUI(readableApi, newRating, index) {
+    if (newRating === 'dislike') {
+        document.getElementById(`dislike-number${index}`).innerHTML = readableApi.numberOfDislikes
+        if (document.getElementById(`nmbr-of-dislikes`)) {
+            document.getElementById(`nmbr-of-dislikes`).innerHTML = readableApi.numberOfDislikes
+        }
+    } else {
+        document.getElementById(`like-number${index}`).innerHTML = readableApi.numberOfLikes
+        if (document.getElementById(`nmbr-of-likes`)) {
+            document.getElementById(`nmbr-of-likes`).innerHTML = readableApi.numberOfLikes
+        }
+    }
+
+}
+
+function setPercentageLabel(i) {
     const likes = parseInt(document.getElementById(`like-number${i}`).innerHTML)
     const dislikes = parseInt(document.getElementById(`dislike-number${i}`).innerHTML)
     const ratingPercentage = Math.round(((likes / (likes + dislikes) * 100)))
     const ratingLabel = document.getElementsByClassName("rating-percentage-label")
     if (ratingPercentage) {
         ratingLabel[i].innerHTML = ratingPercentage.toString() + "%"
-    }
-    else if (likes || dislikes) {
+    } else if (likes || dislikes) {
         ratingLabel[i].innerHTML = ratingPercentage.toString() + "%"
-    }
-    else {
+    } else {
         ratingLabel[i].innerHTML = "N/A"
     }
 
     if (ratingPercentage > 50) {
         ratingLabel[i].style.color = "green"
-    }
-    else if (ratingPercentage < 50) {
+    } else if (ratingPercentage < 50) {
         ratingLabel[i].style.color = "red"
-    }
-    else {
+    } else {
         ratingLabel[i].style.color = "yellow"
     }
 }
@@ -100,10 +97,7 @@ function helperSearch() {
             // Shows the row displaying the movie if the title starts with the searchterm
             if (movieTitle.startsWith(search) && count < 5) {
 
-                recommendedResults[i].hidden = false;
-                recommendedResults[i].cells[0].hidden = false;
-                recommendedResults[i].cells[1].hidden = false;
-                recommendedResults[i].cells[2].hidden = false;
+                setTableVisibility(recommendedResults, i, false)
 
                 // Rearranges the movielist to ensure the movie starting with the searchterm is displayed at the top
                 recommendedResults[i].parentNode.insertBefore(recommendedResults[i], recommendedResults[count]);
@@ -114,10 +108,7 @@ function helperSearch() {
             // If the movietitle doesn't include the searchterm, hide it
             else {
 
-                recommendedResults[i].hidden = true;
-                recommendedResults[i].cells[0].hidden = true;
-                recommendedResults[i].cells[1].hidden = true;
-                recommendedResults[i].cells[2].hidden = true;
+                setTableVisibility(recommendedResults, i, true)
 
                 // But if the Movie title includes the searched term, then it is added to an array to iterate through later
                 // if there are less than 5 movies showing after this loop 
@@ -137,10 +128,7 @@ function helperSearch() {
                 for (let j = 0; j < movieTitleSubStrings.length; j++) {
                     if (movieTitleSubStrings[j].startsWith(search) && count < 5) {
 
-                        recommendedResultsToFilterFurther[i].hidden = false;
-                        recommendedResultsToFilterFurther[i].cells[0].hidden = false;
-                        recommendedResultsToFilterFurther[i].cells[1].hidden = false;
-                        recommendedResultsToFilterFurther[i].cells[2].hidden = false;
+                        setTableVisibility(recommendedResultsToFilterFurther, i, false)
 
                         // Rearranges the movielist to ensure the movie is displayed underneath the better 
                         // matching results but over the results that doesn't match as well
@@ -152,8 +140,7 @@ function helperSearch() {
 
                         // If a movie has been added to the final array to filter through but one of the words in the movie's 
                         // title begins with the searched term, it is removed from the array because it is already being displayed
-                        if (recommendedResultsToFilterALastTime.includes(recommendedResultsToFilterFurther[i]))
-                        {
+                        if (recommendedResultsToFilterALastTime.includes(recommendedResultsToFilterFurther[i])) {
                             recommendedResultsToFilterALastTime.pop()
                         }
                     }
@@ -167,15 +154,13 @@ function helperSearch() {
             }
         }
 
-        // If there still aren't 5 movies beign showcased then this will showcase movies where the searched term is included in the title
+        // If there still aren't 5 movies beign showcased then this will showcase movies where the searched term is included somewhere in the title
         if (count < 5) {
             for (let i = 0; i < recommendedResultsToFilterALastTime.length; i++) {
                 const movieTitle = recommendedResultsToFilterALastTime[i].cells[1].innerText.toLowerCase();
                 if (movieTitle.includes(search) && count < 5) {
-                    recommendedResultsToFilterALastTime[i].hidden = false;
-                    recommendedResultsToFilterALastTime[i].cells[0].hidden = false;
-                    recommendedResultsToFilterALastTime[i].cells[1].hidden = false;
-                    recommendedResultsToFilterALastTime[i].cells[2].hidden = false;
+
+                    setTableVisibility(recommendedResultsToFilterALastTime, i, false)
                     count += 1
                 }
 
@@ -190,10 +175,8 @@ function helperSearch() {
     // If search has no value, hide all the movies
     else {
         for (let i = 0; i < recommendedResults.length; i++) {
-            recommendedResults[i].hidden = true;
-            recommendedResults[i].cells[0].hidden = true;
-            recommendedResults[i].cells[1].hidden = true;
-            recommendedResults[i].cells[2].hidden = true;
+
+            setTableVisibility(recommendedResults, i, true)
 
             //Hide the sixth row too
             document.getElementById("suggestion-search").hidden = true;
@@ -202,11 +185,20 @@ function helperSearch() {
     updateSearchRatings()
 }
 
+function setTableVisibility(row, i, boolValue) {
+
+    row[i].hidden = boolValue
+    row[i].cells[0].hidden = boolValue;
+    row[i].cells[1].hidden = boolValue;
+    row[i].cells[2].hidden = boolValue;
+}
+
 function updateSearchRatings() {
     const row = document.getElementsByClassName("searchTableRow")
     const likeColumns = document.getElementsByClassName("numberOfLikes-td")
     const dislikeColumns = document.getElementsByClassName("numberOfDislikes-td")
     for (var i = 0; i < row.length; i++) {
+
         let likes = parseInt(likeColumns[i].innerText)
         let dislikes = parseInt(dislikeColumns[i].innerText)
         let rating = Math.round(((likes / (likes + dislikes) * 100)))
@@ -214,31 +206,25 @@ function updateSearchRatings() {
 
         if (rating > 50) {
             row[i].children[2].lastChild.style.color = "green"
-        }
-        else if (rating < 50) {
+        } else if (rating < 50) {
             row[i].children[2].lastChild.style.color = "red"
-        }
-        else {
+        } else {
             row[i].children[2].lastChild.style.color = "yellow"
         }
     }
 }
 
-function ChangeContent(rating, i) {
+function changeContent(rating, i) {
     var likebtn = document.getElementById(`like-btn${i}`)
     var dislikebtn = document.getElementById(`dislike-btn${i}`)
 
     if (rating == "liked") {
         likebtn.parentNode.parentNode.innerHTML = "<h1 style='color: green'>LIKED</h1>"
-    }
-
-    else {
+    } else {
         dislikebtn.parentNode.parentNode.innerHTML = "<h1 style='color: red'>DISLIKED</h1>"
     }
 
 }
-
-
 
 
 function resetTableOrder(rowsToOrder) {
@@ -251,7 +237,6 @@ function resetTableOrder(rowsToOrder) {
     }
 }
 
-
 /*There are 2 forms per rating section, with 2 submitBtn each. Therefore, the length of class name is divided by 2, and then like/dislike
  btn is assigned to a eventlistener in the same indexed loopround.*/
 let numberOfReactButtons = document.getElementsByClassName("submitBtn").length / 2
@@ -260,47 +245,41 @@ async function activateEventListeners() {
     for (let i = 0; i < numberOfReactButtons; i++) {
         document.getElementById(`like-btn${i}`).addEventListener("click", async function (event) {
             event.preventDefault()
-            await testing(document.getElementById(`imdbId${i}`).value, "like", i)
-            //Rating(i)
-            ChangeContent("liked", i)
-           
+            await updateRating(document.getElementById(`imdbId${i}`).value, "like", i)
+            changeContent("liked", i)
+
         })
         document.getElementById(`dislike-btn${i}`).addEventListener("click", async function (event) {
             event.preventDefault()
-            await testing(document.getElementById(`imdbId${i}`).value, "dislike", i)
-            //Rating(i)
-            ChangeContent("disliked", i)
-          
+            await updateRating(document.getElementById(`imdbId${i}`).value, "dislike", i)
+            changeContent("disliked", i)
+
         })
 
     }
     document.getElementById("searchInput").addEventListener("input", helperSearch)
-    
+
 }
 
 
-    $(document).ready(function () {
-        var $hamburger = $(".hamburger");
-        var $menu = $("#mobile-nav-menu");
-       
-        $menu.hide();
-        // On click
-        $hamburger.on("click", function (e) {
-            console.log($menu.html());
-            // Toggle class "is-active"
-            $hamburger.toggleClass("is-active");
-            $menu.slideToggle();
-            
-            // Do something else, like open/close menu
-        });
+$(document).ready(function () {
+    var $hamburger = $(".hamburger");
+    var $menu = $("#mobile-nav-menu");
+    $menu.hide();
+    $hamburger.on("click", function (e) {
+        console.log($menu.html());
 
-    })
+        $hamburger.toggleClass("is-active");
+        $menu.slideToggle();
+    });
+
+})
 
 
 
 function setRatingLabels() {
     for (let i = 0; i < numberOfReactButtons; i++) {
-        Rating(i)
+        setPercentageLabel(i)
     }
 }
 
